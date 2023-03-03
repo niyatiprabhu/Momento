@@ -14,6 +14,9 @@
 		3040D4BB29AF218300579643 /* Momento.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4B929AF218300579643 /* Momento.xcdatamodeld */; };
 		3040D4BD29AF218500579643 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3040D4BC29AF218500579643 /* Assets.xcassets */; };
 		3040D4C029AF218500579643 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3040D4BE29AF218500579643 /* LaunchScreen.storyboard */; };
+		D51B59C229B1051E00C2CDF7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B59C129B1051E00C2CDF7 /* LoginViewController.swift */; };
+		D51B59C429B107A100C2CDF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D51B59C329B107A100C2CDF7 /* GoogleService-Info.plist */; };
+		D51B59C629B1A5AA00C2CDF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B59C529B1A5AA00C2CDF7 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		3040D4BC29AF218500579643 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3040D4BF29AF218500579643 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3040D4C129AF218500579643 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D51B59C129B1051E00C2CDF7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D51B59C329B107A100C2CDF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D51B59C529B1A5AA00C2CDF7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +68,13 @@
 				3040D4B229AF218300579643 /* SceneDelegate.swift */,
 				3040D4B429AF218300579643 /* ViewController.swift */,
 				3040D4B629AF218300579643 /* Main.storyboard */,
+				D51B59C529B1A5AA00C2CDF7 /* HomeViewController.swift */,
+				D51B59C129B1051E00C2CDF7 /* LoginViewController.swift */,
 				3040D4BC29AF218500579643 /* Assets.xcassets */,
 				3040D4BE29AF218500579643 /* LaunchScreen.storyboard */,
 				3040D4C129AF218500579643 /* Info.plist */,
 				3040D4B929AF218300579643 /* Momento.xcdatamodeld */,
+				D51B59C329B107A100C2CDF7 /* GoogleService-Info.plist */,
 			);
 			path = Momento;
 			sourceTree = "<group>";
@@ -129,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3040D4C029AF218500579643 /* LaunchScreen.storyboard in Resources */,
+				D51B59C429B107A100C2CDF7 /* GoogleService-Info.plist in Resources */,
 				3040D4BD29AF218500579643 /* Assets.xcassets in Resources */,
 				3040D4B829AF218300579643 /* Main.storyboard in Resources */,
 			);
@@ -144,7 +154,9 @@
 				3040D4B529AF218300579643 /* ViewController.swift in Sources */,
 				3040D4B129AF218300579643 /* AppDelegate.swift in Sources */,
 				3040D4B329AF218300579643 /* SceneDelegate.swift in Sources */,
+				D51B59C229B1051E00C2CDF7 /* LoginViewController.swift in Sources */,
 				3040D4BB29AF218300579643 /* Momento.xcdatamodeld in Sources */,
+				D51B59C629B1A5AA00C2CDF7 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
