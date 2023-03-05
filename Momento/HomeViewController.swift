@@ -23,7 +23,13 @@ class HomeViewController: UIViewController {
         let lastPostIndex = GlobalVariables.myPosts.endIndex - 1
         if today == GlobalVariables.myPosts[lastPostIndex].date {
             // segue to after posting home page
-            performSegue(withIdentifier: "GoToOtherHome", sender: self)
+            //performSegue(withIdentifier: "GoToOtherHome", sender: self)
+            let vc = storyboard!.instantiateViewController(withIdentifier: "HomeVC")
+            let vc2 = storyboard!.instantiateViewController(withIdentifier: "Home2VC")
+            //vc.view.removeFromSuperview()
+            self.view.addSubview(vc2.view)
+
+
         }
     }
     
