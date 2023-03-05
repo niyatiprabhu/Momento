@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C3F6CE929B3AA3900563664 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3F6CE829B3AA3900563664 /* SplashViewController.swift */; };
+		1C3F6CEB29B44CBF00563664 /* PulsingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3F6CEA29B44CBE00563664 /* PulsingView.swift */; };
 		3040D4B129AF218300579643 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4B029AF218300579643 /* AppDelegate.swift */; };
 		3040D4B329AF218300579643 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4B229AF218300579643 /* SceneDelegate.swift */; };
 		3040D4B529AF218300579643 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4B429AF218300579643 /* ViewController.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C3F6CE829B3AA3900563664 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		1C3F6CEA29B44CBE00563664 /* PulsingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsingView.swift; sourceTree = "<group>"; };
 		3040D4AD29AF218200579643 /* Momento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3040D4B029AF218300579643 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3040D4B229AF218300579643 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,10 +72,12 @@
 				3040D4B229AF218300579643 /* SceneDelegate.swift */,
 				3040D4B429AF218300579643 /* ViewController.swift */,
 				3040D4B629AF218300579643 /* Main.storyboard */,
+				1C3F6CE829B3AA3900563664 /* SplashViewController.swift */,
 				D51B59C529B1A5AA00C2CDF7 /* HomeViewController.swift */,
 				D51B59C129B1051E00C2CDF7 /* LoginViewController.swift */,
 				3040D4BC29AF218500579643 /* Assets.xcassets */,
 				3040D4BE29AF218500579643 /* LaunchScreen.storyboard */,
+				1C3F6CEA29B44CBE00563664 /* PulsingView.swift */,
 				3040D4C129AF218500579643 /* Info.plist */,
 				3040D4B929AF218300579643 /* Momento.xcdatamodeld */,
 				D51B59C329B107A100C2CDF7 /* GoogleService-Info.plist */,
@@ -152,10 +158,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3040D4B529AF218300579643 /* ViewController.swift in Sources */,
+				1C3F6CEB29B44CBF00563664 /* PulsingView.swift in Sources */,
 				3040D4B129AF218300579643 /* AppDelegate.swift in Sources */,
 				3040D4B329AF218300579643 /* SceneDelegate.swift in Sources */,
 				D51B59C229B1051E00C2CDF7 /* LoginViewController.swift in Sources */,
 				3040D4BB29AF218300579643 /* Momento.xcdatamodeld in Sources */,
+				1C3F6CE929B3AA3900563664 /* SplashViewController.swift in Sources */,
 				D51B59C629B1A5AA00C2CDF7 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
