@@ -8,22 +8,64 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
+    let postSegueIdentifier = "PostSegueIdentifier"
+    var dateToSend:DateComponents?
+    
+    
+    @IBOutlet weak var usernameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        createCalendar()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func createCalendar() {
+        let calendarView = UICalendarView()
+        calendarView.translatesAutoresizingMaskIntoConstraints = false
+        calendarView.calendar = .current
+        calendarView.locale = .current
+        calendarView.fontDesign = .rounded
+        calendarView.delegate = self
+        let selection = UICalendarSelectionSingleDate(delegate: self)
+        calendarView.selectionBehavior = selection
+        view.addSubview(calendarView)
+        
+        NSLayoutConstraint.activate([
+            calendarView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            calendarView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            calendarView.heightAnchor.constraint(equalToConstant: 400),
+            calendarView.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 20)
+        ])
     }
-    */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == postSegueIdentifier, let nextVC = segue.destination as? PostViewController {
+            nextVC.dateComponents = dateToSend!
+        }
+    }
 
+}
+
+extension ProfileViewController: UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
+    
+    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
+        if dateComponents != nil {
+            print(dateComponents!)
+            dateToSend = dateComponents
+            performSegue(withIdentifier: postSegueIdentifier, sender: nil)
+        }
+    }
+    
+    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
+        guard let day = dateComponents.day else {
+            return nil
+        }
+        
+        // decorate based on some condition
+        if !day.isMultiple(of: 4) {
+            return UICalendarView.Decoration.default(size: .large)
+        }
+        return nil
+    }
 }
