@@ -25,5 +25,8 @@ class CreateEntryViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func backBtnPressed(_ sender: Any) {
+        self.dismiss(animated: false)
+    }
+    
 }

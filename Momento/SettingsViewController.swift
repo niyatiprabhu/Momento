@@ -26,4 +26,7 @@ class SettingsViewController: UIViewController {
     }
     */
 
+    @IBAction func backBtnPressed(_ sender: Any) {
+        self.dismiss(animated: false)
+    }
 }
