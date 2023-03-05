@@ -15,8 +15,18 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func logoutButtonPressed(_ sender: Any) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // check if most recent post is the same as today's date
+        let calendar = Calendar.current
+        let today = calendar.dateComponents([.year, .month, .day], from: Date.now)
+        let lastPostIndex = GlobalVariables.myPosts.endIndex - 1
+        if today == GlobalVariables.myPosts[lastPostIndex].date {
+            // segue to after posting home page
+            performSegue(withIdentifier: "GoToOtherHome", sender: self)
+        }
     }
+    
     
     /*
     // MARK: - Navigation

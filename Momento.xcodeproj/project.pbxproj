@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1C3F6CE929B3AA3900563664 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3F6CE829B3AA3900563664 /* SplashViewController.swift */; };
 		1C3F6CEB29B44CBF00563664 /* PulsingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3F6CEA29B44CBE00563664 /* PulsingView.swift */; };
+		302A830229B50E4200686D89 /* HomeAfterPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302A830129B50E4200686D89 /* HomeAfterPostingViewController.swift */; };
 		3040D4B129AF218300579643 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4B029AF218300579643 /* AppDelegate.swift */; };
 		3040D4B329AF218300579643 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4B229AF218300579643 /* SceneDelegate.swift */; };
 		3040D4B529AF218300579643 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4B429AF218300579643 /* ViewController.swift */; };
@@ -16,6 +17,9 @@
 		3040D4BB29AF218300579643 /* Momento.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4B929AF218300579643 /* Momento.xcdatamodeld */; };
 		3040D4BD29AF218500579643 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3040D4BC29AF218500579643 /* Assets.xcassets */; };
 		3040D4C029AF218500579643 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3040D4BE29AF218500579643 /* LaunchScreen.storyboard */; };
+		3040D4C829B504C900579643 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4C729B504C900579643 /* JournalEntry.swift */; };
+		3040D4CA29B5075100579643 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4C929B5075100579643 /* User.swift */; };
+		3040D4CC29B5091800579643 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4CB29B5091700579643 /* GlobalVariables.swift */; };
 		D51B59C229B1051E00C2CDF7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B59C129B1051E00C2CDF7 /* LoginViewController.swift */; };
 		D51B59C429B107A100C2CDF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D51B59C329B107A100C2CDF7 /* GoogleService-Info.plist */; };
 		D51B59C629B1A5AA00C2CDF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B59C529B1A5AA00C2CDF7 /* HomeViewController.swift */; };
@@ -29,6 +33,7 @@
 /* Begin PBXFileReference section */
 		1C3F6CE829B3AA3900563664 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		1C3F6CEA29B44CBE00563664 /* PulsingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsingView.swift; sourceTree = "<group>"; };
+		302A830129B50E4200686D89 /* HomeAfterPostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterPostingViewController.swift; sourceTree = "<group>"; };
 		3040D4AD29AF218200579643 /* Momento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3040D4B029AF218300579643 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3040D4B229AF218300579643 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +43,9 @@
 		3040D4BC29AF218500579643 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3040D4BF29AF218500579643 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3040D4C129AF218500579643 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3040D4C729B504C900579643 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
+		3040D4C929B5075100579643 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3040D4CB29B5091700579643 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		D51B59C129B1051E00C2CDF7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D51B59C329B107A100C2CDF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D51B59C529B1A5AA00C2CDF7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +90,10 @@
 				3040D4B229AF218300579643 /* SceneDelegate.swift */,
 				3040D4B429AF218300579643 /* ViewController.swift */,
 				3040D4B629AF218300579643 /* Main.storyboard */,
+				302A830129B50E4200686D89 /* HomeAfterPostingViewController.swift */,
+				3040D4C729B504C900579643 /* JournalEntry.swift */,
+				3040D4CB29B5091700579643 /* GlobalVariables.swift */,
+				3040D4C929B5075100579643 /* User.swift */,
 				D521EBDC29B4A27D009777BB /* CreateEntryViewController.swift */,
 				D521EBDA29B4A259009777BB /* FriendsViewController.swift */,
 				D521EBD829B4A248009777BB /* SettingsViewController.swift */,
@@ -178,12 +190,16 @@
 				D521EBDD29B4A27D009777BB /* CreateEntryViewController.swift in Sources */,
 				D521EBD729B49569009777BB /* ProfileViewController.swift in Sources */,
 				D521EBDB29B4A259009777BB /* FriendsViewController.swift in Sources */,
+				302A830229B50E4200686D89 /* HomeAfterPostingViewController.swift in Sources */,
 				1C3F6CEB29B44CBF00563664 /* PulsingView.swift in Sources */,
 				3040D4B129AF218300579643 /* AppDelegate.swift in Sources */,
+				3040D4CA29B5075100579643 /* User.swift in Sources */,
 				3040D4B329AF218300579643 /* SceneDelegate.swift in Sources */,
+				3040D4CC29B5091800579643 /* GlobalVariables.swift in Sources */,
 				D51B59C229B1051E00C2CDF7 /* LoginViewController.swift in Sources */,
 				3040D4BB29AF218300579643 /* Momento.xcdatamodeld in Sources */,
 				1C3F6CE929B3AA3900563664 /* SplashViewController.swift in Sources */,
+				3040D4C829B504C900579643 /* JournalEntry.swift in Sources */,
 				D51B59C629B1A5AA00C2CDF7 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

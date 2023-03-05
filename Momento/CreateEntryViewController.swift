@@ -8,7 +8,10 @@
 import UIKit
 
 class CreateEntryViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var textResponseField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,4 +32,13 @@ class CreateEntryViewController: UIViewController {
         self.dismiss(animated: false)
     }
     
+    @IBAction func onPostPressed(_ sender: Any) {
+        let calendar = Calendar.current
+        let today = calendar.dateComponents([.year, .month, .day], from: Date.now)
+        var newPost = JournalEntry(photoUpload: UIImage(), textResponse: textResponseField.text!, todayDate: today, user: GlobalVariables.currentUser)
+        GlobalVariables.myPosts.append(newPost)
+        GlobalVariables.allPosts.append(newPost)
+        // display the new post
+        performSegue(withIdentifier: "EntryJustPosted", sender: self)
+    }
 }
