@@ -152,7 +152,7 @@
         <!--Home-->
         <scene sceneID="Y3V-H5-X3I">
             <objects>
-                <viewController id="mSd-6o-wsS" customClass="HomeViewController" customModule="Momento" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeVC" id="mSd-6o-wsS" customClass="HomeViewController" customModule="Momento" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xdE-gP-NRL">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -172,9 +172,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="NtJ-F0-1FE"/>
                     <navigationItem key="navigationItem" id="LsE-9e-ShM"/>
-                    <connections>
-                        <segue destination="moP-8U-bDl" kind="presentation" identifier="GoToOtherHome" modalPresentationStyle="fullScreen" id="BMe-CB-698"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jhm-Wx-nYN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -215,7 +212,7 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Post"/>
                                 <connections>
                                     <action selector="onPostPressed:" destination="ybt-BJ-cgd" eventType="touchUpInside" id="tzv-2W-2hN"/>
-                                    <segue destination="moP-8U-bDl" kind="presentation" identifier="EntryJustPosted" modalPresentationStyle="fullScreen" id="MiA-hd-QPw"/>
+                                    <segue destination="mSd-6o-wsS" kind="presentation" identifier="EntryJustPosted" modalPresentationStyle="fullScreen" id="Aqm-1C-uzo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOG-cs-9oL">
@@ -467,7 +464,7 @@
         <!--Home After Posting-->
         <scene sceneID="cus-9D-25n">
             <objects>
-                <viewController title="Home After Posting" id="moP-8U-bDl" customClass="HomeAfterPostingViewController" customModule="Momento" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Home2VC" title="Home After Posting" id="moP-8U-bDl" customClass="HomeAfterPostingViewController" customModule="Momento" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WYr-TQ-ruP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -488,11 +485,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3TL-em-nzU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5819" y="-715"/>
+            <point key="canvasLocation" x="5862" y="-715"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MiA-hd-QPw"/>
+        <segue reference="19m-EW-wGR"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
