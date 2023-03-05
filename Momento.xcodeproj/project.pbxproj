@@ -19,6 +19,11 @@
 		D51B59C229B1051E00C2CDF7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B59C129B1051E00C2CDF7 /* LoginViewController.swift */; };
 		D51B59C429B107A100C2CDF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D51B59C329B107A100C2CDF7 /* GoogleService-Info.plist */; };
 		D51B59C629B1A5AA00C2CDF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B59C529B1A5AA00C2CDF7 /* HomeViewController.swift */; };
+		D521EBD529B49559009777BB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D521EBD429B49559009777BB /* FeedViewController.swift */; };
+		D521EBD729B49569009777BB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D521EBD629B49569009777BB /* ProfileViewController.swift */; };
+		D521EBD929B4A248009777BB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D521EBD829B4A248009777BB /* SettingsViewController.swift */; };
+		D521EBDB29B4A259009777BB /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D521EBDA29B4A259009777BB /* FriendsViewController.swift */; };
+		D521EBDD29B4A27D009777BB /* CreateEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D521EBDC29B4A27D009777BB /* CreateEntryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +41,11 @@
 		D51B59C129B1051E00C2CDF7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D51B59C329B107A100C2CDF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D51B59C529B1A5AA00C2CDF7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D521EBD429B49559009777BB /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		D521EBD629B49569009777BB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D521EBD829B4A248009777BB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D521EBDA29B4A259009777BB /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		D521EBDC29B4A27D009777BB /* CreateEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEntryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +82,11 @@
 				3040D4B229AF218300579643 /* SceneDelegate.swift */,
 				3040D4B429AF218300579643 /* ViewController.swift */,
 				3040D4B629AF218300579643 /* Main.storyboard */,
+				D521EBDC29B4A27D009777BB /* CreateEntryViewController.swift */,
+				D521EBDA29B4A259009777BB /* FriendsViewController.swift */,
+				D521EBD829B4A248009777BB /* SettingsViewController.swift */,
+				D521EBD429B49559009777BB /* FeedViewController.swift */,
+				D521EBD629B49569009777BB /* ProfileViewController.swift */,
 				1C3F6CE829B3AA3900563664 /* SplashViewController.swift */,
 				D51B59C529B1A5AA00C2CDF7 /* HomeViewController.swift */,
 				D51B59C129B1051E00C2CDF7 /* LoginViewController.swift */,
@@ -158,6 +173,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3040D4B529AF218300579643 /* ViewController.swift in Sources */,
+				D521EBD529B49559009777BB /* FeedViewController.swift in Sources */,
+				D521EBD929B4A248009777BB /* SettingsViewController.swift in Sources */,
+				D521EBDD29B4A27D009777BB /* CreateEntryViewController.swift in Sources */,
+				D521EBD729B49569009777BB /* ProfileViewController.swift in Sources */,
+				D521EBDB29B4A259009777BB /* FriendsViewController.swift in Sources */,
 				1C3F6CEB29B44CBF00563664 /* PulsingView.swift in Sources */,
 				3040D4B129AF218300579643 /* AppDelegate.swift in Sources */,
 				3040D4B329AF218300579643 /* SceneDelegate.swift in Sources */,
