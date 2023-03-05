@@ -7,18 +7,37 @@
 
 import UIKit
 
-class CreateEntryViewController: UIViewController {
-    
+class CreateEntryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var textResponseField: UITextField!
-    
+    @IBOutlet weak var imageView: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        textResponseField.borderStyle = .roundedRect
+        textResponseField.textAlignment = .left
+        textResponseField.contentVerticalAlignment = .top
     }
     
+    @IBAction func uploadPhotoPressed(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
 
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+                fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+            }
+            imageView.image = image
+            dismiss(animated:true, completion: nil)
+        }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            dismiss(animated: true, completion: nil)
+        }
+    
     /*
     // MARK: - Navigation
 
