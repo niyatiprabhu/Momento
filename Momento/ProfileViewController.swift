@@ -34,7 +34,7 @@ class ProfileViewController: UIViewController {
         NSLayoutConstraint.activate([
             calendarView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             calendarView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            calendarView.heightAnchor.constraint(equalToConstant: 400),
+            calendarView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
             calendarView.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 20)
         ])
     }

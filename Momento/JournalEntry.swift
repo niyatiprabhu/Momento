@@ -9,15 +9,18 @@ import Foundation
 import UIKit
 
 class JournalEntry {
+    
     let date: DateComponents
     let author: User
     var photo: UIImage?
     let text: String
+    let color: UIColor
     
-    init(photoUpload: UIImage, textResponse: String, todayDate: DateComponents, user: User) {
+    init(photoUpload: UIImage, textResponse: String, todayDate: DateComponents, user: User, backgroundColor:UIColor) {
         date = todayDate
         photo = photoUpload
         text = textResponse
         author = user
+        color = backgroundColor
     }
 }

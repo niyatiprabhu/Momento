@@ -9,10 +9,32 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var subview: UIView!
+    
+    let beforePostVC = HomeBeforePostingViewController()
+    let afterPostVC = HomeAfterPostedViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setup()
+    }
+    
+    private func setup() {
+        
+        addChild(beforePostVC)
+        addChild(afterPostVC)
+        
+        self.view.addSubview(beforePostVC.view)
+        self.view.addSubview(afterPostVC.view)
+        
+        beforePostVC.didMove(toParent: self)
+        afterPostVC.didMove(toParent: self)
+        
+        beforePostVC.view.frame = subview.bounds
+        afterPostVC.view.frame = subview.bounds
+        
+        afterPostVC.view.isHidden = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -21,27 +43,13 @@ class HomeViewController: UIViewController {
         let calendar = Calendar.current
         let today = calendar.dateComponents([.year, .month, .day], from: Date.now)
         let lastPostIndex = GlobalVariables.myPosts.endIndex - 1
-        if today == GlobalVariables.myPosts[lastPostIndex].date {
-            // segue to after posting home page
-            //performSegue(withIdentifier: "GoToOtherHome", sender: self)
-            let vc = storyboard!.instantiateViewController(withIdentifier: "HomeVC")
-            let vc2 = storyboard!.instantiateViewController(withIdentifier: "Home2VC")
-            //vc.view.removeFromSuperview()
-            self.view.addSubview(vc2.view)
-
-
+        if !GlobalVariables.myPosts.isEmpty && today == GlobalVariables.myPosts[lastPostIndex].date {
+            
+            // show afterPostVC
+            beforePostVC.view.isHidden = true
+            afterPostVC.view.isHidden = false
         }
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

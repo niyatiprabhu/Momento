@@ -28,11 +28,10 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func onPostPressed(_ sender: Any) {
         let calendar = Calendar.current
         let today = calendar.dateComponents([.year, .month, .day], from: Date.now)
-        var newPost = JournalEntry(photoUpload: UIImage(), textResponse: textResponseField.text!, todayDate: today, user: GlobalVariables.currentUser)
+        let newPost = JournalEntry(photoUpload: UIImage(), textResponse: textResponseField.text!, todayDate: today, user: GlobalVariables.currentUser, backgroundColor: selectedColor)
         GlobalVariables.myPosts.append(newPost)
         GlobalVariables.allPosts.append(newPost)
-        // display the new post
-        performSegue(withIdentifier: "EntryJustPosted", sender: self)
+        self.dismiss(animated: false)
     }
     
     // set up textField attribues and color well
