@@ -44,7 +44,7 @@ class HomeViewController: UIViewController {
         let today = calendar.dateComponents([.year, .month, .day], from: Date.now)
         let lastPostIndex = GlobalVariables.myPosts.endIndex - 1
         if !GlobalVariables.myPosts.isEmpty && today == GlobalVariables.myPosts[lastPostIndex].date {
-            
+            print("myPosts is not empty!")
             // show afterPostVC
             beforePostVC.view.isHidden = true
             afterPostVC.view.isHidden = false
