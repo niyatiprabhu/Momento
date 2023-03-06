@@ -13,14 +13,16 @@ class JournalEntry {
     let date: DateComponents
     let author: User
     var photo: UIImage?
-    let text: String
+    let response: String
+    let prompt: String
     let color: UIColor
     
     init(photoUpload: UIImage, textResponse: String, todayDate: DateComponents, user: User, backgroundColor:UIColor) {
         date = todayDate
         photo = photoUpload
-        text = textResponse
+        response = textResponse
         author = user
+        prompt = "What made you happy today?"
         color = backgroundColor
     }
 }

@@ -11,6 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeAfterPostedViewController" customModule="Momento" customModuleProvider="target">
             <connections>
                 <outlet property="dateLabel" destination="DIP-2z-mK4" id="Bes-zK-d6G"/>
+                <outlet property="postBackground" destination="1oZ-qw-24t" id="7g2-8C-AIY"/>
+                <outlet property="postImageView" destination="zap-oE-CYh" id="Jv1-29-sd0"/>
+                <outlet property="promptLabel" destination="uxn-Tk-of5" id="ZDP-Dr-MT9"/>
+                <outlet property="responseLabel" destination="5Jt-EZ-Jmk" id="6L5-ma-kF7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,8 +38,8 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="boba" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jt-EZ-Jmk">
-                            <rect key="frame" x="27" y="324" width="262" height="26"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="boba" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jt-EZ-Jmk">
+                            <rect key="frame" x="27" y="324" width="262" height="153"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <nil key="textColor"/>

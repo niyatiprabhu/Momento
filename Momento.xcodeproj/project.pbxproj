@@ -26,6 +26,7 @@
 		D5075C0929B5CA6E00DE249E /* HomeBeforePostingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5075C0829B5CA6E00DE249E /* HomeBeforePostingViewController.xib */; };
 		D5075C1029B5CE1100DE249E /* HomeAfterPostedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5075C0E29B5CE1100DE249E /* HomeAfterPostedViewController.swift */; };
 		D5075C1129B5CE1100DE249E /* HomeAfterPostedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5075C0F29B5CE1100DE249E /* HomeAfterPostedViewController.xib */; };
+		D5075C1329B6AC0000DE249E /* PostFillerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5075C1229B6ABFF00DE249E /* PostFillerProtocol.swift */; };
 		D51B59C229B1051E00C2CDF7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B59C129B1051E00C2CDF7 /* LoginViewController.swift */; };
 		D51B59C429B107A100C2CDF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D51B59C329B107A100C2CDF7 /* GoogleService-Info.plist */; };
 		D51B59C629B1A5AA00C2CDF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B59C529B1A5AA00C2CDF7 /* HomeViewController.swift */; };
@@ -58,6 +59,7 @@
 		D5075C0829B5CA6E00DE249E /* HomeBeforePostingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeBeforePostingViewController.xib; sourceTree = "<group>"; };
 		D5075C0E29B5CE1100DE249E /* HomeAfterPostedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterPostedViewController.swift; sourceTree = "<group>"; };
 		D5075C0F29B5CE1100DE249E /* HomeAfterPostedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeAfterPostedViewController.xib; sourceTree = "<group>"; };
+		D5075C1229B6ABFF00DE249E /* PostFillerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFillerProtocol.swift; sourceTree = "<group>"; };
 		D51B59C129B1051E00C2CDF7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D51B59C329B107A100C2CDF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D51B59C529B1A5AA00C2CDF7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				D5075C0029B5BCF400DE249E /* PostTableViewCell.swift */,
 				D5075C0129B5BCF400DE249E /* PostTableViewCell.xib */,
 				D51B59C529B1A5AA00C2CDF7 /* HomeViewController.swift */,
+				D5075C1229B6ABFF00DE249E /* PostFillerProtocol.swift */,
 				D5075C0629B5C22400DE249E /* HomeBeforePostingViewController.swift */,
 				D5075C0829B5CA6E00DE249E /* HomeBeforePostingViewController.xib */,
 				D5075C0E29B5CE1100DE249E /* HomeAfterPostedViewController.swift */,
@@ -219,6 +222,7 @@
 				3040D4B329AF218300579643 /* SceneDelegate.swift in Sources */,
 				D5075C1029B5CE1100DE249E /* HomeAfterPostedViewController.swift in Sources */,
 				3040D4CC29B5091800579643 /* GlobalVariables.swift in Sources */,
+				D5075C1329B6AC0000DE249E /* PostFillerProtocol.swift in Sources */,
 				D51B59C229B1051E00C2CDF7 /* LoginViewController.swift in Sources */,
 				3040D4BB29AF218300579643 /* Momento.xcdatamodeld in Sources */,
 				1C3F6CE929B3AA3900563664 /* SplashViewController.swift in Sources */,
