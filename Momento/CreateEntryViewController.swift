@@ -30,6 +30,20 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     }
      
     @IBAction func onPostPressed(_ sender: Any) {
+        // Fields are missing, present alert to user
+        if imageView.image!.isEqualToImage(UIImage(named: "placeholder")!) || textResponseView.textColor == UIColor.lightGray {
+            // Create new Alert
+             var dialogMessage = UIAlertController(title: "Missing Fields", message: "Fields are required.", preferredStyle: .alert)
+             
+             // Create OK button with action handler
+             let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+             
+             //Add OK button to a dialog message
+             dialogMessage.addAction(ok)
+             // Present Alert to
+             self.present(dialogMessage, animated: true, completion: nil)
+        }
+        
         let calendar = Calendar.current
         let today = calendar.dateComponents([.year, .month, .day], from: Date.now)
         let newPost = JournalEntry(photoUpload: postImage, textResponse: textResponseView.text!, todayDate: today, user: GlobalVariables.currentUser, backgroundColor: selectedColor)
@@ -88,3 +102,14 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         textResponseView.textColor = UIColor.lightGray
     }
 }
+
+extension UIImage {
+
+    func isEqualToImage(_ image: UIImage) -> Bool {
+        return self.pngData() == image.pngData()
+    }
+
+}
+
+
+

@@ -9,15 +9,37 @@ import UIKit
 
 class FeedViewController: UIViewController {
 
-    var posts = [String]()
+    var posts = [JournalEntry]()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var dateLabel: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.register(PostTableViewCell.nib(), forCellReuseIdentifier: PostTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
+        
+        
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: Date.now)
+        var date = calendar.date(from: dateComponents)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        if let d = date {
+            let dateString = dateFormatter.string(from: d)
+            dateLabel.title = dateString
+        }
+        
+        let niyatiUser = User(myName: "Niyati Prabhu", myUsername: "@pnini", myEmail: "fake@gmail.com", myPass: "fakePass", myPhoto: UIImage(named: "pfp1")!)
+        let jasmineUser = User(myName: "Jasmine Wang", myUsername: "@jasminey", myEmail: "fake@gmail.com", myPass: "fakePass", myPhoto: UIImage(named: "pfp2")!)
+        let hannahUser = User(myName: "Hannah Clark", myUsername: "@hannahclark", myEmail: "fake@gmail.com", myPass: "fakePass", myPhoto: UIImage(named: "pfp3")!)
+        
+        posts.append(JournalEntry(photoUpload: UIImage(named: "post1")!, textResponse: "Went on a hike with my friends!", todayDate: dateComponents, user: niyatiUser, backgroundColor: UIColor(red: 200, green: 30, blue: 0, alpha: 0.5)))
+        posts.append(JournalEntry(photoUpload: UIImage(named: "post2")!, textResponse: "Got boba from coco's!", todayDate: dateComponents, user: jasmineUser, backgroundColor: UIColor(red: 0, green: 157, blue: 88, alpha: 0.2)))
+        posts.append(JournalEntry(photoUpload: UIImage(named: "post3")!, textResponse: "Worked on a painting!", todayDate: dateComponents, user: hannahUser, backgroundColor: UIColor(red: 100, green: 0, blue: 88, alpha: 0.2)))
     }
     
 
@@ -40,7 +62,9 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+        cell.configure(with: posts[indexPath.row])
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

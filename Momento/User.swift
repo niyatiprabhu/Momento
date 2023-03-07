@@ -13,7 +13,7 @@ class User {
     var username: String
     var email: String
     var password: String
-    var profilePhoto: UIImage?
+    var profilePhoto: UIImage!
     
     init(myName: String, myUsername: String, myEmail: String, myPass: String, myPhoto: UIImage) {
         name = myName

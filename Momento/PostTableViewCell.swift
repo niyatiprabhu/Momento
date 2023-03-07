@@ -12,10 +12,14 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var postImageView: UIImageView!
     @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var likesLabel: UILabel!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var promptLabel: UILabel!
+    @IBOutlet var responseLabel: UILabel!
+    @IBOutlet var bottomContainerView: UIView!
     
     static let identifier = "PostTableViewCell"
     
+    // to register cell with table view more easily
     static func nib() -> UINib {
         return UINib(nibName: "PostTableViewCell", bundle: nil)
     }
@@ -32,7 +36,13 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func configure(with model: JournalEntry) {
-        
+        userImageView.image = model.author.profilePhoto
+        postImageView.image = model.photo
+        usernameLabel.text = model.author.username
+        nameLabel.text = model.author.name
+        promptLabel.text = model.prompt
+        responseLabel.text = model.response
+        bottomContainerView.backgroundColor = model.color
     }
     
 }

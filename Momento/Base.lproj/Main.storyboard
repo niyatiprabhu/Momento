@@ -133,7 +133,7 @@
             </objects>
             <point key="canvasLocation" x="2385" y="-715"/>
         </scene>
-        <!--Feed-->
+        <!--Date-->
         <scene sceneID="Tsh-Kt-uLF">
             <objects>
                 <viewController id="huU-1o-6QU" customClass="FeedViewController" customModule="Momento" customModuleProvider="target" sceneMemberID="viewController">
@@ -160,14 +160,15 @@
                         <viewLayoutGuide key="safeArea" id="MEs-15-2wr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Feed" image="leaf.fill" catalog="system" id="Tjh-Ku-V4Q"/>
+                    <navigationItem key="navigationItem" title="Date" id="8YS-Hu-0UR"/>
                     <connections>
+                        <outlet property="dateLabel" destination="8YS-Hu-0UR" id="cG3-5e-u6E"/>
                         <outlet property="tableView" destination="M1I-3E-pub" id="1zD-Dl-pi1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vW4-ou-6D9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4721.3740458015263" y="-715.49295774647896"/>
+            <point key="canvasLocation" x="5648.0916030534345" y="-715.49295774647896"/>
         </scene>
         <!--Home-->
         <scene sceneID="Y3V-H5-X3I">
@@ -482,13 +483,32 @@
                     </tabBar>
                     <connections>
                         <segue destination="mSd-6o-wsS" kind="relationship" relationship="viewControllers" id="19m-EW-wGR"/>
-                        <segue destination="huU-1o-6QU" kind="relationship" relationship="viewControllers" id="w33-UV-hlG"/>
+                        <segue destination="OGD-uU-sJs" kind="relationship" relationship="viewControllers" id="w33-UV-hlG"/>
                         <segue destination="9Wo-HA-Eim" kind="relationship" relationship="viewControllers" id="JiL-5M-C8O"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kHs-m1-dGg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3507.6335877862593" y="3.5211267605633805"/>
+        </scene>
+        <!--Feed-->
+        <scene sceneID="UmL-Qf-hHo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OGD-uU-sJs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Feed" image="leaf.fill" catalog="system" id="Tjh-Ku-V4Q"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fR1-EU-rId">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="huU-1o-6QU" kind="relationship" relationship="rootViewController" id="Rbq-4p-xId"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YMQ-gm-V7T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4721.3740458015263" y="-715.49295774647896"/>
         </scene>
     </scenes>
     <resources>

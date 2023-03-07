@@ -12,10 +12,10 @@ class JournalEntry {
     
     let date: DateComponents
     let author: User
-    var photo: UIImage?
+    var photo: UIImage!
     let response: String
     let prompt: String
-    let color: UIColor
+    let color: UIColor!
     
     init(photoUpload: UIImage, textResponse: String, todayDate: DateComponents, user: User, backgroundColor:UIColor) {
         date = todayDate
