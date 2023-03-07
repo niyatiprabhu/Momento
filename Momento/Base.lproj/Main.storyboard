@@ -53,7 +53,6 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Login"/>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r5L-G4-cZF"/>
-                                    <segue destination="D4v-46-Svn" kind="presentation" animates="NO" modalPresentationStyle="fullScreen" id="UrW-Zg-BQd"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="150" translatesAutoresizingMaskIntoConstraints="NO" id="rcq-c1-RJq">
@@ -72,16 +71,17 @@
                         <outlet property="emailField" destination="Zgy-hC-L3x" id="T96-Vz-j9C"/>
                         <outlet property="errorMessage" destination="rcq-c1-RJq" id="SMY-8t-qm0"/>
                         <outlet property="passwordField" destination="RCS-G8-Let" id="lGV-hm-ve2"/>
+                        <segue destination="D4v-46-Svn" kind="presentation" identifier="LoginSegue" modalPresentationStyle="fullScreen" id="I8r-6H-Dbm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2384" y="4"/>
+            <point key="canvasLocation" x="2384" y="32"/>
         </scene>
-        <!--View Controller-->
+        <!--Signup View Controller-->
         <scene sceneID="GEh-pg-2ai">
             <objects>
-                <viewController id="eaV-Ti-KKG" customClass="ViewController" customModule="Momento" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eaV-Ti-KKG" customClass="SignupViewController" customModule="Momento" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Tc-E6-2D4">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -122,16 +122,24 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Submit"/>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="eaV-Ti-KKG" eventType="touchUpInside" id="bpt-Jh-TcN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zcn-pc-9Me"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="VOe-Xb-oiZ"/>
+                    <connections>
+                        <outlet property="emailField" destination="3Ud-pl-bnj" id="ZT1-x7-OE3"/>
+                        <outlet property="passwordField" destination="sdh-Fb-hBY" id="9og-ER-NCE"/>
+                        <outlet property="usernameField" destination="KVz-N0-1Iv" id="fr0-rX-Eky"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRa-ym-leG" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2385" y="-715"/>
+            <point key="canvasLocation" x="2384" y="-730"/>
         </scene>
         <!--Date-->
         <scene sceneID="Tsh-Kt-uLF">
@@ -426,15 +434,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ej-5e-fGa">
+                                <rect key="frame" x="156" y="651" width="78" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutBtnPressed:" destination="qbk-UI-orS" eventType="touchUpInside" id="fsm-9g-lpb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JWc-WM-UHf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="nE4-Ft-GqX"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="HrV-56-dqc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e6Z-NK-ozZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5862" y="737"/>
+            <point key="canvasLocation" x="5811" y="737"/>
         </scene>
         <!--Friends View Controller-->
         <scene sceneID="sQt-Ec-5DB">

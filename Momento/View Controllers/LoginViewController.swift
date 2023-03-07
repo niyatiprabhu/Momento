@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
 
@@ -17,7 +18,17 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        passwordField.isSecureTextEntry = true
+        Auth.auth().addStateDidChangeListener() {
+            auth, user in
+            if user != nil {
+                print("HERE")
+                print("\(String(describing: user))")
+                self.performSegue(withIdentifier: "LoginSegue", sender: nil)
+                self.emailField.text = nil
+                self.passwordField.text = nil
+            }
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -33,6 +44,11 @@ class LoginViewController: UIViewController {
     */
     
     @IBAction func loginButtonPressed(_ sender: Any) {
+        Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) {
+            authResult, error in if let error = error as NSError? {
+                self.errorMessage.text = "\(error.localizedDescription)"
+            }
+        }
     }
     
     @IBAction func signupButtonPressed(_ sender: Any) {
