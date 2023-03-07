@@ -36,21 +36,21 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Don't have an account? Register now!"/>
                                 <connections>
                                     <action selector="signupButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4km-v7-lwH"/>
-                                    <segue destination="eaV-Ti-KKG" kind="presentation" modalPresentationStyle="fullScreen" id="4MX-2A-iu6"/>
+                                    <segue destination="eaV-Ti-KKG" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="4MX-2A-iu6"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1k5-0A-1SP">
-                                <rect key="frame" x="170" y="210" width="52" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1k5-0A-1SP">
+                                <rect key="frame" x="170" y="210" width="53" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bl6-Du-wpZ">
-                                <rect key="frame" x="164" y="400" width="66" height="35"/>
+                                <rect key="frame" x="158" y="400" width="78" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Login"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Submit"/>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r5L-G4-cZF"/>
                                 </connections>
@@ -87,9 +87,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Create Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKH-7x-bAy">
-                                <rect key="frame" x="137" y="145" width="119" height="21"/>
+                                <rect key="frame" x="123" y="145" width="148" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -121,9 +121,19 @@
                                 <rect key="frame" x="160" y="455" width="78" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Submit"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Submit"/>
                                 <connections>
                                     <action selector="submitButtonPressed:" destination="eaV-Ti-KKG" eventType="touchUpInside" id="bpt-Jh-TcN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DtU-Dg-ARa">
+                                <rect key="frame" x="62" y="531" width="270" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Already have an account? Login!"/>
+                                <connections>
+                                    <action selector="loginBtnPressed:" destination="eaV-Ti-KKG" eventType="touchUpInside" id="rMk-MD-5oW"/>
+                                    <action selector="signupButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hlt-fX-MV9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -132,14 +142,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="VOe-Xb-oiZ"/>
                     <connections>
+                        <outlet property="confirmPasswordField" destination="hAK-1u-JEF" id="e3F-ZN-Urk"/>
                         <outlet property="emailField" destination="3Ud-pl-bnj" id="ZT1-x7-OE3"/>
                         <outlet property="passwordField" destination="sdh-Fb-hBY" id="9og-ER-NCE"/>
                         <outlet property="usernameField" destination="KVz-N0-1Iv" id="fr0-rX-Eky"/>
+                        <segue destination="D4v-46-Svn" kind="presentation" identifier="SignupSegue" modalPresentationStyle="fullScreen" id="1cR-hJ-Sbh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRa-ym-leG" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2384" y="-730"/>
+            <point key="canvasLocation" x="2384" y="-703"/>
         </scene>
         <!--Date-->
         <scene sceneID="Tsh-Kt-uLF">
@@ -531,6 +543,9 @@
             <point key="canvasLocation" x="4721.3740458015263" y="-715.49295774647896"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="1cR-hJ-Sbh"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>

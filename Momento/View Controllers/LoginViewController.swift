@@ -22,14 +22,11 @@ class LoginViewController: UIViewController {
         Auth.auth().addStateDidChangeListener() {
             auth, user in
             if user != nil {
-                print("HERE")
-                print("\(String(describing: user))")
                 self.performSegue(withIdentifier: "LoginSegue", sender: nil)
                 self.emailField.text = nil
                 self.passwordField.text = nil
             }
         }
-        // Do any additional setup after loading the view.
     }
     
 

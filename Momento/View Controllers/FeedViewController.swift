@@ -34,7 +34,7 @@ class FeedViewController: UIViewController {
         }
         
         let niyatiUser = User(myName: "Niyati Prabhu", myUsername: "@pnini", myEmail: "fake@gmail.com", myPass: "fakePass", myPhoto: UIImage(named: "pfp1")!)
-        let jasmineUser = User(myName: "Jasmine Wang", myUsername: "@jasminey", myEmail: "fake@gmail.com", myPass: "fakePass", myPhoto: UIImage(named: "pfp2")!)
+        let jasmineUser = User(myName: "Jasmine Wang", myUsername: "@jasmineyw", myEmail: "fake@gmail.com", myPass: "fakePass", myPhoto: UIImage(named: "pfp2")!)
         let hannahUser = User(myName: "Hannah Clark", myUsername: "@hannahclark", myEmail: "fake@gmail.com", myPass: "fakePass", myPhoto: UIImage(named: "pfp3")!)
         
         posts.append(JournalEntry(photoUpload: UIImage(named: "post1")!, textResponse: "Went on a hike with my friends!", todayDate: dateComponents, user: niyatiUser, backgroundColor: UIColor(red: 200, green: 30, blue: 0, alpha: 0.5)))
