@@ -14,11 +14,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ov-O4-nxF">
-                    <rect key="frame" x="125.66666666666669" y="382" width="124" height="35"/>
+                    <rect key="frame" x="134.66666666666666" y="567" width="123.99999999999997" height="35"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Create Entry!"/>
                     <connections>
@@ -26,14 +26,14 @@
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woman_hug" translatesAutoresizingMaskIntoConstraints="NO" id="8T7-rN-Zdl">
-                    <rect key="frame" x="67.666666666666686" y="249" width="240" height="128"/>
+                    <rect key="frame" x="76.666666666666686" y="434" width="240" height="128"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="240" id="GdX-N1-kBw"/>
                         <constraint firstAttribute="height" constant="128" id="hoo-Py-Cpc"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It looks like you haven't posted your journal entry today." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sh7-sq-hdP">
-                    <rect key="frame" x="66" y="158.33333333333334" width="243" height="40.666666666666657"/>
+                    <rect key="frame" x="66" y="343.33333333333331" width="261" height="40.666666666666686"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                 <constraint firstItem="Sh7-sq-hdP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" constant="50" id="j98-Ju-ZfK"/>
                 <constraint firstItem="6Ov-O4-nxF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ljG-Gj-cdW"/>
             </constraints>
-            <point key="canvasLocation" x="407" y="-42"/>
+            <point key="canvasLocation" x="406.87022900763355" y="-42.253521126760567"/>
         </view>
     </objects>
     <resources>

@@ -35,7 +35,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Don't have an account? Register now!"/>
                                 <connections>
-                                    <action selector="signupButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4km-v7-lwH"/>
                                     <segue destination="eaV-Ti-KKG" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="4MX-2A-iu6"/>
                                 </connections>
                             </button>
@@ -461,7 +460,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="nE4-Ft-GqX"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="HrV-56-dqc"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="LogoutSegue" animates="NO" modalPresentationStyle="fullScreen" id="HrV-56-dqc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e6Z-NK-ozZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -544,7 +543,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1cR-hJ-Sbh"/>
+        <segue reference="I8r-6H-Dbm"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
