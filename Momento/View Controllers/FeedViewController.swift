@@ -20,7 +20,6 @@ class FeedViewController: UIViewController {
         tableView.register(PostTableViewCell.nib(), forCellReuseIdentifier: PostTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
-        // Do any additional setup after loading the view.
         
         
         let calendar = Calendar.current
@@ -36,10 +35,13 @@ class FeedViewController: UIViewController {
         let niyatiUser = User(myName: "Niyati Prabhu", myUsername: "@pnini", myEmail: "fake@gmail.com", myPass: "fakePass", myPhoto: UIImage(named: "pfp1")!)
         let jasmineUser = User(myName: "Jasmine Wang", myUsername: "@jasmineyw", myEmail: "fake@gmail.com", myPass: "fakePass", myPhoto: UIImage(named: "pfp2")!)
         let hannahUser = User(myName: "Hannah Clark", myUsername: "@hannahclark", myEmail: "fake@gmail.com", myPass: "fakePass", myPhoto: UIImage(named: "pfp3")!)
+        let shadinUser = User(myName: "Shadin Hussein", myUsername: "@shadowz", myEmail: "fake@gmail.com", myPass: "fakePass", myPhoto: UIImage(named: "pfp4")!)
         
         posts.append(JournalEntry(photoUpload: UIImage(named: "post1")!, textResponse: "Went on a hike with my friends!", todayDate: dateComponents, user: niyatiUser, backgroundColor: UIColor(red: 200, green: 30, blue: 0, alpha: 0.5)))
         posts.append(JournalEntry(photoUpload: UIImage(named: "post2")!, textResponse: "Got boba from coco's!", todayDate: dateComponents, user: jasmineUser, backgroundColor: UIColor(red: 0, green: 157, blue: 88, alpha: 0.2)))
         posts.append(JournalEntry(photoUpload: UIImage(named: "post3")!, textResponse: "Worked on a painting!", todayDate: dateComponents, user: hannahUser, backgroundColor: UIColor(red: 100, green: 0, blue: 88, alpha: 0.2)))
+        posts.append(JournalEntry(photoUpload: UIImage(named: "post4")!, textResponse: "Did a yoga class with friends!", todayDate: dateComponents, user: shadinUser, backgroundColor: UIColor(red: 160/255.0, green: 217/255.0, blue: 88/255.0, alpha: 1.0)))
+
     }
     
 
