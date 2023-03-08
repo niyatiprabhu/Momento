@@ -29,6 +29,7 @@
 		D5075C1329B6AC0000DE249E /* PostFillerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5075C1229B6ABFF00DE249E /* PostFillerProtocol.swift */; };
 		D5075C1629B7950800DE249E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D5075C1529B7950800DE249E /* FirebaseAuth */; };
 		D5075C1B29B7978D00DE249E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5075C1A29B7978D00DE249E /* SignupViewController.swift */; };
+		D5075C1D29B843B700DE249E /* README.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D5075C1C29B843B700DE249E /* README.pdf */; };
 		D51B59C229B1051E00C2CDF7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B59C129B1051E00C2CDF7 /* LoginViewController.swift */; };
 		D51B59C429B107A100C2CDF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D51B59C329B107A100C2CDF7 /* GoogleService-Info.plist */; };
 		D51B59C629B1A5AA00C2CDF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B59C529B1A5AA00C2CDF7 /* HomeViewController.swift */; };
@@ -64,6 +65,7 @@
 		D5075C1229B6ABFF00DE249E /* PostFillerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFillerProtocol.swift; sourceTree = "<group>"; };
 		D5075C1729B7963B00DE249E /* Momento.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Momento.entitlements; sourceTree = "<group>"; };
 		D5075C1A29B7978D00DE249E /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		D5075C1C29B843B700DE249E /* README.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = README.pdf; sourceTree = "<group>"; };
 		D51B59C129B1051E00C2CDF7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D51B59C329B107A100C2CDF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D51B59C529B1A5AA00C2CDF7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		3040D4AF29AF218200579643 /* Momento */ = {
 			isa = PBXGroup;
 			children = (
+				D5075C1C29B843B700DE249E /* README.pdf */,
 				D5075C1729B7963B00DE249E /* Momento.entitlements */,
 				3093C86C29B750BA00B9D2F9 /* Models */,
 				3093C86B29B7507700B9D2F9 /* View Controllers */,
@@ -220,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5075C1D29B843B700DE249E /* README.pdf in Resources */,
 				3040D4C029AF218500579643 /* LaunchScreen.storyboard in Resources */,
 				D51B59C429B107A100C2CDF7 /* GoogleService-Info.plist in Resources */,
 				D5075C0329B5BCF400DE249E /* PostTableViewCell.xib in Resources */,
