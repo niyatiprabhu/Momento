@@ -5,15 +5,22 @@
 
 import UIKit
 
-class CreateEntryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class CreateEntryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, StickerPickerDelegate {
     
     var selectedColor = UIColor.white
     var postImage:UIImage = UIImage(named: "placeholder")!
     var placeholderText:String = "share your thoughts..."
+//    var activeSticker: Sticker?
+//    var allStickers: [Sticker] = []
+    var moodStickers:String = ""
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var colorWell: UIColorWell!
     @IBOutlet weak var textResponseView: UITextView!
+    @IBOutlet weak var moodLabel: UILabel!
+    
+    
+    
     
     // set up textField attribues and color well
     override func viewDidLoad() {
@@ -22,6 +29,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         textResponseView.text = placeholderText
         textResponseView.textColor = UIColor.lightGray
         setupColorWell()
+        moodLabel.text = ""
     }
     
     // MARK: - navigation
@@ -101,7 +109,33 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         }
         textResponseView.textColor = UIColor.lightGray
     }
+    
+//    ------- MOOD PICKER CODE --------
+    func didPick(_ sticker: String) {
+        moodStickers.append(sticker)
+        moodLabel.text = moodStickers
+        
+    }
+
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showStickersSegue",
+           let nextVC = segue.destination as? MoodPickerViewController {
+            nextVC.delegate = self
+
+        }
+    }
+    
+    @IBAction func undoLastMood(_ sender: Any) {
+        if (moodStickers.count > 0) {
+            moodStickers.removeLast()
+            moodLabel.text = moodStickers
+        }
+        
+    }
+    
 }
+
 
 extension UIImage {
 
