@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import HealthKit
 
 class PostTableViewCell: UITableViewCell {
     
@@ -16,6 +17,11 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet var promptLabel: UILabel!
     @IBOutlet var responseLabel: UILabel!
     @IBOutlet var bottomContainerView: UIView!
+    @IBOutlet weak var postLikes: UILabel!
+    @IBOutlet weak var stepCount: UILabel!
+    
+    
+    
     
     static let identifier = "PostTableViewCell"
     

@@ -4,9 +4,11 @@
 //
 
 import UIKit
+import HealthKit
 
 class CreateEntryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, StickerPickerDelegate {
     
+    private var healthStore: HealthStore?
     var selectedColor = UIColor.white
     var postImage:UIImage = UIImage(named: "placeholder")!
     var placeholderText:String = "share your thoughts..."
@@ -20,8 +22,16 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var moodLabel: UILabel!
     
     
-    
-    
+    // Retrieve health data from user's phone
+    override func viewWillAppear(_ animated: Bool) {
+        healthStore = HealthStore()
+        
+        if let healthStore = healthStore {
+            healthStore.requestAuthorization{
+                success in
+            }
+        }
+    }
     // set up textField attribues and color well
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,22 +120,13 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         textResponseView.textColor = UIColor.lightGray
     }
     
-//    ------- MOOD PICKER CODE --------
+//  MARK: - Mood Picker Code
     func didPick(_ sticker: String) {
         moodStickers.append(sticker)
         moodLabel.text = moodStickers
         
     }
 
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showStickersSegue",
-           let nextVC = segue.destination as? MoodPickerViewController {
-            nextVC.delegate = self
-
-        }
-    }
-    
     @IBAction func undoLastMood(_ sender: Any) {
         if (moodStickers.count > 0) {
             moodStickers.removeLast()
@@ -134,6 +135,14 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showStickersSegue",
+           let nextVC = segue.destination as? MoodPickerViewController {
+            nextVC.delegate = self
+
+        }
+    }
+
 }
 
 

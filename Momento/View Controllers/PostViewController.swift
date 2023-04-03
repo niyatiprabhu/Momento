@@ -26,6 +26,7 @@ class PostViewController: UIViewController {
                 dateLabel.text = dateString
             }
         }
+        
     }
 
 }
