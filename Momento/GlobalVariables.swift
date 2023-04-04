@@ -16,5 +16,5 @@ struct GlobalVariables {
     static var myPosts: [JournalEntry] = []
     static var allPosts: [JournalEntry] = []
     
-    static let currentUser = User(myName: "Jane Doe", myUsername: "janedo3", myEmail: "jd@gmail.com", myPass: "janeiscool", myPhoto: UIImage(named: "placeholder")!)
+    static let currentUser = User(myName: "Jane Doe", myUsername: "janedo3", myEmail: "jd@gmail.com", myPass: "janeiscool", myPhoto: UIImage(named: "placeholder")!, mySteps: "0")
 }

@@ -426,7 +426,7 @@
 				CODE_SIGN_ENTITLEMENTS = Momento/Momento.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H6PGJR2P62;
+				DEVELOPMENT_TEAM = P6AWFC6WS9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Momento/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -455,7 +455,7 @@
 				CODE_SIGN_ENTITLEMENTS = Momento/Momento.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H6PGJR2P62;
+				DEVELOPMENT_TEAM = P6AWFC6WS9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Momento/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -8,7 +8,6 @@ import HealthKit
 
 class CreateEntryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, StickerPickerDelegate {
     
-    private var healthStore: HealthStore?
     var selectedColor = UIColor.white
     var postImage:UIImage = UIImage(named: "placeholder")!
     var placeholderText:String = "share your thoughts..."
@@ -24,13 +23,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     
     // Retrieve health data from user's phone
     override func viewWillAppear(_ animated: Bool) {
-        healthStore = HealthStore()
         
-        if let healthStore = healthStore {
-            healthStore.requestAuthorization{
-                success in
-            }
-        }
     }
     // set up textField attribues and color well
     override func viewDidLoad() {
