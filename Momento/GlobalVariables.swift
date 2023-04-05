@@ -17,4 +17,6 @@ struct GlobalVariables {
     static var allPosts: [JournalEntry] = []
     
     static let currentUser = User(myName: "Jane Doe", myUsername: "janedo3", myEmail: "jd@gmail.com", myPass: "janeiscool", myPhoto: UIImage(named: "placeholder")!, mySteps: "0")
+    
+    static var globalStepCount = "0"
 }

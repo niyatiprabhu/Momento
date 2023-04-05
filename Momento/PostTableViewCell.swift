@@ -49,6 +49,9 @@ class PostTableViewCell: UITableViewCell {
         promptLabel.text = model.prompt
         responseLabel.text = model.response
         bottomContainerView.backgroundColor = model.color
+        stepCount.text = GlobalVariables.globalStepCount
     }
+    
+    
     
 }

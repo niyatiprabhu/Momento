@@ -135,6 +135,8 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
 
         }
     }
+    
+//    MARK: - 
 
 }
 

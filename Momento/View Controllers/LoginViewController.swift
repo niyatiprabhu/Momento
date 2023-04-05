@@ -22,9 +22,25 @@ class LoginViewController: UIViewController {
         Auth.auth().addStateDidChangeListener() {
             auth, user in
             if user != nil {
+                HealthKitManager.shared.authorizeHealthKit { (success, error) in
+                    if success {
+                        HealthKitManager.shared.getStepsCount { (steps, error) in
+                            if let steps = steps {
+                                GlobalVariables.globalStepCount = "\(steps)"
+                                print("Steps count: \(steps)")
+                            } else if let error = error {
+                                print("Error: \(error.localizedDescription)")
+                            }
+                        }
+                    } else if let error = error {
+                        print("Error: \(error.localizedDescription)")
+                    }
+                }
                 self.performSegue(withIdentifier: "LoginSegue", sender: nil)
                 self.emailField.text = nil
                 self.passwordField.text = nil
+                
+                
             }
         }
     }
