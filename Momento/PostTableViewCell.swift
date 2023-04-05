@@ -42,14 +42,14 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func configure(with model: JournalEntry) {
-        userImageView.image = model.author.profilePhoto
-        postImageView.image = model.photo
-        usernameLabel.text = model.author.username
-        nameLabel.text = model.author.name
-        promptLabel.text = model.prompt
-        responseLabel.text = model.response
-        bottomContainerView.backgroundColor = model.color
-        stepCount.text = GlobalVariables.globalStepCount
+//        userImageView.image = model.author.profilePhoto
+//        postImageView.image = model.photo
+//        usernameLabel.text = model.author.username
+//        nameLabel.text = model.author.name
+//        promptLabel.text = model.prompt
+//        responseLabel.text = model.response
+//        bottomContainerView.backgroundColor = model.color
+//        stepCount.text = GlobalVariables.globalStepCount
     }
     
     

@@ -11,7 +11,7 @@ import UIKit
 struct GlobalVariables {
     
     static let oldDate = DateComponents(year:2023, month: 3, day: 2)
-    static let firstPost = JournalEntry(photoUpload: UIImage(named: "placeholder")!, textResponse: "hello", todayDate: oldDate, user: currentUser, backgroundColor: UIColor.white, todayMood: ":)")
+//    static let firstPost = JournalEntry(photoUpload: UIImage(named: "placeholder")!, textResponse: "hello", todayDate: oldDate, user: currentUser, backgroundColor: UIColor.white, todayMood: ":)")
     
     static var myPosts: [JournalEntry] = []
     static var allPosts: [JournalEntry] = []

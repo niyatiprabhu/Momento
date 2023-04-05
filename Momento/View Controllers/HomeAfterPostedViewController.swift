@@ -18,12 +18,12 @@ class HomeAfterPostedViewController: UIViewController, PostFiller {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if !GlobalVariables.myPosts.isEmpty {
-            let newPost = GlobalVariables.myPosts[GlobalVariables.myPosts.endIndex - 1]
-            print(newPost.response + " " + newPost.date.description + " " + newPost.author.name)
-        } else {
-            print("myPosts is empty")
-        }
+//        if !GlobalVariables.myPosts.isEmpty {
+//            let newPost = GlobalVariables.myPosts[GlobalVariables.myPosts.endIndex - 1]
+//            print(newPost.response + " " + newPost.date.description + " " + newPost.author.name)
+//        } else {
+//            print("myPosts is empty")
+//        }
         
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: Date.now)
@@ -38,7 +38,7 @@ class HomeAfterPostedViewController: UIViewController, PostFiller {
     
     func fillPost(entry: JournalEntry) {
         postBackground.backgroundColor = entry.color
-        postImageView.image = entry.photo
+//        postImageView.image = entry.photo
         promptLabel.text = entry.prompt
         responseLabel.text = entry.response
         moodLabel.text = entry.mood

@@ -7,6 +7,7 @@ import UIKit
 import HealthKit
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseStorage
 
 class CreateEntryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, StickerPickerDelegate {
     
@@ -16,6 +17,8 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
 //    var activeSticker: Sticker?
 //    var allStickers: [Sticker] = []
     var moodStickers:String = ""
+    
+    private let storage = Storage.storage().reference()
     
     let database = Firestore.firestore()
     
@@ -48,9 +51,15 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         })
     }
     
-    func writeData(text: String) {
-        let docRef = database.document("momento/example")
-        docRef.setData(["text": text])
+    // writes post to Firestore
+    func writeData(post: JournalEntry) {
+        // combine timestamp and random string to create a unique filename
+        let timestamp = Date().timeIntervalSince1970
+        let randomString = UUID().uuidString
+        let filename = "\(timestamp)-\(randomString)"
+        
+        let docRef = database.document("posts/\(filename)")
+        docRef.setData(post.dictionary)
     }
 
     
@@ -74,11 +83,40 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
              self.present(dialogMessage, animated: true, completion: nil)
         }
         
+        // upload image to Firebase storage
+        guard let imageData = postImage.pngData() else {
+            print("could not get image data")
+            return
+        }
+        
+        // combine timestamp and random string to create a unique filename
+        let timestamp = Date().timeIntervalSince1970
+        let randomString = UUID().uuidString
+        let filename = "\(timestamp)-\(randomString)"
+
+        storage.child("images/\(filename).png").putData(imageData, completion: { _, error in
+            guard error == nil else {
+                print("failed to upload")
+                return
+            }
+            
+            self.storage.child("images/\(filename).png").downloadURL(completion: {url, error in
+                guard let url = url, error == nil else {
+                    return
+                }
+                let urlString = url.absoluteString
+                print("download url: \(urlString)")
+                
+                // save post to Firestore
+                self.createPost(photoURL: urlString)
+            })
+        })
+        
+    }
+    
+    func createPost(photoURL: String) {
         let calendar = Calendar.current
         let today = calendar.dateComponents([.year, .month, .day], from: Date.now)
-        
-
-//        let newPost = JournalEntry(photoUpload: "", textResponse: textResponseView.text!, todayDate: today, user: "", backgroundColor: selectedColor, todayMood: moodLabel.text!)
         
         if let user = Auth.auth().currentUser {
             let uid = user.uid
@@ -91,14 +129,13 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
             print("no user is signed in")
             return
         }
-
-        // TODO: UPLOAD IMAGE TO FIREBASE STORAGE AND SAVE THE LINK HERE!!
-        let newPost = JournalEntry(photoURL: "", textResponse: textResponseView.text!, todayDate: today, userID: user.uid, backgroundColor: selectedColor, todayMood: moodLabel.text!)
+        
+        let newPost = JournalEntry(photoURL: photoURL, textResponse: textResponseView.text!, todayDate: today, userID: user.uid, backgroundColor: selectedColor, todayMood: moodLabel.text!)
         
         print(textResponseView.text!, moodLabel.text!)
         
-        // eventually push entry to firebase storage instead
-        writeData(text: newPost.response)
+        // eventually push entry to Firebase storage instead
+        writeData(post: newPost)
         GlobalVariables.myPosts.append(newPost)
         GlobalVariables.allPosts.append(newPost)
         self.dismiss(animated: false)

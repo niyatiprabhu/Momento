@@ -12,7 +12,7 @@ class JournalEntry {
     
     let date: DateComponents
     let authorID: String
-    var photo: String
+    var photoURL: String
     let response: String
     let prompt: String
     let color: UIColor!
@@ -20,7 +20,7 @@ class JournalEntry {
     
     init(photoURL: String, textResponse: String, todayDate: DateComponents, userID: String, backgroundColor: UIColor, todayMood: String ) {
         date = todayDate
-        photo = photoURL
+        self.photoURL = photoURL
         response = textResponse
         authorID = userID
         prompt = "What made you happy today?"
@@ -30,13 +30,25 @@ class JournalEntry {
     
     var dictionary: [String: Any] {
         return [
-            "date": date,
+            "photoURL": photoURL,
+            "dateString": getDateString(date: date),
             "authorID": authorID,
             "response": response,
             "prompt": prompt,
             "color": color.hexString,
             "mood": mood
         ]
+    }
+    
+    func getDateString(date: DateComponents) -> String {
+        let calendar = Calendar.current
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        guard let d = calendar.date(from: date) else {
+            print("error occurred")
+            return ""
+        }
+        return dateFormatter.string(from: d)
     }
     
 }
