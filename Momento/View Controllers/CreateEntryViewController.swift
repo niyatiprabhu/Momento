@@ -25,6 +25,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     override func viewWillAppear(_ animated: Bool) {
         
     }
+    
     // set up textField attribues and color well
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +58,9 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         
         let calendar = Calendar.current
         let today = calendar.dateComponents([.year, .month, .day], from: Date.now)
-        let newPost = JournalEntry(photoUpload: postImage, textResponse: textResponseView.text!, todayDate: today, user: GlobalVariables.currentUser, backgroundColor: selectedColor)
+        let newPost = JournalEntry(photoUpload: postImage, textResponse: textResponseView.text!, todayDate: today, user: GlobalVariables.currentUser, backgroundColor: selectedColor, todayMood: moodLabel.text!)
+        
+        print(textResponseView.text!, moodLabel.text!)
         
         // eventually push entry to firebase storage instead
         GlobalVariables.myPosts.append(newPost)
@@ -71,16 +74,20 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             fatalError("Expected an image but didn't find one")
         }
+        var savedText = textResponseView.text
         postImage = image
         imageView.image = postImage
         dismiss(animated:true)
+        textResponseView.text = savedText
     }
     
     @IBAction func uploadPhotoPressed(_ sender: Any) {
+
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true)
+
     }
     
     // MARK: - color picking

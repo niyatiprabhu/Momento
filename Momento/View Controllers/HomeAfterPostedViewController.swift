@@ -14,6 +14,7 @@ class HomeAfterPostedViewController: UIViewController, PostFiller {
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var promptLabel: UILabel!
     @IBOutlet weak var responseLabel: UILabel!
+    @IBOutlet weak var moodLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ class HomeAfterPostedViewController: UIViewController, PostFiller {
         postImageView.image = entry.photo
         promptLabel.text = entry.prompt
         responseLabel.text = entry.response
+        moodLabel.text = entry.mood
     }
 
 }
