@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class SignupViewController: UIViewController {
     
@@ -14,6 +15,7 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var usernameField:UITextField!
     @IBOutlet weak var passwordField:UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
+    @IBOutlet weak var nameField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,22 +25,45 @@ class SignupViewController: UIViewController {
             auth, user in
             if user != nil {
                 self.performSegue(withIdentifier: "SignupSegue", sender: nil)
-                self.emailField.text = nil
-                self.passwordField.text = nil
-                self.usernameField.text = nil
-                self.confirmPasswordField.text = nil
             }
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.nameField.text = nil
+        self.emailField.text = nil
+        self.passwordField.text = nil
+        self.usernameField.text = nil
+        self.confirmPasswordField.text = nil
+    }
 
     @IBAction func submitButtonPressed(_ sender: Any) {
+        
+        // TODO: add field checks to make sure all fields are filled in
         // create a new user
-        Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) {
-            authResult, error in if let error = error as NSError? {
+        
+        Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { authResult, error in
+            
+            guard let user = authResult?.user, error == nil else {
                 // print error message
-                print("\(error.localizedDescription)")
+                print("\(error!.localizedDescription)")
+                return
             }
+            
+            // create user object & store in Firebase
+            let newUser = User(name: self.nameField.text!, username: self.usernameField.text!, email: user.email!, uid: user.uid)
+            print(newUser.dictionary)
+            
+            let db = Firestore.firestore()
+            db.collection("users").document(user.uid).setData(newUser.dictionary) {
+                error in
+                if let error = error {
+                    print("error adding user: \(error.localizedDescription)")
+                } else {
+                    print("user added successfully!")
+                }
+            }
+            
         }
     }
     

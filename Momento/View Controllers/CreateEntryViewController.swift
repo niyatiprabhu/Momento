@@ -5,6 +5,8 @@
 
 import UIKit
 import HealthKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class CreateEntryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, StickerPickerDelegate {
     
@@ -14,6 +16,8 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
 //    var activeSticker: Sticker?
 //    var allStickers: [Sticker] = []
     var moodStickers:String = ""
+    
+    let database = Firestore.firestore()
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var colorWell: UIColorWell!
@@ -34,7 +38,21 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         textResponseView.textColor = UIColor.lightGray
         setupColorWell()
         moodLabel.text = ""
+        let docRef = database.document("momento/example")
+        docRef.getDocument(completion: { snapshot, error in
+            guard let data = snapshot?.data(), error == nil else {
+                print("could not fetch document")
+                return
+            }
+            print(data)
+        })
     }
+    
+    func writeData(text: String) {
+        let docRef = database.document("momento/example")
+        docRef.setData(["text": text])
+    }
+
     
     // MARK: - navigation
     @IBAction func backBtnPressed(_ sender: Any) {
@@ -45,7 +63,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         // Fields are missing, present alert to user
         if imageView.image!.isEqualToImage(UIImage(named: "placeholder")!) || textResponseView.textColor == UIColor.lightGray {
             // Create new Alert
-             var dialogMessage = UIAlertController(title: "Missing Fields", message: "Fields are required.", preferredStyle: .alert)
+            let dialogMessage = UIAlertController(title: "Missing Fields", message: "Fields are required.", preferredStyle: .alert)
              
              // Create OK button with action handler
              let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -58,11 +76,29 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         
         let calendar = Calendar.current
         let today = calendar.dateComponents([.year, .month, .day], from: Date.now)
-        let newPost = JournalEntry(photoUpload: postImage, textResponse: textResponseView.text!, todayDate: today, user: GlobalVariables.currentUser, backgroundColor: selectedColor, todayMood: moodLabel.text!)
+        
+
+//        let newPost = JournalEntry(photoUpload: "", textResponse: textResponseView.text!, todayDate: today, user: "", backgroundColor: selectedColor, todayMood: moodLabel.text!)
+        
+        if let user = Auth.auth().currentUser {
+            let uid = user.uid
+            print("User ID: \(uid)")
+        } else {
+            print("No user is signed in.")
+        }
+        
+        guard let user = Auth.auth().currentUser else {
+            print("no user is signed in")
+            return
+        }
+
+        // TODO: UPLOAD IMAGE TO FIREBASE STORAGE AND SAVE THE LINK HERE!!
+        let newPost = JournalEntry(photoURL: "", textResponse: textResponseView.text!, todayDate: today, userID: user.uid, backgroundColor: selectedColor, todayMood: moodLabel.text!)
         
         print(textResponseView.text!, moodLabel.text!)
         
         // eventually push entry to firebase storage instead
+        writeData(text: newPost.response)
         GlobalVariables.myPosts.append(newPost)
         GlobalVariables.allPosts.append(newPost)
         self.dismiss(animated: false)
@@ -74,7 +110,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             fatalError("Expected an image but didn't find one")
         }
-        var savedText = textResponseView.text
+        let savedText = textResponseView.text
         postImage = image
         imageView.image = postImage
         dismiss(animated:true)

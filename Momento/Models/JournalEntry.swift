@@ -11,20 +11,44 @@ import UIKit
 class JournalEntry {
     
     let date: DateComponents
-    let author: User
-    var photo: UIImage!
+    let authorID: String
+    var photo: String
     let response: String
     let prompt: String
     let color: UIColor!
     let mood: String
     
-    init(photoUpload: UIImage, textResponse: String, todayDate: DateComponents, user: User, backgroundColor:UIColor, todayMood:String ) {
+    init(photoURL: String, textResponse: String, todayDate: DateComponents, userID: String, backgroundColor: UIColor, todayMood: String ) {
         date = todayDate
-        photo = photoUpload
+        photo = photoURL
         response = textResponse
-        author = user
+        authorID = userID
         prompt = "What made you happy today?"
         color = backgroundColor
         mood = todayMood
+    }
+    
+    var dictionary: [String: Any] {
+        return [
+            "date": date,
+            "authorID": authorID,
+            "response": response,
+            "prompt": prompt,
+            "color": color.hexString,
+            "mood": mood
+        ]
+    }
+    
+}
+
+extension UIColor {
+    var hexString: String {
+        let components = self.cgColor.components
+        let red = components?[0] ?? 0.0
+        let green = components?[1] ?? 0.0
+        let blue = components?[2] ?? 0.0
+
+        let hexString = String(format: "%02X%02X%02X", Int(red * 255), Int(green * 255), Int(blue * 255))
+        return hexString
     }
 }
