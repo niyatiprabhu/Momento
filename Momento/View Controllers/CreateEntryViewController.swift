@@ -99,9 +99,9 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         let randomString = UUID().uuidString
         let filename = "\(timestamp)-\(randomString)"
 
-        storage.child("images/\(filename).png").putData(imageData, completion: { _, error in
+        storage.child("images/\(filename).jpg").putData(imageData, completion: { _, error in
             guard error == nil else {
-                print("failed to upload")
+                print("failed to upload: \(error!)")
                 return
             }
             
