@@ -25,28 +25,19 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var textResponseView: UITextView!
     @IBOutlet weak var moodLabel: UILabel!
     
-    
-    // Retrieve health data from user's phone
     override func viewWillAppear(_ animated: Bool) {
-        
+        // TODO: Retrieve health data from user's phone
     }
     
-    // set up textField attribues and color well
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set up textField attribues and color well
         textResponseView.delegate = self
         textResponseView.text = placeholderText
         textResponseView.textColor = UIColor.lightGray
         setupColorWell()
         moodLabel.text = ""
-        let docRef = database.document("momento/example")
-        docRef.getDocument(completion: { snapshot, error in
-            guard let data = snapshot?.data(), error == nil else {
-                print("could not fetch document")
-                return
-            }
-            print(data)
-        })
     }
     
     // writes post to Firestore
@@ -58,13 +49,12 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         
         let docRef = database.document("posts/\(filename)")
         docRef.setData(post.dictionary)
-        docRef.getDocument(completion: { snapshot, error in
-            guard let data = snapshot?.data(), error == nil else {
-                print("could not fetch document")
-                return
+        docRef.setData(["timestamp": timestamp], merge: true) {
+            error in
+            if let error = error {
+                print("error adding timestamp: \(error)")
             }
-            print(data)
-        })
+        }
     }
 
     
@@ -89,7 +79,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         }
         
         // upload image to Firebase storage
-        guard let imageData = postImage.jpegData(compressionQuality: 0.5) else {
+        guard let imageData = postImage.jpegData(compressionQuality: 0.25) else {
             print("could not get image data")
             return
         }
@@ -149,7 +139,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     // MARK: - image picking
     // pop up to allow a user to select an image from camera roll
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             fatalError("Expected an image but didn't find one")
         }
         let savedText = textResponseView.text
@@ -164,6 +154,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
         present(imagePicker, animated: true)
 
     }
@@ -198,7 +189,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         textResponseView.textColor = UIColor.lightGray
     }
     
-    //  MARK: - Mood Picker Code
+    //  MARK: - Mood Picker
     func didPick(_ sticker: String) {
         moodStickers.append(sticker)
         moodLabel.text = moodStickers

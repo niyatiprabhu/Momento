@@ -59,7 +59,7 @@ class FeedViewController: UIViewController {
         }
         
         group.enter()
-        db.collection("posts").getDocuments() { (querySnapshot, err) in
+        db.collection("posts").order(by: "timestamp", descending: true).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {

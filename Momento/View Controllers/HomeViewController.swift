@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class HomeViewController: UIViewController {
 
@@ -13,7 +15,8 @@ class HomeViewController: UIViewController {
     
     let beforePostVC = HomeBeforePostingViewController()
     let afterPostVC = HomeAfterPostedViewController()
-//    let afterPostVC2
+    let db = Firestore.firestore()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -39,21 +42,49 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // check if most recent post is the same as today's date
+        // check if user's most recent post is the same as today's date
         let calendar = Calendar.current
         let today = calendar.dateComponents([.year, .month, .day], from: Date.now)
-        let lastPostIndex = GlobalVariables.myPosts.endIndex - 1
-        
-        if !GlobalVariables.myPosts.isEmpty {
-            let lastPost = GlobalVariables.myPosts[lastPostIndex]
-            print("myPosts is not empty!")
-            if today == lastPost.date {
-                // show afterPostVC
-                beforePostVC.view.isHidden = true
-                afterPostVC.fillPost(entry: lastPost)
-                afterPostVC.view.isHidden = false
-            }
+        var date = calendar.date(from: today)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        guard let d = date else {
+            print("error getting date")
+            return
         }
+        
+        guard let user = Auth.auth().currentUser else {
+            print("could not get current user")
+            return
+        }
+        
+        let todayString = dateFormatter.string(from: d)
+        let postsRef = db.collection("posts")
+        let query = postsRef.whereField("dateString", isEqualTo: todayString).whereField("authorID", isEqualTo: user.uid)
+        
+        query.getDocuments(completion: {
+            querySnapshot, error in
+            if let error = error {
+                print("error getting post: \(error)")
+            } else {
+                let count = querySnapshot!.count
+                if count > 0 {
+                    if let document = querySnapshot!.documents.first {
+                        let post = JournalEntry(dict: document.data())
+                        self.showAfterPostVC(post: post)
+                    } else {
+                        print("couldn't find first document")
+                    }
+                }
+            }
+        })
+        
+    }
+    
+    func showAfterPostVC(post: JournalEntry) {
+        beforePostVC.view.isHidden = true
+        afterPostVC.fillPost(entry: post)
+        afterPostVC.view.isHidden = false
     }
     
 

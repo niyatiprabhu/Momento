@@ -8,8 +8,6 @@
 import UIKit
 
 class HomeAfterPostedViewController: UIViewController, PostFiller {
-
-
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var postBackground: UIView!
@@ -20,12 +18,6 @@ class HomeAfterPostedViewController: UIViewController, PostFiller {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if !GlobalVariables.myPosts.isEmpty {
-            let newPost = GlobalVariables.myPosts[GlobalVariables.myPosts.endIndex - 1]
-            print(newPost.response + " " + newPost.date.description + " " + newPost.authorID)
-        } else {
-            print("myPosts is empty")
-        }
         
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: Date.now)
