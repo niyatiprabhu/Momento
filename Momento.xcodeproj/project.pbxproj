@@ -24,6 +24,8 @@
 		3040D4C829B504C900579643 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4C729B504C900579643 /* JournalEntry.swift */; };
 		3040D4CA29B5075100579643 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4C929B5075100579643 /* User.swift */; };
 		3040D4CC29B5091800579643 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4CB29B5091700579643 /* GlobalVariables.swift */; };
+		30B75CF829DF2A4E00F3AD42 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B75CF729DF2A4D00F3AD42 /* FriendsTableViewCell.swift */; };
+		30B75CFA29DF2A6900F3AD42 /* FriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B75CF929DF2A6800F3AD42 /* FriendsTableViewCell.xib */; };
 		D5075BFF29B52DB600DE249E /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5075BFE29B52DB600DE249E /* PostViewController.swift */; };
 		D5075C0229B5BCF400DE249E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5075C0029B5BCF400DE249E /* PostTableViewCell.swift */; };
 		D5075C0329B5BCF400DE249E /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5075C0129B5BCF400DE249E /* PostTableViewCell.xib */; };
@@ -67,6 +69,8 @@
 		3040D4C729B504C900579643 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
 		3040D4C929B5075100579643 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3040D4CB29B5091700579643 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		30B75CF729DF2A4D00F3AD42 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
+		30B75CF929DF2A6800F3AD42 /* FriendsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsTableViewCell.xib; sourceTree = "<group>"; };
 		D5075BFE29B52DB600DE249E /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		D5075C0029B5BCF400DE249E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		D5075C0129B5BCF400DE249E /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 				3040D4B029AF218300579643 /* AppDelegate.swift */,
 				3040D4B229AF218300579643 /* SceneDelegate.swift */,
 				3040D4B629AF218300579643 /* Main.storyboard */,
+				30B75CF729DF2A4D00F3AD42 /* FriendsTableViewCell.swift */,
+				30B75CF929DF2A6800F3AD42 /* FriendsTableViewCell.xib */,
 				D5075C0029B5BCF400DE249E /* PostTableViewCell.swift */,
 				D5075C0129B5BCF400DE249E /* PostTableViewCell.xib */,
 				D5075C1229B6ABFF00DE249E /* PostFillerProtocol.swift */,
@@ -245,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5075C1D29B843B700DE249E /* README.pdf in Resources */,
+				30B75CFA29DF2A6900F3AD42 /* FriendsTableViewCell.xib in Resources */,
 				3040D4C029AF218500579643 /* LaunchScreen.storyboard in Resources */,
 				D51B59C429B107A100C2CDF7 /* GoogleService-Info.plist in Resources */,
 				D5075C0329B5BCF400DE249E /* PostTableViewCell.xib in Resources */,
@@ -272,6 +279,7 @@
 				1C5CF18629CE2ED100FF0CF1 /* StickerCollectionViewCell.swift in Sources */,
 				D5075C0229B5BCF400DE249E /* PostTableViewCell.swift in Sources */,
 				D521EBD729B49569009777BB /* ProfileViewController.swift in Sources */,
+				30B75CF829DF2A4E00F3AD42 /* FriendsTableViewCell.swift in Sources */,
 				D521EBDB29B4A259009777BB /* FriendsViewController.swift in Sources */,
 				1C3F6CEB29B44CBF00563664 /* PulsingView.swift in Sources */,
 				3040D4B129AF218300579643 /* AppDelegate.swift in Sources */,
