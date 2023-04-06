@@ -60,6 +60,13 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         
         let docRef = database.document("posts/\(filename)")
         docRef.setData(post.dictionary)
+        docRef.getDocument(completion: { snapshot, error in
+            guard let data = snapshot?.data(), error == nil else {
+                print("could not fetch document")
+                return
+            }
+            print(data)
+        })
     }
 
     
