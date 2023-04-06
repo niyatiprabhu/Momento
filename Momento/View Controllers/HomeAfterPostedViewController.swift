@@ -9,6 +9,8 @@ import UIKit
 
 class HomeAfterPostedViewController: UIViewController, PostFiller {
 
+
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var postBackground: UIView!
     @IBOutlet weak var postImageView: UIImageView!
@@ -36,12 +38,32 @@ class HomeAfterPostedViewController: UIViewController, PostFiller {
         }
     }
     
+    
+    
     func fillPost(entry: JournalEntry) {
-        postBackground.backgroundColor = entry.color
+//        postBackground.backgroundColor = entry.color
 //        postImageView.image = entry.photo
-        promptLabel.text = entry.prompt
-        responseLabel.text = entry.response
-        moodLabel.text = entry.mood
+//        promptLabel.text = entry.prompt
+//        responseLabel.text = entry.response
+//        moodLabel.text = entry.mood
     }
 
+}
+
+extension HomeAfterPostedViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        GlobalVariables.myPosts.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! PostCollectionViewCell
+        
+        cell.post = GlobalVariables.myPosts[indexPath.item]
+        dateLabel.text = "\(GlobalVariables.myPosts[indexPath.item].date)"
+        return cell
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
 }

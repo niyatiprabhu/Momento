@@ -13,6 +13,8 @@
 		1C5CF18829CE2F3600FF0CF1 /* MoodPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5CF18729CE2F3600FF0CF1 /* MoodPickerViewController.swift */; };
 		1C5CF18A29CE33D200FF0CF1 /* StickerPickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5CF18929CE33D200FF0CF1 /* StickerPickerProtocol.swift */; };
 		1C66B30C29DB806B0089BE57 /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C66B30B29DB806B0089BE57 /* HealthStore.swift */; };
+		1CBAB09B29DE76D600C0119D /* HomeScreenAfterPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CBAB09A29DE76D600C0119D /* HomeScreenAfterPost.storyboard */; };
+		1CBAB09D29DE7C8300C0119D /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBAB09C29DE7C8200C0119D /* PostCollectionViewCell.swift */; };
 		3040D4B129AF218300579643 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4B029AF218300579643 /* AppDelegate.swift */; };
 		3040D4B329AF218300579643 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4B229AF218300579643 /* SceneDelegate.swift */; };
 		3040D4B829AF218300579643 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3040D4B629AF218300579643 /* Main.storyboard */; };
@@ -52,6 +54,8 @@
 		1C5CF18729CE2F3600FF0CF1 /* MoodPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPickerViewController.swift; sourceTree = "<group>"; };
 		1C5CF18929CE33D200FF0CF1 /* StickerPickerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerPickerProtocol.swift; sourceTree = "<group>"; };
 		1C66B30B29DB806B0089BE57 /* HealthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStore.swift; sourceTree = "<group>"; };
+		1CBAB09A29DE76D600C0119D /* HomeScreenAfterPost.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeScreenAfterPost.storyboard; sourceTree = "<group>"; };
+		1CBAB09C29DE7C8200C0119D /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		3040D4AD29AF218200579643 /* Momento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3040D4B029AF218300579643 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3040D4B229AF218300579643 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +150,8 @@
 				D5075C0829B5CA6E00DE249E /* HomeBeforePostingViewController.xib */,
 				D5075C0E29B5CE1100DE249E /* HomeAfterPostedViewController.swift */,
 				D5075C0F29B5CE1100DE249E /* HomeAfterPostedViewController.xib */,
+				1CBAB09A29DE76D600C0119D /* HomeScreenAfterPost.storyboard */,
+				1CBAB09C29DE7C8200C0119D /* PostCollectionViewCell.swift */,
 				D521EBDC29B4A27D009777BB /* CreateEntryViewController.swift */,
 				D521EBDA29B4A259009777BB /* FriendsViewController.swift */,
 				D521EBD829B4A248009777BB /* SettingsViewController.swift */,
@@ -246,6 +252,7 @@
 				3040D4BD29AF218500579643 /* Assets.xcassets in Resources */,
 				3040D4B829AF218300579643 /* Main.storyboard in Resources */,
 				D5075C1129B5CE1100DE249E /* HomeAfterPostedViewController.xib in Resources */,
+				1CBAB09B29DE76D600C0119D /* HomeScreenAfterPost.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +285,7 @@
 				3040D4BB29AF218300579643 /* Momento.xcdatamodeld in Sources */,
 				1C66B30C29DB806B0089BE57 /* HealthStore.swift in Sources */,
 				1C3F6CE929B3AA3900563664 /* SplashViewController.swift in Sources */,
+				1CBAB09D29DE7C8300C0119D /* PostCollectionViewCell.swift in Sources */,
 				3040D4C829B504C900579643 /* JournalEntry.swift in Sources */,
 				D51B59C629B1A5AA00C2CDF7 /* HomeViewController.swift in Sources */,
 				D5075C0729B5C22400DE249E /* HomeBeforePostingViewController.swift in Sources */,

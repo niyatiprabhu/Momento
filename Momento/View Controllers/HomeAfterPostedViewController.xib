@@ -11,11 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeAfterPostedViewController" customModule="Momento" customModuleProvider="target">
             <connections>
                 <outlet property="dateLabel" destination="DIP-2z-mK4" id="Bes-zK-d6G"/>
-                <outlet property="moodLabel" destination="d4C-iL-TLq" id="zzx-IX-h3T"/>
                 <outlet property="postBackground" destination="1oZ-qw-24t" id="7g2-8C-AIY"/>
-                <outlet property="postImageView" destination="zap-oE-CYh" id="Jv1-29-sd0"/>
-                <outlet property="promptLabel" destination="uxn-Tk-of5" id="ZDP-Dr-MT9"/>
-                <outlet property="responseLabel" destination="5Jt-EZ-Jmk" id="6L5-ma-kF7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,53 +20,40 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1oZ-qw-24t">
-                    <rect key="frame" x="38" y="152" width="317" height="513"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1oZ-qw-24t" userLabel="Post View">
+                    <rect key="frame" x="38" y="152" width="317" height="601"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="boba" translatesAutoresizingMaskIntoConstraints="NO" id="zap-oE-CYh">
-                            <rect key="frame" x="33" y="28" width="250" height="250"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What made you happy today?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxn-Tk-of5">
-                            <rect key="frame" x="45" y="295" width="226" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="boba" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jt-EZ-Jmk">
-                            <rect key="frame" x="27" y="324" width="262" height="86"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mood" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRF-7j-jSN">
-                            <rect key="frame" x="27" y="418" width="44" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4C-iL-TLq">
-                            <rect key="frame" x="45" y="447" width="226" height="41"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="yGo-d4-761">
+                            <rect key="frame" x="0.0" y="0.0" width="317" height="601"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="601" id="Fbb-4N-u5v"/>
+                                <constraint firstAttribute="width" constant="317" id="emv-0J-sfc"/>
+                            </constraints>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3UC-SG-4Pi">
+                                <size key="itemSize" width="129" height="128"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGray4Color"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="yGo-d4-761" firstAttribute="top" secondItem="1oZ-qw-24t" secondAttribute="top" id="0c5-nA-FTf"/>
+                        <constraint firstItem="yGo-d4-761" firstAttribute="leading" secondItem="1oZ-qw-24t" secondAttribute="leading" id="BSw-0I-Zq0"/>
+                        <constraint firstAttribute="trailing" secondItem="yGo-d4-761" secondAttribute="trailing" id="DIG-Qa-OLd"/>
+                        <constraint firstAttribute="bottom" secondItem="yGo-d4-761" secondAttribute="bottom" id="kjF-Zp-raX"/>
+                    </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="20"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIP-2z-mK4">
-                    <rect key="frame" x="21" y="92" width="356" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIP-2z-mK4">
+                    <rect key="frame" x="175.33333333333334" y="92" width="42.333333333333343" height="26.333333333333329"/>
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -78,16 +61,18 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="yGo-d4-761" firstAttribute="top" secondItem="DIP-2z-mK4" secondAttribute="bottom" constant="33.666666666666671" id="Btt-Dk-aFX"/>
+                <constraint firstItem="yGo-d4-761" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="38" id="TYF-4X-1rg"/>
+                <constraint firstItem="DIP-2z-mK4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="33" id="VMC-4I-rfP"/>
+                <constraint firstItem="DIP-2z-mK4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cgt-S7-5XA"/>
+            </constraints>
             <point key="canvasLocation" x="54.198473282442748" y="20.422535211267608"/>
         </view>
     </objects>
     <resources>
-        <image name="boba" width="206" height="245"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
