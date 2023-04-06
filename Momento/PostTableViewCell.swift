@@ -7,6 +7,7 @@
 
 import UIKit
 import HealthKit
+import FirebaseFirestore
 
 class PostTableViewCell: UITableViewCell {
     
@@ -19,9 +20,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet var bottomContainerView: UIView!
     @IBOutlet weak var postLikes: UILabel!
     @IBOutlet weak var stepCount: UILabel!
-    
-    
-    
+    @IBOutlet weak var moodLabel: UILabel!
     
     static let identifier = "PostTableViewCell"
     
@@ -41,14 +40,44 @@ class PostTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(with model: JournalEntry) {
-//        userImageView.image = model.author.profilePhoto
-//        postImageView.image = model.photo
-//        usernameLabel.text = model.author.username
-//        nameLabel.text = model.author.name
-//        promptLabel.text = model.prompt
-//        responseLabel.text = model.response
-//        bottomContainerView.backgroundColor = model.color
+    func configure(with post: JournalEntry) {
+        // TODO: change later to get author image
+        userImageView.image = UIImage(named: "pfp1")
+        
+        promptLabel.text = post.prompt
+        responseLabel.text = post.response
+        bottomContainerView.backgroundColor = post.color
+        moodLabel.text = post.mood
+        
+        
+        guard let user = users[post.authorID] else {
+            print("could not find user in users dictionary")
+            return;
+        }
+
+        usernameLabel.text = "@\(user.username)"
+        nameLabel.text = user.name
+        
+        // get image from URL
+        guard let url = URL(string: post.photoURL) else {
+            print("couldn't get photo url")
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url, completionHandler: {data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                let image = UIImage(data: data)
+                self.postImageView.image = image
+            }
+            
+        })
+        
+        task.resume()
+        
 //        stepCount.text = GlobalVariables.globalStepCount
     }
     

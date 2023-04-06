@@ -14,8 +14,6 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     var selectedColor = UIColor.white
     var postImage:UIImage = UIImage(named: "placeholder")!
     var placeholderText:String = "share your thoughts..."
-//    var activeSticker: Sticker?
-//    var allStickers: [Sticker] = []
     var moodStickers:String = ""
     
     private let storage = Storage.storage().reference()
@@ -91,7 +89,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         }
         
         // upload image to Firebase storage
-        guard let imageData = postImage.pngData() else {
+        guard let imageData = postImage.jpegData(compressionQuality: 0.5) else {
             print("could not get image data")
             return
         }
@@ -107,7 +105,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
                 return
             }
             
-            self.storage.child("images/\(filename).png").downloadURL(completion: {url, error in
+            self.storage.child("images/\(filename).jpg").downloadURL(completion: {url, error in
                 guard let url = url, error == nil else {
                     return
                 }
@@ -200,7 +198,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         textResponseView.textColor = UIColor.lightGray
     }
     
-//  MARK: - Mood Picker Code
+    //  MARK: - Mood Picker Code
     func didPick(_ sticker: String) {
         moodStickers.append(sticker)
         moodLabel.text = moodStickers
@@ -222,8 +220,6 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
 
         }
     }
-    
-//    MARK: - 
 
 }
 

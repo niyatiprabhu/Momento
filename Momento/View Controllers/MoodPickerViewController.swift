@@ -11,8 +11,6 @@ class MoodPickerViewController: UIViewController, UICollectionViewDelegate, UICo
 
     weak var delegate: UIViewController!
     var emoji: [String]!
-    
-   
 
     @IBOutlet weak var stickersCollection: UICollectionView!
     

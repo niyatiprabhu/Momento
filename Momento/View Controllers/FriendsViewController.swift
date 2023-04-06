@@ -15,7 +15,6 @@ class FriendsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
     // MARK: - Navigation
     @IBAction func backBtnPressed(_ sender: Any) {
         self.dismiss(animated: false)
