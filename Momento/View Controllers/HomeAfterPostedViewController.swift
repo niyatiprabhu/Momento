@@ -20,12 +20,12 @@ class HomeAfterPostedViewController: UIViewController, PostFiller {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if !GlobalVariables.myPosts.isEmpty {
-//            let newPost = GlobalVariables.myPosts[GlobalVariables.myPosts.endIndex - 1]
-//            print(newPost.response + " " + newPost.date.description + " " + newPost.author.name)
-//        } else {
-//            print("myPosts is empty")
-//        }
+        if !GlobalVariables.myPosts.isEmpty {
+            let newPost = GlobalVariables.myPosts[GlobalVariables.myPosts.endIndex - 1]
+            print(newPost.response + " " + newPost.date.description + " " + newPost.authorID)
+        } else {
+            print("myPosts is empty")
+        }
         
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: Date.now)
@@ -38,32 +38,44 @@ class HomeAfterPostedViewController: UIViewController, PostFiller {
         }
     }
     
-    
+    func setImage(from url: URL) {
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
+            if let error = error {
+                print("Error loading image: \(error.localizedDescription)")
+                return
+            }
+            if let data = data {
+                DispatchQueue.main.async {
+                    self.postImageView.image = UIImage(data: data)
+                }
+            }
+        }.resume()
+    }
     
     func fillPost(entry: JournalEntry) {
-//        postBackground.backgroundColor = entry.color
-//        postImageView.image = entry.photo
-//        promptLabel.text = entry.prompt
-//        responseLabel.text = entry.response
-//        moodLabel.text = entry.mood
+        postBackground.backgroundColor = entry.color
+        setImage(from: URL(string: entry.photoURL)!)
+        promptLabel.text = entry.prompt
+        responseLabel.text = entry.response
+        moodLabel.text = entry.mood
     }
 
 }
 
-extension HomeAfterPostedViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        GlobalVariables.myPosts.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! PostCollectionViewCell
-        
-        cell.post = GlobalVariables.myPosts[indexPath.item]
-        dateLabel.text = "\(GlobalVariables.myPosts[indexPath.item].date)"
-        return cell
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-}
+//extension HomeAfterPostedViewController: UICollectionViewDataSource {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        GlobalVariables.myPosts.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! PostCollectionViewCell
+//
+//        cell.post = GlobalVariables.myPosts[indexPath.item]
+//        dateLabel.text = "\(GlobalVariables.myPosts[indexPath.item].date)"
+//        return cell
+//    }
+//
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
+//}

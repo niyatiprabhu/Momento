@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
     
     let beforePostVC = HomeBeforePostingViewController()
     let afterPostVC = HomeAfterPostedViewController()
-    
+//    let afterPostVC2
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
