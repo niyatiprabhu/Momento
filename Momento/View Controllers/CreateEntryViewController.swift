@@ -15,6 +15,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     var postImage:UIImage = UIImage(named: "placeholder")!
     var placeholderText:String = "share your thoughts..."
     var moodStickers:String = ""
+    let imagePicker = UIImagePickerController()
     
     private let storage = Storage.storage().reference()
     
@@ -38,6 +39,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         textResponseView.textColor = UIColor.lightGray
         setupColorWell()
         moodLabel.text = ""
+        imagePicker.delegate = self
     }
     
     // writes post to Firestore
@@ -106,7 +108,6 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
                 self.createPost(photoURL: urlString)
             })
         })
-        
     }
     
     func createPost(photoURL: String) {
@@ -139,7 +140,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     // MARK: - image picking
     // pop up to allow a user to select an image from camera roll
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             fatalError("Expected an image but didn't find one")
         }
         let savedText = textResponseView.text
@@ -150,13 +151,36 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func uploadPhotoPressed(_ sender: Any) {
-
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
+        // present an alert controller with options to choose or take a photo
+       let alertController = UIAlertController(title: "Choose an Image", message: nil, preferredStyle: .actionSheet)
+       
+       alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+           self.useCamera()
+       }))
+       
+       alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
+           self.usePhotoLibrary()
+       }))
+       
+       alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+       
+       self.present(alertController, animated: true, completion: nil)
+    }
+    
+    // show the camera to take a photo
+    func useCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            print("Camera not available")
+        }
+    }
+    
+    // show the photo library to choose a photo
+    func usePhotoLibrary() {
         imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = true
-        present(imagePicker, animated: true)
-
+        present(imagePicker, animated: true, completion: nil)
     }
     
     // MARK: - color picking
@@ -193,7 +217,6 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     func didPick(_ sticker: String) {
         moodStickers.append(sticker)
         moodLabel.text = moodStickers
-        
     }
 
     @IBAction func undoLastMood(_ sender: Any) {
@@ -201,19 +224,15 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
             moodStickers.removeLast()
             moodLabel.text = moodStickers
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showStickersSegue",
            let nextVC = segue.destination as? MoodPickerViewController {
             nextVC.delegate = self
-
         }
     }
-
 }
-
 
 extension UIImage {
 
