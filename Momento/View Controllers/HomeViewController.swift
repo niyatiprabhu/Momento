@@ -45,20 +45,13 @@ class HomeViewController: UIViewController {
         // check if user's most recent post is the same as today's date
         let calendar = Calendar.current
         let today = calendar.dateComponents([.year, .month, .day], from: Date.now)
-        var date = calendar.date(from: today)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM d, yyyy"
-        guard let d = date else {
-            print("error getting date")
-            return
-        }
+        let todayString = JournalEntry.getDateString(date: today)
         
         guard let user = Auth.auth().currentUser else {
             print("could not get current user")
             return
         }
         
-        let todayString = dateFormatter.string(from: d)
         let postsRef = db.collection("posts")
         let query = postsRef.whereField("dateString", isEqualTo: todayString).whereField("authorID", isEqualTo: user.uid)
         

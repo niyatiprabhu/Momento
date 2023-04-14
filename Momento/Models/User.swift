@@ -14,6 +14,7 @@ class User {
     var email: String
     var profilePhoto: UIImage!
     var stepCount: String
+    var uid: String
     
     init(myName: String, myUsername: String, myEmail: String, myPass: String, myPhoto: UIImage, mySteps: String ) {
         name = myName
@@ -21,6 +22,7 @@ class User {
         email = myEmail
         profilePhoto = myPhoto
         stepCount = mySteps
+        uid = ""
     }
     
     init(name: String, username: String, email: String, uid: String) {
@@ -29,6 +31,7 @@ class User {
         self.email = email
         self.profilePhoto = UIImage(named: "pfp1")
         self.stepCount = ""
+        self.uid = uid
         print(username, self.username)
         print(name, self.name)
     }
@@ -36,7 +39,8 @@ class User {
     init?(dictionary: [String: Any]) {
         guard let name = dictionary["name"] as? String,
               let username = dictionary["username"] as? String,
-              let email = dictionary["email"] as? String
+              let email = dictionary["email"] as? String,
+              let uid = dictionary["uid"] as? String
         else {
             return nil
         }
@@ -45,6 +49,7 @@ class User {
         self.username = username
         self.email = email
         self.stepCount = ""
+        self.uid = uid
         self.profilePhoto = UIImage(named: "pfp1")
         
     }
@@ -53,7 +58,8 @@ class User {
         return [
             "name": self.name,
             "username": self.username,
-            "email": self.email
+            "email": self.email,
+            "uid": self.uid
         ]
     }
 }
