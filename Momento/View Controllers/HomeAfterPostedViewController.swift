@@ -21,7 +21,7 @@ class HomeAfterPostedViewController: UIViewController, PostFiller {
         
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: Date.now)
-        var date = calendar.date(from: dateComponents)
+        let date = calendar.date(from: dateComponents)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM d, yyyy"
         if let d = date {
