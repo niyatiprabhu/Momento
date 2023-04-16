@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class SignupViewController: UIViewController {
+class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailField:UITextField!
     @IBOutlet weak var usernameField:UITextField!
@@ -19,8 +19,17 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        //set delegates
+        emailField.delegate = self
+        usernameField.delegate = self
+        passwordField.delegate = self
+        confirmPasswordField.delegate = self
+        
+        //secure password texr entries
         passwordField.isSecureTextEntry = true
         confirmPasswordField.isSecureTextEntry = true
+        
         Auth.auth().addStateDidChangeListener() {
             auth, user in
             if user != nil {
@@ -73,4 +82,14 @@ class SignupViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    // Called when 'return' key pressed
+      func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+          textField.resignFirstResponder()
+          return true
+      }
+      
+      // Called when the user clicks on the view outside of the UITextField
+      override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+          self.view.endEditing(true)
+      }
 }

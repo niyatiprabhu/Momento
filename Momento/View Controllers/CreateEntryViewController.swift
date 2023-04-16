@@ -9,7 +9,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
 
-class CreateEntryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, StickerPickerDelegate {
+class CreateEntryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITextFieldDelegate, StickerPickerDelegate {
     
     var selectedColor = UIColor.white
     var postImage:UIImage = UIImage(named: "placeholder")!
@@ -26,6 +26,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var textResponseView: UITextView!
     @IBOutlet weak var moodLabel: UILabel!
     
+    
     override func viewWillAppear(_ animated: Bool) {
         // TODO: Retrieve health data from user's phone
     }
@@ -41,6 +42,17 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         moodLabel.text = ""
         imagePicker.delegate = self
     }
+    
+    // Called when 'return' key pressed
+      func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+          textField.resignFirstResponder()
+          return true
+      }
+      
+      // Called when the user clicks on the view outside of the UITextField
+      override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+          self.view.endEditing(true)
+      }
     
     // writes post to Firestore
     func writeData(post: JournalEntry) {
