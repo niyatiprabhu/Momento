@@ -16,6 +16,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordField:UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var errorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,31 +50,39 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     @IBAction func submitButtonPressed(_ sender: Any) {
         
         // TODO: add field checks to make sure all fields are filled in
+        let emptyTextFields = emptyTextFieldCheck()
         // create a new user
         
-        Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { authResult, error in
-            
-            guard let user = authResult?.user, error == nil else {
-                // print error message
-                print("\(error!.localizedDescription)")
-                return
-            }
-            
-            // create user object & store in Firebase
-            let newUser = User(name: self.nameField.text!, username: self.usernameField.text!, email: user.email!, uid: user.uid)
-            print(newUser.dictionary)
-            
-            let db = Firestore.firestore()
-            db.collection("users").document(user.uid).setData(newUser.dictionary) {
-                error in
-                if let error = error {
-                    print("error adding user: \(error.localizedDescription)")
-                } else {
-                    print("user added successfully!")
+        if emptyTextFields.count > 0 {
+            let fieldList = emptyTextFields.joined(separator: ", ")
+            errorLabel.text = "Please fill in the following fields: \(fieldList)"
+        } else {
+            Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { authResult, error in
+                
+                guard let user = authResult?.user, error == nil else {
+                    // print error message
+                    self.errorLabel.text = "\(error!.localizedDescription)"
+                    return
                 }
+                
+                // create user object & store in Firebase
+                let newUser = User(name: self.nameField.text!, username: self.usernameField.text!, email: user.email!, uid: user.uid)
+                print(newUser.dictionary)
+                
+                let db = Firestore.firestore()
+                db.collection("users").document(user.uid).setData(newUser.dictionary) {
+                    error in
+                    if let error = error {
+                        self.errorLabel.text = "error adding user: \(error.localizedDescription)"
+                    } else {
+                        self.errorLabel.text = "user added successfully!"
+                    }
+                }
+                
             }
             
         }
+        
     }
     
     
@@ -92,4 +101,29 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
       override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
           self.view.endEditing(true)
       }
+    
+    
+    //check if text fields empty and prohibit sign up if true
+    func emptyTextFieldCheck() -> [String] {
+        var emptyTextFields = [String]()
+        
+        if emailField.text?.isEmpty ?? true {
+            emptyTextFields.append("Email")
+        }
+
+        if usernameField.text?.isEmpty ?? true {
+           emptyTextFields.append("Username")
+        }
+
+        if passwordField.text?.isEmpty ?? true {
+           emptyTextFields.append("Password")
+        }
+
+        if confirmPasswordField.text?.isEmpty ?? true {
+           emptyTextFields.append("Confirm Password")
+        }
+       return emptyTextFields
+    }
+    
+    
 }
