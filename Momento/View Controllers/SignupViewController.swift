@@ -49,14 +49,20 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func submitButtonPressed(_ sender: Any) {
         
-        // TODO: add field checks to make sure all fields are filled in
+        //field checks to make sure all fields are filled in
         let emptyTextFields = emptyTextFieldCheck()
-        // create a new user
-        
         if emptyTextFields.count > 0 {
             let fieldList = emptyTextFields.joined(separator: ", ")
             errorLabel.text = "Please fill in the following fields: \(fieldList)"
+        } else if passwordField.text != confirmPasswordField.text {
+            
+            //confirm passwords match
+            
+            errorLabel.text = "Password and Confirm Password do not match."
+            
         } else {
+            
+            //create new user
             Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { authResult, error in
                 
                 guard let user = authResult?.user, error == nil else {
