@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -125,6 +124,9 @@
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="likeButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="75g-Ee-3kc"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="70" translatesAutoresizingMaskIntoConstraints="NO" id="lcX-0p-xeg">
                                                         <rect key="frame" x="40" y="0.0" width="120" height="40"/>
@@ -196,15 +198,16 @@
             <connections>
                 <outlet property="bottomContainerView" destination="Oa1-bi-4dc" id="1eT-Ec-sDh"/>
                 <outlet property="dateLabel" destination="qCp-ib-itm" id="jTx-mX-nhX"/>
+                <outlet property="likeButton" destination="xJh-dO-f8D" id="F5e-51-SY5"/>
                 <outlet property="moodLabel" destination="Fmj-Ya-sX5" id="HGo-Nx-1Ky"/>
                 <outlet property="nameLabel" destination="G0r-pd-75Q" id="kfS-Ch-OC2"/>
-                <outlet property="postImageView" destination="GRN-NC-bZn" id="cCj-Ju-bbH"/>
+                <outlet property="postImageView" destination="GRN-NC-bZn" id="Jlt-JE-si8"/>
                 <outlet property="postLikes" destination="lcX-0p-xeg" id="IFf-EU-7NK"/>
                 <outlet property="promptLabel" destination="pro-WN-tBn" id="xp2-mN-Y2s"/>
                 <outlet property="responseLabel" destination="biF-Za-6P2" id="sbJ-Bf-1gO"/>
                 <outlet property="stepCount" destination="tKo-Ze-2gl" id="nyK-cX-nxZ"/>
                 <outlet property="userImageView" destination="aeT-Uh-h2d" id="zn5-HL-oCT"/>
-                <outlet property="usernameLabel" destination="FKv-1e-WYY" id="fPa-Hb-gKH"/>
+                <outlet property="usernameLabel" destination="FKv-1e-WYY" id="Y31-BX-gXn"/>
             </connections>
             <point key="canvasLocation" x="92.36641221374046" y="111.26760563380282"/>
         </tableViewCell>

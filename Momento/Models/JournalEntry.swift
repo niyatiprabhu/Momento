@@ -17,6 +17,7 @@ class JournalEntry {
     let prompt: String
     let color: UIColor!
     let mood: String
+//    let likes: Int
     
     init(photoURL: String, textResponse: String, todayDate: DateComponents, userID: String, backgroundColor: UIColor, todayMood: String ) {
         date = todayDate
@@ -26,6 +27,7 @@ class JournalEntry {
         prompt = "What made you happy today?"
         color = backgroundColor
         mood = todayMood
+//        likes = 0
     }
     
     init(dict: [String: Any]) {
@@ -36,6 +38,7 @@ class JournalEntry {
         prompt = dict["prompt"] as! String
         color = UIColor.colorWithHexString(hexString: dict["color"] as! String) 
         mood = dict["mood"] as! String
+//        likes = dict["likes"] as! Int
     }
     
     var dictionary: [String: Any] {

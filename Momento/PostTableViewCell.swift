@@ -22,6 +22,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var stepCount: UILabel!
     @IBOutlet weak var moodLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
+
     
     static let identifier = "PostTableViewCell"
     
@@ -89,5 +91,16 @@ class PostTableViewCell: UITableViewCell {
         let newBrightness = max(0, brightness - 0.3) // darken by 30%
         return UIColor(hue: hue, saturation: saturation, brightness: newBrightness, alpha: alpha)
     }
+    
+    
+    @IBAction func likeButtonPressed(_ sender: UIButton) {
+        if sender.image(for: .normal) == UIImage(systemName: "heart") {
+               sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+           } else {
+               sender.setImage(UIImage(systemName: "heart"), for: .normal)
+           }
+    }
+        
+    
     
 }
