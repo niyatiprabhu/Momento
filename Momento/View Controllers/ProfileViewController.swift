@@ -18,6 +18,8 @@ class ProfileViewController: UIViewController {
     var calendar: UICalendarView?
     
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var pfp: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,8 @@ class ProfileViewController: UIViewController {
             print("could not get current user")
             return
         }
+        
+        
         
         getPosts(user: user)
     }

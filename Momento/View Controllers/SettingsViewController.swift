@@ -107,7 +107,7 @@ class SettingsViewController: UIViewController {
     func scheduleRandomNotification() {
         // Set the notification content
         let content = UNMutableNotificationContent()
-        content.title = "Time to make a Moment"
+        content.title = "Time to make a Momento"
         content.body = "Your daily reminder to make a journal entry today"
         
         // Set a random time for the notification

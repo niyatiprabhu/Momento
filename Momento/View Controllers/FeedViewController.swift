@@ -18,7 +18,6 @@ class FeedViewController: UIViewController {
     let db = Firestore.firestore()
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var dateLabel: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,15 +26,15 @@ class FeedViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        let calendar = Calendar.current
-        let dateComponents = calendar.dateComponents([.year, .month, .day], from: Date.now)
-        let date = calendar.date(from: dateComponents)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM d, yyyy"
-        if let d = date {
-            let dateString = dateFormatter.string(from: d)
-            dateLabel.title = dateString
-        }
+//        let calendar = Calendar.current
+//        let dateComponents = calendar.dateComponents([.year, .month, .day], from: Date.now)
+//        let date = calendar.date(from: dateComponents)
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "MMMM d, yyyy"
+//        if let d = date {
+//            let dateString = dateFormatter.string(from: d)
+//            dateLabel.title = dateString
+//        }
         
         let group = DispatchGroup()
         

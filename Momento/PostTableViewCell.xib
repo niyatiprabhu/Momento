@@ -47,6 +47,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCp-ib-itm">
+                                <rect key="frame" x="217" y="24" width="140" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -177,16 +183,19 @@
                 <constraints>
                     <constraint firstItem="PSU-Oo-xiG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="4pc-In-df3"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Oa1-bi-4dc" secondAttribute="bottom" id="AFa-DU-kMd"/>
+                    <constraint firstItem="Oa1-bi-4dc" firstAttribute="top" secondItem="qCp-ib-itm" secondAttribute="bottom" constant="10" id="EHI-Wz-kXk"/>
                     <constraint firstItem="PSU-Oo-xiG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="GH7-Ai-J0h"/>
                     <constraint firstAttribute="trailing" secondItem="Oa1-bi-4dc" secondAttribute="trailing" id="Iy8-qx-ffY"/>
                     <constraint firstItem="Oa1-bi-4dc" firstAttribute="top" secondItem="PSU-Oo-xiG" secondAttribute="bottom" constant="5" id="h3n-Zh-84H"/>
                     <constraint firstItem="Oa1-bi-4dc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mkB-p6-pai"/>
                     <constraint firstAttribute="trailingMargin" secondItem="PSU-Oo-xiG" secondAttribute="trailing" id="tXD-fj-ndM"/>
+                    <constraint firstAttribute="trailing" secondItem="qCp-ib-itm" secondAttribute="trailing" constant="20" id="tiB-MO-ZFI"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="bottomContainerView" destination="Oa1-bi-4dc" id="1eT-Ec-sDh"/>
+                <outlet property="dateLabel" destination="qCp-ib-itm" id="jTx-mX-nhX"/>
                 <outlet property="moodLabel" destination="Fmj-Ya-sX5" id="HGo-Nx-1Ky"/>
                 <outlet property="nameLabel" destination="G0r-pd-75Q" id="kfS-Ch-OC2"/>
                 <outlet property="postImageView" destination="GRN-NC-bZn" id="cCj-Ju-bbH"/>

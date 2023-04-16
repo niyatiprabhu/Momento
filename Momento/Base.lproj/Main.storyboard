@@ -162,7 +162,7 @@
             </objects>
             <point key="canvasLocation" x="2384" y="-703"/>
         </scene>
-        <!--Date-->
+        <!--Feed View Controller-->
         <scene sceneID="Tsh-Kt-uLF">
             <objects>
                 <viewController id="huU-1o-6QU" customClass="FeedViewController" customModule="Momento" customModuleProvider="target" sceneMemberID="viewController">
@@ -189,9 +189,8 @@
                         <viewLayoutGuide key="safeArea" id="MEs-15-2wr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Date" id="8YS-Hu-0UR"/>
+                    <navigationItem key="navigationItem" style="editor" id="8YS-Hu-0UR"/>
                     <connections>
-                        <outlet property="dateLabel" destination="8YS-Hu-0UR" id="cG3-5e-u6E"/>
                         <outlet property="tableView" destination="M1I-3E-pub" id="1zD-Dl-pi1"/>
                     </connections>
                 </viewController>
@@ -507,7 +506,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="7vw-mk-gmP">
                                                 <rect key="frame" x="100" y="336.33333333333337" width="99.666666666666686" height="114"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" text="response" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B74-5z-gc7">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" text="response" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="B74-5z-gc7">
                                                         <rect key="frame" x="18.333333333333346" y="0.0" width="63.333333333333343" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="W9h-xi-3MA"/>
@@ -659,6 +658,8 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="gearshape.fill" catalog="system" style="plain" id="S3A-DE-axs"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="nameLabel" destination="8Cu-0d-eNe" id="x9r-R9-BHW"/>
+                        <outlet property="pfp" destination="75v-Y0-Ws0" id="KnV-aO-XJx"/>
                         <outlet property="usernameLabel" destination="2vi-ee-8TA" id="kW8-4T-7HL"/>
                         <segue destination="Gyt-cI-cLb" kind="presentation" identifier="PostSegueIdentifier" id="efO-4b-qcE"/>
                     </connections>

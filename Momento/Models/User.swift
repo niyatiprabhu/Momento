@@ -13,9 +13,11 @@ class User {
     var username: String
     var email: String
     var profilePhoto: UIImage!
+    var pfpLink: String?
     var stepCount: String
     var uid: String
     
+    // TODO: GET RID OF THIS LATER
     init(myName: String, myUsername: String, myEmail: String, myPass: String, myPhoto: UIImage, mySteps: String ) {
         name = myName
         username = myUsername

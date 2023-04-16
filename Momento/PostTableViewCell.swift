@@ -21,6 +21,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var postLikes: UILabel!
     @IBOutlet weak var stepCount: UILabel!
     @IBOutlet weak var moodLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     static let identifier = "PostTableViewCell"
     
@@ -31,13 +32,10 @@ class PostTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func configure(with post: JournalEntry) {
@@ -48,15 +46,8 @@ class PostTableViewCell: UITableViewCell {
         responseLabel.text = post.response
         bottomContainerView.backgroundColor = post.color
         moodLabel.text = post.mood
-        
-        
-        guard let user = users[post.authorID] else {
-            print("could not find user in users dictionary")
-            return;
-        }
-
-        usernameLabel.text = "@\(user.username)"
-        nameLabel.text = user.name
+        dateLabel.text = JournalEntry.getDateString(date: post.date)
+        dateLabel.textColor = darkenColor(color: post.color)
         
         // get image from URL
         guard let url = URL(string: post.photoURL) else {
@@ -76,11 +67,28 @@ class PostTableViewCell: UITableViewCell {
             
         })
         
-        task.resume()
+        guard let user = users[post.authorID] else {
+            print(users.count)
+            print("could not find user in users dictionary")
+            return;
+        }
+
+        usernameLabel.text = "@\(user.username)"
+        nameLabel.text = user.name
         
+        task.resume()
 //        stepCount.text = GlobalVariables.globalStepCount
     }
     
     
+    func darkenColor(color: UIColor) -> UIColor {
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var brightness: CGFloat = 0
+        var alpha: CGFloat = 0
+        color.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        let newBrightness = max(0, brightness - 0.3) // darken by 30%
+        return UIColor(hue: hue, saturation: saturation, brightness: newBrightness, alpha: alpha)
+    }
     
 }
