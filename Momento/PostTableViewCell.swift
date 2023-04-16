@@ -80,7 +80,6 @@ class PostTableViewCell: UITableViewCell {
 //        stepCount.text = GlobalVariables.globalStepCount
     }
     
-    
     func darkenColor(color: UIColor) -> UIColor {
         var hue: CGFloat = 0
         var saturation: CGFloat = 0
