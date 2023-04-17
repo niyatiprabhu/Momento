@@ -41,8 +41,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.performSegue(withIdentifier: "LoginSegue", sender: nil)
                 self.emailField.text = nil
                 self.passwordField.text = nil
-                
-                
             }
         }
     }

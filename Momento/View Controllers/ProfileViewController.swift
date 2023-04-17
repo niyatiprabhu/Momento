@@ -91,7 +91,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             calendarView.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 15),
             calendarView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10)
         ])
-        
         calendar = calendarView
     }
     
@@ -146,8 +145,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
             print("successfully uploaded pfp!")
         })
-        
-        
     }
     
     @objc func pfpViewTapped() {
@@ -183,7 +180,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         present(imagePicker, animated: true, completion: nil)
     }
     
-    
 }
 
 extension ProfileViewController: UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
@@ -211,6 +207,5 @@ extension ProfileViewController: UICalendarViewDelegate, UICalendarSelectionSing
             return UICalendarView.Decoration.default(color: .systemTeal, size: .large)
         }
         return nil
-
     }
 }

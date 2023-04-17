@@ -25,6 +25,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var heart: UIImageView!
     @IBOutlet weak var likeView: UIImageView!
     
+    var isLiked = false
     static let identifier = "PostTableViewCell"
     private let storage = Storage.storage().reference()
     
@@ -42,6 +43,7 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func setPfpImage(uid: String) {
+        userImageView.image = UIImage(named: "profilepic")
         storage.child("pfps/\(uid).jpg").getData(maxSize: 1 * 1024 * 1024, completion: { (data, err) in
             if let err = err {
                 print("could not get pfp or none exists for this user")
@@ -115,8 +117,6 @@ class PostTableViewCell: UITableViewCell {
         let newBrightness = max(0, brightness - 0.3) // darken by 30%
         return UIColor(hue: hue, saturation: saturation, brightness: newBrightness, alpha: alpha)
     }
-    
-    var isLiked = false
 
     @objc func handleDoubleTap(_ sender: UITapGestureRecognizer) {
         if !isLiked {
@@ -133,6 +133,7 @@ class PostTableViewCell: UITableViewCell {
         } else {
             // dislike
             likeView.image = UIImage(systemName: "heart")
+            isLiked = false
         }
     }
     

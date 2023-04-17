@@ -21,13 +21,13 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        //set delegates
+        // set delegates
         emailField.delegate = self
         usernameField.delegate = self
         passwordField.delegate = self
         confirmPasswordField.delegate = self
         
-        //secure password texr entries
+        // secure password texr entries
         passwordField.isSecureTextEntry = true
         confirmPasswordField.isSecureTextEntry = true
         
@@ -57,7 +57,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         } else if passwordField.text != confirmPasswordField.text {
             
             //confirm passwords match
-            
             errorLabel.text = "Password and Confirm Password do not match."
             
         } else {
