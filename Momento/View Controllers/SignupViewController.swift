@@ -49,7 +49,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func submitButtonPressed(_ sender: Any) {
         
-        //field checks to make sure all fields are filled in
+        // field checks to make sure all fields are filled in
         let emptyTextFields = emptyTextFieldCheck()
         if emptyTextFields.count > 0 {
             let fieldList = emptyTextFields.joined(separator: ", ")

@@ -25,6 +25,7 @@ class FeedViewController: UIViewController {
         tableView.register(PostTableViewCell.nib(), forCellReuseIdentifier: PostTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.allowsSelection = false
         
         let group = DispatchGroup()
         
@@ -81,10 +82,6 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
         cell.configure(with: posts[indexPath.row])
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     }
     
 }

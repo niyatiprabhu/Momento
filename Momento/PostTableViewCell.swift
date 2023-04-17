@@ -22,7 +22,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var stepCount: UILabel!
     @IBOutlet weak var moodLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var heart: UIImageView!
+    @IBOutlet weak var likeView: UIImageView!
     
     static let identifier = "PostTableViewCell"
     private let storage = Storage.storage().reference()
@@ -40,10 +41,8 @@ class PostTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(with post: JournalEntry) {
-        // get author image
-        userImageView.image = UIImage(named: "pfp1")
-        storage.child("pfps/\(post.authorID).jpg").getData(maxSize: 1 * 1024 * 1024, completion: { (data, err) in
+    func setPfpImage(uid: String) {
+        storage.child("pfps/\(uid).jpg").getData(maxSize: 1 * 1024 * 1024, completion: { (data, err) in
             if let err = err {
                 print("could not get pfp or none exists for this user")
             } else {
@@ -57,7 +56,18 @@ class PostTableViewCell: UITableViewCell {
                 }
             }
         })
+    }
+    
+    func configure(with post: JournalEntry) {
+        // get author image
+        setPfpImage(uid: post.authorID)
         
+        postImageView.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
+        tapGesture.numberOfTapsRequired = 2
+        postImageView.addGestureRecognizer(tapGesture)
+        
+        heart.alpha = 0
         promptLabel.text = post.prompt
         responseLabel.text = post.response
         bottomContainerView.backgroundColor = post.color
@@ -106,15 +116,24 @@ class PostTableViewCell: UITableViewCell {
         return UIColor(hue: hue, saturation: saturation, brightness: newBrightness, alpha: alpha)
     }
     
-    
-    @IBAction func likeButtonPressed(_ sender: UIButton) {
-        if sender.image(for: .normal) == UIImage(systemName: "heart") {
-               sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-           } else {
-               sender.setImage(UIImage(systemName: "heart"), for: .normal)
-           }
+    var isLiked = false
+
+    @objc func handleDoubleTap(_ sender: UITapGestureRecognizer) {
+        if !isLiked {
+            // animate like
+            isLiked = true
+            likeView.image = UIImage(systemName: "heart.fill")
+            heart.alpha = 1
+            UIView.animate(withDuration: 0.5, animations: {
+                self.heart.alpha = 0
+                self.heart.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            }) { _ in
+                self.heart.alpha = 0
+            }
+        } else {
+            // dislike
+            likeView.image = UIImage(systemName: "heart")
+        }
     }
-        
-    
     
 }
