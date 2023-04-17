@@ -7,7 +7,7 @@
 
 import UIKit
 import HealthKit
-import FirebaseFirestore
+import FirebaseStorage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -23,9 +23,9 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var moodLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
-
     
     static let identifier = "PostTableViewCell"
+    private let storage = Storage.storage().reference()
     
     // to register cell with table view more easily
     static func nib() -> UINib {
@@ -41,8 +41,22 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func configure(with post: JournalEntry) {
-        // TODO: change later to get author image
+        // get author image
         userImageView.image = UIImage(named: "pfp1")
+        storage.child("pfps/\(post.authorID).jpg").getData(maxSize: 1 * 1024 * 1024, completion: { (data, err) in
+            if let err = err {
+                print("could not get pfp or none exists for this user")
+            } else {
+                guard let data = data else {
+                    print("error getting pfp data")
+                    return
+                }
+                DispatchQueue.main.async {
+                    let image = UIImage(data: data)
+                    self.userImageView.image = image
+                }
+            }
+        })
         
         promptLabel.text = post.prompt
         responseLabel.text = post.response

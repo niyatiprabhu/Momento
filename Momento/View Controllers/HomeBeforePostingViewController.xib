@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +19,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ov-O4-nxF">
-                    <rect key="frame" x="134.66666666666666" y="567" width="123.99999999999997" height="35"/>
+                    <rect key="frame" x="111.66666666666669" y="562" width="170" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="2Zs-9K-pP3"/>
+                        <constraint firstAttribute="width" constant="170" id="Soo-Rp-Ogb"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="cea-Jx-DNU"/>
+                    </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Create Entry!"/>
                     <connections>
@@ -38,14 +44,23 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSc-0p-KHS">
+                    <rect key="frame" x="165" y="305.33333333333331" width="63" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <color key="textColor" red="0.40818959469999999" green="0.67208284139999996" blue="0.7299416661" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="6Ov-O4-nxF" firstAttribute="top" secondItem="8T7-rN-Zdl" secondAttribute="bottom" id="2HH-bS-pym"/>
                 <constraint firstItem="8T7-rN-Zdl" firstAttribute="top" secondItem="Sh7-sq-hdP" secondAttribute="bottom" constant="50" id="2JK-6Z-KRf"/>
+                <constraint firstAttribute="trailing" secondItem="Sh7-sq-hdP" secondAttribute="trailing" constant="66" id="2MH-MG-k3o"/>
+                <constraint firstItem="ZSc-0p-KHS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3IJ-QB-iek"/>
+                <constraint firstAttribute="bottom" secondItem="6Ov-O4-nxF" secondAttribute="bottom" constant="235" id="9YH-wk-q8b"/>
+                <constraint firstItem="Sh7-sq-hdP" firstAttribute="top" secondItem="ZSc-0p-KHS" secondAttribute="bottom" constant="8" symbolic="YES" id="9xX-De-qce"/>
                 <constraint firstItem="Sh7-sq-hdP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="AiN-d3-9wd"/>
-                <constraint firstAttribute="bottom" secondItem="6Ov-O4-nxF" secondAttribute="bottom" constant="250" id="IDE-M7-h7s"/>
                 <constraint firstItem="8T7-rN-Zdl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JCr-5M-WmQ"/>
-                <constraint firstItem="6Ov-O4-nxF" firstAttribute="top" secondItem="8T7-rN-Zdl" secondAttribute="bottom" constant="5" id="XZa-Vu-Ual"/>
                 <constraint firstAttribute="trailingMargin" secondItem="Sh7-sq-hdP" secondAttribute="trailing" constant="50" id="h0o-6Z-VcT"/>
                 <constraint firstItem="Sh7-sq-hdP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" constant="50" id="j98-Ju-ZfK"/>
                 <constraint firstItem="6Ov-O4-nxF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ljG-Gj-cdW"/>

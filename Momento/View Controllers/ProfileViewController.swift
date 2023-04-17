@@ -8,31 +8,70 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
+import FirebaseFirestore
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let postSegueIdentifier = "PostSegueIdentifier"
     var entryToSend:JournalEntry?
     var myPosts = Dictionary<String, JournalEntry>()
-    let db = Firestore.firestore()
     var calendar: UICalendarView?
+    var pfp:UIImage = UIImage(named: "profilepic")!
+    let imagePicker = UIImagePickerController()
+    let db = Firestore.firestore()
+    private let storage = Storage.storage().reference()
+    var userID:String = ""
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var pfp: UIImageView!
+    @IBOutlet weak var pfpView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pfpView.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pfpViewTapped))
+        pfpView.addGestureRecognizer(tapGesture)
+        imagePicker.delegate = self
         createCalendar()
         
         guard let user = Auth.auth().currentUser else {
             print("could not get current user")
             return
         }
+        userID = user.uid
+        
+        db.collection("users").document(userID).getDocument(completion: { (document, err) in
+            if let document = document, document.exists, let data = document.data() {
+                guard let user = User(dictionary: data) else {
+                    print("error creating user from data")
+                    return
+                }
+                self.nameLabel.text = user.name
+                self.usernameLabel.text = "@\(user.username)"
+            } else {
+                print("could not get user info for uid: \(self.userID)")
+            }
+        })
+        
+        storage.child("pfps/\(userID).jpg").getData(maxSize: 1 * 1024 * 1024, completion: { (data, err) in
+            if let err = err {
+                print("could not get pfp or none exists for this user")
+                return
+            }
+            guard let data = data else {
+                print("error getting pfp data")
+                return
+            }
+            DispatchQueue.main.async {
+                let image = UIImage(data: data)
+                self.pfpView.image = image
+            }
+        })
         
         
-        
-        getPosts(user: user)
+        getPosts()
     }
     
     func createCalendar() {
@@ -62,8 +101,8 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func getPosts(user: FirebaseAuth.User) {
-        db.collection("posts").whereField("authorID", isEqualTo: user.uid).getDocuments() { (querySnapshot, err) in
+    func getPosts() {
+        db.collection("posts").whereField("authorID", isEqualTo: userID).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -80,6 +119,70 @@ class ProfileViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - image picking
+    // pop up to allow a user to select an image from camera roll
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            fatalError("Expected an image but didn't find one")
+        }
+        pfp = image
+        pfpView.image = pfp
+        uploadPfp()
+        dismiss(animated:true)
+    }
+    
+    func uploadPfp() {
+        // upload image to Firebase storage
+        guard let imageData = pfp.jpegData(compressionQuality: 0.25) else {
+            print("could not get image data")
+            return
+        }
+        
+        storage.child("pfps/\(userID).jpg").putData(imageData, completion: { _, err in
+            if let err = err {
+                print("failed to upload: \(err)")
+                return
+            }
+            print("successfully uploaded pfp!")
+        })
+        
+        
+    }
+    
+    @objc func pfpViewTapped() {
+        // present an alert controller with options to choose or take a photo
+       let alertController = UIAlertController(title: "Choose an Image", message: nil, preferredStyle: .actionSheet)
+       
+       alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+           self.useCamera()
+       }))
+       
+       alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
+           self.usePhotoLibrary()
+       }))
+       
+       alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+       
+       self.present(alertController, animated: true, completion: nil)
+    }
+    
+    // show the camera to take a photo
+    func useCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            print("Camera not available")
+        }
+    }
+    
+    // show the photo library to choose a photo
+    func usePhotoLibrary() {
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     
 }
 

@@ -9,7 +9,7 @@ import Foundation
 import HealthKit
 
 
-class HealthKitManager{
+class HealthKitManager {
         
         static let shared = HealthKitManager()
 

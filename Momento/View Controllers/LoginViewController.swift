@@ -57,13 +57,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Called when 'return' key pressed
-      func textFieldShouldReturn(_ textField:UITextField) -> Bool {
-          textField.resignFirstResponder()
-          return true
-      }
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
       
-      // Called when the user clicks on the view outside of the UITextField
-      override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-          self.view.endEditing(true)
-      }
+    // Called when the user clicks on the view outside of the UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }

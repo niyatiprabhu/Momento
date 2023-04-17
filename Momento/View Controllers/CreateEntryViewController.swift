@@ -44,15 +44,15 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     // Called when 'return' key pressed
-      func textFieldShouldReturn(_ textField:UITextField) -> Bool {
-          textField.resignFirstResponder()
-          return true
-      }
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
       
-      // Called when the user clicks on the view outside of the UITextField
-      override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-          self.view.endEditing(true)
-      }
+    // Called when the user clicks on the view outside of the UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     // writes post to Firestore
     func writeData(post: JournalEntry) {
@@ -79,17 +79,18 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
      
     @IBAction func onPostPressed(_ sender: Any) {
         // Fields are missing, present alert to user
-        if imageView.image!.isEqualToImage(UIImage(named: "placeholder")!) || textResponseView.textColor == UIColor.lightGray {
+        if imageView.image!.isEqualToImage(UIImage(named: "placeholder")!) || textResponseView.text == placeholderText {
             // Create new Alert
             let dialogMessage = UIAlertController(title: "Missing Fields", message: "Fields are required.", preferredStyle: .alert)
              
-             // Create OK button with action handler
-             let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+            // Create OK button with action handler
+            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
              
-             //Add OK button to a dialog message
-             dialogMessage.addAction(ok)
-             // Present Alert to
-             self.present(dialogMessage, animated: true, completion: nil)
+            //Add OK button to a dialog message
+            dialogMessage.addAction(ok)
+            // Present Alert to
+            self.present(dialogMessage, animated: true, completion: nil)
+            return
         }
         
         // upload image to Firebase storage
@@ -134,7 +135,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         }
         
         guard let user = Auth.auth().currentUser else {
-            print("no user is signed in")
+            print("No user is signed in")
             return
         }
         
@@ -142,10 +143,8 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         
         print(textResponseView.text!, moodLabel.text!)
         
-        // eventually push entry to Firebase storage instead
+        // push entry to Firebase storage
         writeData(post: newPost)
-        GlobalVariables.myPosts.append(newPost)
-        GlobalVariables.allPosts.append(newPost)
         self.dismiss(animated: false)
     }
     
@@ -164,19 +163,19 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBAction func uploadPhotoPressed(_ sender: Any) {
         // present an alert controller with options to choose or take a photo
-       let alertController = UIAlertController(title: "Choose an Image", message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Choose an Image", message: nil, preferredStyle: .actionSheet)
        
-       alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
            self.useCamera()
-       }))
+        }))
        
-       alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
+        alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
            self.usePhotoLibrary()
-       }))
+        }))
        
-       alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
        
-       self.present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     // show the camera to take a photo
