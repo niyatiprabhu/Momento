@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginButtonPressed(_ sender: Any) {
         Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) {
             authResult, error in if let error = error as NSError? {
-                self.errorMessage.text = "\(error.localizedDescription)"
+                self.errorMessage.text = "Error logging in 😖\n\(error.localizedDescription)"
             }
         }
     }
