@@ -17,16 +17,18 @@ class JournalEntry {
     let prompt: String
     let color: UIColor!
     let mood: String
+    let stepCount: Int
 //    let likes: Int
     
-    init(photoURL: String, textResponse: String, todayDate: DateComponents, userID: String, backgroundColor: UIColor, todayMood: String ) {
+    init(photoURL: String, textResponse: String, todayDate: DateComponents, userID: String, backgroundColor: UIColor, todayMood: String, prompt: String, steps: Int) {
         date = todayDate
         self.photoURL = photoURL
         response = textResponse
         authorID = userID
-        prompt = "What made you happy today?"
+        self.prompt = prompt
         color = backgroundColor
         mood = todayMood
+        stepCount = steps
 //        likes = 0
     }
     
@@ -38,6 +40,7 @@ class JournalEntry {
         prompt = dict["prompt"] as! String
         color = UIColor.colorWithHexString(hexString: dict["color"] as! String) 
         mood = dict["mood"] as! String
+        stepCount = dict["stepCount"] as! Int
 //        likes = dict["likes"] as! Int
     }
     
@@ -49,8 +52,28 @@ class JournalEntry {
             "response": response,
             "prompt": prompt,
             "color": color.hexString,
-            "mood": mood
+            "mood": mood,
+            "stepCount": stepCount
         ]
+    }
+    
+    func getFormattedSteps() -> String {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "en_US")
+        formatter.numberStyle = .decimal
+
+        let formattedString = formatter.string(from: NSNumber(value: stepCount)) ?? ""
+        return formattedString
+    }
+    
+    func darkenColor(percentage:Double) -> UIColor {
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var brightness: CGFloat = 0
+        var alpha: CGFloat = 0
+        color.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        let newBrightness = max(0, brightness - percentage)
+        return UIColor(hue: hue, saturation: saturation, brightness: newBrightness, alpha: alpha)
     }
     
     static func getDateComponentFromString(dateString: String) -> DateComponents {

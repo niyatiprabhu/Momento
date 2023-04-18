@@ -18,21 +18,22 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     let imagePicker = UIImagePickerController()
     
     private let storage = Storage.storage().reference()
-    
     let database = Firestore.firestore()
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var colorWell: UIColorWell!
     @IBOutlet weak var textResponseView: UITextView!
     @IBOutlet weak var moodLabel: UILabel!
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // TODO: Retrieve health data from user's phone
-    }
+    @IBOutlet weak var promptLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set date
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: Date.now)
+        dateLabel.text = JournalEntry.getDateString(date: dateComponents)
         
         // set up textField attribues and color well
         textResponseView.delegate = self
@@ -46,7 +47,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     // Called when the user clicks on the view outside of the UITextField
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         textResponseView.resignFirstResponder()
-//        self.view.endEditing(true)
+        self.view.endEditing(true)
     }
     
     // writes post to Firestore
@@ -65,7 +66,6 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
             }
         }
     }
-
     
     // MARK: - navigation
     @IBAction func backBtnPressed(_ sender: Any) {
@@ -81,7 +81,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
             // Create OK button with action handler
             let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
              
-            //Add OK button to a dialog message
+            // Add OK button to a dialog message
             dialogMessage.addAction(ok)
             // Present Alert to
             self.present(dialogMessage, animated: true, completion: nil)
@@ -134,13 +134,33 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
             return
         }
         
-        let newPost = JournalEntry(photoURL: photoURL, textResponse: textResponseView.text!, todayDate: today, userID: user.uid, backgroundColor: selectedColor, todayMood: moodLabel.text!)
+        let group = DispatchGroup()
+        var stepCount:Int = 0
         
-        print(textResponseView.text!, moodLabel.text!)
-        
-        // push entry to Firebase storage
-        writeData(post: newPost)
-        self.dismiss(animated: false)
+        group.enter()
+        HealthKitManager.shared.getStepsCount { (steps, error) in
+            if let steps = steps {
+                stepCount = Int(steps)
+                print("Step count: \(stepCount)")
+            } else if let error = error {
+                print("Error getting steps: \(error.localizedDescription)")
+                if error.localizedDescription == "No data available for the specified predicate." {
+                    // this happens when running the app on a simulator (no health data)
+                    // fill post with a random int for demonstrative purposes
+                    stepCount = Int(arc4random_uniform(14000)) + 1000
+                }
+            }
+            group.leave()
+        }
+           
+        group.notify(queue: DispatchQueue.main, execute: {
+            // make new post
+            let newPost = JournalEntry(photoURL: photoURL, textResponse: self.textResponseView.text!, todayDate: today, userID: user.uid, backgroundColor: self.selectedColor, todayMood: self.moodLabel.text!, prompt: self.promptLabel.text!, steps: stepCount)
+            
+            // push entry to Firebase storage
+            self.writeData(post: newPost)
+            self.dismiss(animated: false)
+        })
     }
     
     // MARK: - image picking
@@ -236,6 +256,13 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         if segue.identifier == "showStickersSegue",
            let nextVC = segue.destination as? MoodPickerViewController {
             nextVC.delegate = self
+        }
+        if segue.identifier == "PromptPicker" {
+            let pickerVC = segue.destination as! PromptPickerViewController
+            pickerVC.onDismiss = { prompt in
+                print("prompt received: \(prompt)")
+                self.promptLabel.text = prompt
+            }
         }
     }
 }

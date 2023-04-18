@@ -18,6 +18,8 @@ class PostViewController: UIViewController {
     @IBOutlet weak var promptLabel: UILabel!
     @IBOutlet weak var responseLabel: UILabel!
     @IBOutlet weak var moodLabel: UILabel!
+    @IBOutlet weak var stepsLabel: UILabel!
+    @IBOutlet weak var shoes: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,10 @@ class PostViewController: UIViewController {
         promptLabel.text = entry.prompt
         responseLabel.text = entry.response
         moodLabel.text = entry.mood
+        stepsLabel.text = entry.getFormattedSteps()
+        let color = entry.darkenColor(percentage: 0.5)
+        stepsLabel.textColor = color
+        shoes.tintColor = color
     }
     
     func setImage(from url: URL) {

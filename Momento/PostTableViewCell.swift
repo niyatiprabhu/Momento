@@ -18,11 +18,12 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet var promptLabel: UILabel!
     @IBOutlet var responseLabel: UILabel!
     @IBOutlet var bottomContainerView: UIView!
+    @IBOutlet weak var stepsLabel: UILabel!
     @IBOutlet weak var postLikes: UILabel!
-    @IBOutlet weak var stepCount: UILabel!
     @IBOutlet weak var moodLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var heart: UIImageView!
+    @IBOutlet weak var shoes: UIImageView!
     @IBOutlet weak var likeView: UIImageView!
     
     var isLiked = false
@@ -76,7 +77,11 @@ class PostTableViewCell: UITableViewCell {
         bottomContainerView.backgroundColor = post.color
         moodLabel.text = post.mood
         dateLabel.text = JournalEntry.getDateString(date: post.date)
-        dateLabel.textColor = darkenColor(color: post.color)
+        stepsLabel.text = post.getFormattedSteps()
+        dateLabel.textColor = post.darkenColor(percentage: 0.3)
+        let color = post.darkenColor(percentage: 0.5)
+        stepsLabel.textColor = color
+        shoes.tintColor = color
         
         // get image from URL
         guard let url = URL(string: post.photoURL) else {
@@ -106,17 +111,6 @@ class PostTableViewCell: UITableViewCell {
         nameLabel.text = user.name
         
         task.resume()
-//        stepCount.text = GlobalVariables.globalStepCount
-    }
-    
-    func darkenColor(color: UIColor) -> UIColor {
-        var hue: CGFloat = 0
-        var saturation: CGFloat = 0
-        var brightness: CGFloat = 0
-        var alpha: CGFloat = 0
-        color.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-        let newBrightness = max(0, brightness - 0.3) // darken by 30%
-        return UIColor(hue: hue, saturation: saturation, brightness: newBrightness, alpha: alpha)
     }
 
     @objc func handleDoubleTap(_ sender: UITapGestureRecognizer) {

@@ -34,15 +34,21 @@ class HealthKitManager {
             }
         }
 
+        // get step count for today so far
         func getStepsCount(completion: @escaping (Double?, Error?) -> Void) {
             guard isAuthorized else {
                 completion(nil, nil) // Handle unauthorized access
                 return
             }
 
-            let stepsCount = HKQuantityType.quantityType(forIdentifier: .stepCount)!
-            let query = HKStatisticsQuery(quantityType: stepsCount, quantitySamplePredicate: nil, options: .cumulativeSum) { (_, result, error) in
+            let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
+            let startDate = Calendar.current.startOfDay(for: Date())
+            let endDate = Date()
+
+            let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictStartDate)
+            let query = HKStatisticsQuery(quantityType: stepCountType, quantitySamplePredicate: predicate, options: .cumulativeSum) { (query, result, error) in
                 guard let result = result, let sum = result.sumQuantity() else {
+                    // Handle error here
                     completion(nil, error)
                     return
                 }
@@ -53,7 +59,5 @@ class HealthKitManager {
 
             healthStore.execute(query)
         }
-
-        // Other HealthKit methods can be added here
     
 }

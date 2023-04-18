@@ -12,29 +12,14 @@ class User {
     var name: String
     var username: String
     var email: String
-    var profilePhoto: UIImage!
     var pfpLink: String?
-    var stepCount: String
     var uid: String
     var friends: [String]
-    
-    // TODO: GET RID OF THIS LATER
-    init(myName: String, myUsername: String, myEmail: String, myPass: String, myPhoto: UIImage, mySteps: String ) {
-        name = myName
-        username = myUsername
-        email = myEmail
-        profilePhoto = myPhoto
-        stepCount = mySteps
-        uid = ""
-        friends = []
-    }
     
     init(name: String, username: String, email: String, uid: String) {
         self.name = name
         self.username = username
         self.email = email
-        self.profilePhoto = UIImage(named: "pfp1")
-        self.stepCount = ""
         self.uid = uid
         self.friends = []
         print(username, self.username)
@@ -54,9 +39,7 @@ class User {
         self.name = name
         self.username = username
         self.email = email
-        self.stepCount = ""
         self.uid = uid
-        self.profilePhoto = UIImage(named: "pfp1")
         self.friends = friends
     }
     

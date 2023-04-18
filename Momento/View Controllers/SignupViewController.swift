@@ -34,6 +34,19 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         Auth.auth().addStateDidChangeListener() {
             auth, user in
             if user != nil {
+                HealthKitManager.shared.authorizeHealthKit { (success, error) in
+                    if success {
+                        HealthKitManager.shared.authorizeHealthKit { (success, error) in
+                            if success {
+                                print("successfully requested Health Kit authorization")
+                            } else if let error = error {
+                                print("Error authorizing Health Kit: \(error.localizedDescription)")
+                            }
+                        }
+                    } else if let error = error {
+                        print("Error authorizing Health Kit: \(error.localizedDescription)")
+                    }
+                }
                 self.performSegue(withIdentifier: "SignupSegue", sender: nil)
             }
         }

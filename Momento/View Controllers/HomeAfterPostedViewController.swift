@@ -15,19 +15,16 @@ class HomeAfterPostedViewController: UIViewController, PostFiller {
     @IBOutlet weak var promptLabel: UILabel!
     @IBOutlet weak var responseLabel: UILabel!
     @IBOutlet weak var moodLabel: UILabel!
+    @IBOutlet weak var shoes: UIImageView!
+    @IBOutlet weak var stepsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set date
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: Date.now)
-        let date = calendar.date(from: dateComponents)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM d, yyyy"
-        if let d = date {
-            let dateString = dateFormatter.string(from: d)
-            dateLabel.text = dateString
-        }
+        dateLabel.text = JournalEntry.getDateString(date: dateComponents)
     }
     
     func setImage(from url: URL) {
@@ -50,6 +47,10 @@ class HomeAfterPostedViewController: UIViewController, PostFiller {
         promptLabel.text = entry.prompt
         responseLabel.text = entry.response
         moodLabel.text = entry.mood
+        stepsLabel.text = entry.getFormattedSteps()
+        let color = entry.darkenColor(percentage: 0.5)
+        stepsLabel.textColor = color
+        shoes.tintColor = color
     }
 
 }

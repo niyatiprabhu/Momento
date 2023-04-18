@@ -18,6 +18,8 @@
                 <outlet property="postImageView" destination="S1n-Jt-n16" id="h5a-nQ-itg"/>
                 <outlet property="promptLabel" destination="DLB-Dg-8CE" id="Tbv-jw-S4A"/>
                 <outlet property="responseLabel" destination="1qO-BC-yHR" id="NWb-Si-bBq"/>
+                <outlet property="shoes" destination="EIb-st-wlQ" id="bLQ-wT-lyP"/>
+                <outlet property="stepsLabel" destination="RBS-bs-BTp" id="oZS-XO-jTJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -36,23 +38,28 @@
                     <rect key="frame" x="21.666666666666657" y="145.33333333333337" width="350" height="550"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6LP-Vk-w0W">
-                            <rect key="frame" x="25" y="14.999999999999972" width="300" height="498.33333333333326"/>
+                            <rect key="frame" x="37.333333333333314" y="15" width="275" height="425.33333333333331"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What made you happy today?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLB-Dg-8CE">
-                                    <rect key="frame" x="37.000000000000014" y="0.0" width="225.66666666666669" height="20.333333333333332"/>
+                                    <rect key="frame" x="24.666666666666671" y="0.0" width="225.66666666666663" height="20.333333333333332"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="S1n-Jt-n16">
-                                    <rect key="frame" x="0.0" y="28.333333333333314" width="300" height="300"/>
+                                    <rect key="frame" x="0.0" y="28.333333333333314" width="275" height="275"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="300" id="7di-zz-N2t"/>
-                                        <constraint firstAttribute="width" constant="300" id="Wxc-bK-sjB"/>
+                                        <constraint firstAttribute="height" constant="275" id="7di-zz-N2t"/>
+                                        <constraint firstAttribute="width" constant="275" id="Wxc-bK-sjB"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="fef-KY-CoV">
-                                    <rect key="frame" x="100" y="336.33333333333337" width="99.666666666666686" height="114"/>
+                                    <rect key="frame" x="87.666666666666657" y="311.33333333333337" width="99.666666666666657" height="114"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" text="response" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="1qO-BC-yHR">
                                             <rect key="frame" x="18.333333333333346" y="0.0" width="63.333333333333343" height="50"/>
@@ -74,29 +81,29 @@
                                         </label>
                                     </subviews>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="F2u-tX-Tow">
-                                    <rect key="frame" x="66.333333333333343" y="458.33333333333326" width="167" height="40"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="shoeprints.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="EIb-st-wlQ">
-                                            <rect key="frame" x="0.0" y="-0.66666666666666785" width="40" height="41.333333333333343"/>
-                                            <color key="tintColor" red="0.40818959469999999" green="0.67208284139999996" blue="0.7299416661" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="s6r-CH-DXO"/>
-                                                <constraint firstAttribute="width" constant="40" id="ucf-ne-XRZ"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="step count" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBS-bs-BTp">
-                                            <rect key="frame" x="47" y="0.0" width="120" height="40"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="2FI-Ba-lc3"/>
-                                                <constraint firstAttribute="width" constant="120" id="7bu-y7-X7R"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="F2u-tX-Tow">
+                            <rect key="frame" x="163" y="490" width="167" height="40"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="step count" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBS-bs-BTp">
+                                    <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="2FI-Ba-lc3"/>
+                                        <constraint firstAttribute="width" constant="120" id="7bu-y7-X7R"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="shoeprints.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="EIb-st-wlQ">
+                                    <rect key="frame" x="127.00000000000003" y="-0.66666666666666785" width="40" height="41.333333333333343"/>
+                                    <color key="tintColor" systemColor="labelColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="s6r-CH-DXO"/>
+                                        <constraint firstAttribute="width" constant="40" id="ucf-ne-XRZ"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
                         </stackView>
                     </subviews>
@@ -107,6 +114,8 @@
                         <constraint firstItem="6LP-Vk-w0W" firstAttribute="centerX" secondItem="1oZ-qw-24t" secondAttribute="centerX" id="DFM-0P-ULt"/>
                         <constraint firstAttribute="width" constant="350" id="FMr-or-HUP"/>
                         <constraint firstAttribute="height" constant="550" id="QKv-yV-o0O"/>
+                        <constraint firstAttribute="bottom" secondItem="F2u-tX-Tow" secondAttribute="bottom" constant="20" symbolic="YES" id="Whx-l0-OXM"/>
+                        <constraint firstAttribute="trailing" secondItem="F2u-tX-Tow" secondAttribute="trailing" constant="20" symbolic="YES" id="iDb-bD-yNQ"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -129,6 +138,9 @@
     <resources>
         <image name="placeholder" width="273" height="184"/>
         <image name="shoeprints.fill" catalog="system" width="116" height="128"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

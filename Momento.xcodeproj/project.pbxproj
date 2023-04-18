@@ -23,7 +23,6 @@
 		3040D4C029AF218500579643 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3040D4BE29AF218500579643 /* LaunchScreen.storyboard */; };
 		3040D4C829B504C900579643 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4C729B504C900579643 /* JournalEntry.swift */; };
 		3040D4CA29B5075100579643 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4C929B5075100579643 /* User.swift */; };
-		3040D4CC29B5091800579643 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040D4CB29B5091700579643 /* GlobalVariables.swift */; };
 		305AC05C29DFCBC8009BA0D0 /* README.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 305AC05B29DFCBC8009BA0D0 /* README.pdf */; };
 		30B75CF829DF2A4E00F3AD42 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B75CF729DF2A4D00F3AD42 /* FriendsTableViewCell.swift */; };
 		30B75CFA29DF2A6900F3AD42 /* FriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B75CF929DF2A6800F3AD42 /* FriendsTableViewCell.xib */; };
@@ -47,6 +46,7 @@
 		D58A761429DE0EC600CB6C47 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D58A761329DE0EC600CB6C47 /* FirebaseFirestore */; };
 		D58A761629DE0EC600CB6C47 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D58A761529DE0EC600CB6C47 /* FirebaseStorage */; };
 		D5A6BA7F29ECE96300A6B0E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5A6BA7E29ECE96300A6B0E9 /* GoogleService-Info.plist */; };
+		D5A6BA8329EEAA1500A6B0E9 /* PromptPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A6BA8229EEAA1500A6B0E9 /* PromptPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,7 +68,6 @@
 		3040D4C129AF218500579643 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3040D4C729B504C900579643 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
 		3040D4C929B5075100579643 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		3040D4CB29B5091700579643 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		305AC05B29DFCBC8009BA0D0 /* README.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = README.pdf; sourceTree = "<group>"; };
 		30B75CF729DF2A4D00F3AD42 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
 		30B75CF929DF2A6800F3AD42 /* FriendsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsTableViewCell.xib; sourceTree = "<group>"; };
@@ -90,6 +89,7 @@
 		D521EBDA29B4A259009777BB /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		D521EBDC29B4A27D009777BB /* CreateEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEntryViewController.swift; sourceTree = "<group>"; };
 		D5A6BA7E29ECE96300A6B0E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D5A6BA8229EEAA1500A6B0E9 /* PromptPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +141,6 @@
 				D5075C1229B6ABFF00DE249E /* PostFillerProtocol.swift */,
 				1C5CF18529CE2ED100FF0CF1 /* StickerCollectionViewCell.swift */,
 				1C5CF18929CE33D200FF0CF1 /* StickerPickerProtocol.swift */,
-				3040D4CB29B5091700579643 /* GlobalVariables.swift */,
 				3040D4BE29AF218500579643 /* LaunchScreen.storyboard */,
 				1C3F6CEA29B44CBE00563664 /* PulsingView.swift */,
 				3040D4BC29AF218500579643 /* Assets.xcassets */,
@@ -169,6 +168,7 @@
 				1C3F6CE829B3AA3900563664 /* SplashViewController.swift */,
 				D51B59C129B1051E00C2CDF7 /* LoginViewController.swift */,
 				D5075C1A29B7978D00DE249E /* SignupViewController.swift */,
+				D5A6BA8229EEAA1500A6B0E9 /* PromptPickerViewController.swift */,
 				1C5CF18729CE2F3600FF0CF1 /* MoodPickerViewController.swift */,
 			);
 			path = "View Controllers";
@@ -282,12 +282,12 @@
 				30B75CF829DF2A4E00F3AD42 /* FriendsTableViewCell.swift in Sources */,
 				D521EBDB29B4A259009777BB /* FriendsViewController.swift in Sources */,
 				1C3F6CEB29B44CBF00563664 /* PulsingView.swift in Sources */,
+				D5A6BA8329EEAA1500A6B0E9 /* PromptPickerViewController.swift in Sources */,
 				3040D4B129AF218300579643 /* AppDelegate.swift in Sources */,
 				3040D4CA29B5075100579643 /* User.swift in Sources */,
 				1C5CF18829CE2F3600FF0CF1 /* MoodPickerViewController.swift in Sources */,
 				3040D4B329AF218300579643 /* SceneDelegate.swift in Sources */,
 				D5075C1029B5CE1100DE249E /* HomeAfterPostedViewController.swift in Sources */,
-				3040D4CC29B5091800579643 /* GlobalVariables.swift in Sources */,
 				D5075C1329B6AC0000DE249E /* PostFillerProtocol.swift in Sources */,
 				D51B59C229B1051E00C2CDF7 /* LoginViewController.swift in Sources */,
 				3040D4BB29AF218300579643 /* Momento.xcdatamodeld in Sources */,
