@@ -16,6 +16,7 @@ class User {
     var pfpLink: String?
     var stepCount: String
     var uid: String
+    var friends: [String]
     
     // TODO: GET RID OF THIS LATER
     init(myName: String, myUsername: String, myEmail: String, myPass: String, myPhoto: UIImage, mySteps: String ) {
@@ -25,6 +26,7 @@ class User {
         profilePhoto = myPhoto
         stepCount = mySteps
         uid = ""
+        friends = []
     }
     
     init(name: String, username: String, email: String, uid: String) {
@@ -34,6 +36,7 @@ class User {
         self.profilePhoto = UIImage(named: "pfp1")
         self.stepCount = ""
         self.uid = uid
+        self.friends = []
         print(username, self.username)
         print(name, self.name)
     }
@@ -42,7 +45,8 @@ class User {
         guard let name = dictionary["name"] as? String,
               let username = dictionary["username"] as? String,
               let email = dictionary["email"] as? String,
-              let uid = dictionary["uid"] as? String
+              let uid = dictionary["uid"] as? String,
+              let friends = dictionary["friends"] as? [String]
         else {
             return nil
         }
@@ -53,7 +57,7 @@ class User {
         self.stepCount = ""
         self.uid = uid
         self.profilePhoto = UIImage(named: "pfp1")
-        
+        self.friends = friends
     }
     
     var dictionary: [String: Any] {
@@ -61,7 +65,8 @@ class User {
             "name": self.name,
             "username": self.username,
             "email": self.email,
-            "uid": self.uid
+            "uid": self.uid,
+            "friends": self.friends
         ]
     }
 }
