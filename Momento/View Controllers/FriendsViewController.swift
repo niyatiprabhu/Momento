@@ -32,6 +32,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         group.enter()
         if let user = Auth.auth().currentUser {
             // User is signed in.
+            print("current user id is \(user.uid)")
             let userRef = Firestore.firestore().collection("users").document(user.uid)
             userRef.getDocument { (snapshot, error) in
                 if let error = error {
@@ -42,35 +43,42 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     print("User document has no friends array")
                     return
                 }
+                print("size of friendsIds is \(friends.count)")
                 self.friendIds = friends
                 group.leave()
             }
         }
         
         // construct User objects from the friends' uids and add to the array
-        group.enter()
+        
         for friendId in friendIds {
             let friendRef = Firestore.firestore().collection("users").document(friendId)
+            group.enter()
             friendRef.getDocument { (snapshot, error) in
                 if let error = error {
                     print("Error getting user document: \(error.localizedDescription)")
+                    print("in here 1")
                     return
                 }
                 guard let data = snapshot?.data() else {
                     print("User document has no friends array")
+                    print ("in here")
                     return
                 }
+                print ("about to add friend to myFriends")
                 let friendUser = User(dictionary: data)
                 self.myFriends.append(friendUser!)
+                group.leave()
             }
+            
         }
-        group.leave()
+        print("number of friends in myFriends is \(myFriends.count)")
+       
         
         group.notify(queue: DispatchQueue.main, execute: {
             print("pulled friends")
             self.tableView.reloadData()
         })
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,6 +128,9 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         group.notify(queue: DispatchQueue.main, execute: {
             print("pulled friends")
             self.tableView.reloadData()
+            for friend in self.myFriends {
+                print(friend.uid)
+            }
         })
     }
     
