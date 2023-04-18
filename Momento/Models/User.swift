@@ -50,7 +50,6 @@ class User {
         else {
             return nil
         }
-        
         self.name = name
         self.username = username
         self.email = email
