@@ -10,8 +10,12 @@ import FirebaseCore
 import Firebase
 import FirebaseFirestore
 
-class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var segmentedContoller: UISegmentedControl!
+    
+    var displayData:[User] = []
     var myFriends:[User] = []
     var friendIds:[String] = []
     let db = Firestore.firestore()
@@ -25,6 +29,8 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.register(FriendsTableViewCell.nib(), forCellReuseIdentifier: FriendsTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
+        searchBar.autocapitalizationType = .none
         
         let group = DispatchGroup()
         
@@ -70,6 +76,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         group.notify(queue: DispatchQueue.main, execute: {
             print("number of friends in myFriends is \(self.myFriends.count)")
+            self.displayData = self.myFriends
             self.tableView.reloadData()
         })
     }
@@ -80,18 +87,18 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myFriends.count
+        return displayData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendsTableViewCell.identifier, for: indexPath) as! FriendsTableViewCell
         let row = indexPath.row
-        cell.configure(with: myFriends[row])
+        cell.configure(with: displayData[row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+        if segmentedContoller.selectedSegmentIndex == 0 && editingStyle == .delete {
             // remove from data and update the table
             let friendIdToDelete = myFriends[indexPath.row].uid
             let userId = Auth.auth().currentUser?.uid
@@ -107,5 +114,74 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if segmentedContoller.selectedSegmentIndex == 0 {
+            // search within my friends
 
+        } else {
+            // search within global users
+            displayData = searchFromAllUsers(username: searchText)
+        }
+        tableView.reloadData()
+    }
+    
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        if segmentedContoller.selectedSegmentIndex == 0 {
+//            // search within my friends
+//
+//        } else {
+//            // search within global users
+//            displayData = searchFromAllUsers(username: searchBar.text!)
+//        }
+//        tableView.reloadData()
+//    }
+    
+    @IBAction func segmentedControllerChanged(_ sender: Any) {
+        if segmentedContoller.selectedSegmentIndex == 1 {
+            searchBar.placeholder = "search to add friends"
+            displayData = getAllUsers()
+        } else {
+            searchBar.placeholder = "search my friends"
+            displayData = myFriends
+        }
+        tableView.reloadData()
+    }
+    
+    func getAllUsers() -> [User] {
+        var allUsers: [User] = []
+        // Query the 'users' collection to get a list of user IDs
+        db.collection("users").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let userId = document.documentID
+                    print(document.data())
+                    if let user = User(dictionary: document.data()) {
+                        allUsers.append(user)
+                    }
+                }
+            }
+        }
+        return allUsers
+    }
+    
+    func searchFromAllUsers(username: String) -> [User] {
+        var matchingUsers: [User] = []
+        // Create a query that filters the 'users' collection by the 'username' field
+        let query = db.collection("users").whereField("username", isEqualTo: username)
+        query.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let user = User(dictionary: document.data())
+                    matchingUsers.append(user!)
+                }
+            }
+        }
+        return matchingUsers
+    }
+    
 }
