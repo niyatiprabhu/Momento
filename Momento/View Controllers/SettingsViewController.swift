@@ -7,7 +7,7 @@
 
 import UIKit
 import FirebaseAuth
-import Firebase
+import FirebaseFirestore
 import UserNotifications
 
 class SettingsViewController: UIViewController {
@@ -26,25 +26,17 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var currentUsernameLabel: UILabel!
     @IBOutlet weak var newPasswordField: UITextField!
     @IBOutlet weak var editButton: UIButton!
+    let db = Firestore.firestore()
     
     var editMode:Bool = false
     
     @IBAction func editPressed(_ sender: Any) {
         if editMode {
             editButton.setTitle("Edit", for: .normal)
-            let uid = Auth.auth().currentUser?.uid
-            let db = Firestore.firestore()
-            let docRef = db.collection("users").document(uid!)
-            docRef.getDocument { (document, error) in
-                if let document = document, document.exists {
-                    let username = document["username"] as? String
-                    self.currentUsernameLabel.text = username
-                } else {
-                    self.currentUsernameLabel.text = "Could not get username"
-                }
-            }
-            let email = Auth.auth().currentUser?.email
-            currentEmailLabel.text = email
+            passwordStatusLabel.text = ""
+            usernameStatusLabel.text = ""
+            emailStatusLabel.text = ""
+            getUserInfo()
         } else {
             editButton.setTitle("Done", for: .normal)
         }
@@ -62,6 +54,9 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func saveChangesPressed(_ sender: Any) {
+        passwordStatusLabel.text = ""
+        usernameStatusLabel.text = ""
+        emailStatusLabel.text = ""
         let credential = EmailAuthProvider.credential(withEmail: (Auth.auth().currentUser?.email)!, password: currentPasswordField.text!)
         Auth.auth().currentUser?.reauthenticate(with: credential) { (result, error) in
             if let error = error {
@@ -111,6 +106,21 @@ class SettingsViewController: UIViewController {
             }
             
         }
+    }
+    
+    func getUserInfo() {
+        let uid = Auth.auth().currentUser?.uid
+        let docRef = db.collection("users").document(uid!)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let username = document["username"] as? String
+                self.currentUsernameLabel.text = username
+            } else {
+                self.currentUsernameLabel.text = "Could not get username"
+            }
+        }
+        let email = Auth.auth().currentUser?.email
+        currentEmailLabel.text = email
     }
     
     
@@ -171,22 +181,21 @@ class SettingsViewController: UIViewController {
         usernameStatusLabel.text = ""
         emailStatusLabel.text = ""
         passwordStatusLabel.text = ""
-        let uid = Auth.auth().currentUser?.uid
-        let db = Firestore.firestore()
-        let docRef = db.collection("users").document(uid!)
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let username = document["username"] as? String
-                self.currentUsernameLabel.text = username
-            } else {
-                self.currentUsernameLabel.text = "Could not get username"
-            }
-        }
-        let email = Auth.auth().currentUser?.email
-        currentEmailLabel.text = email
+        getUserInfo()
         self.scheduleRandomNotification()
     }
     
+    // MARK: - Dismiss Keyboard
+    // Called when 'return' key pressed
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+      
+    // Called when the user clicks on the view outside of the UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
     // MARK: - Navigation
     @IBAction func logoutBtnPressed(_ sender: Any) {
@@ -194,7 +203,10 @@ class SettingsViewController: UIViewController {
             try Auth.auth().signOut()
             performSegue(withIdentifier: "LogoutSegue", sender: nil)
         } catch {
-            print("logout error")
+            // create alert
+            let alertController = UIAlertController(title: "Error logging out 😭", message: "Please try again!", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alertController, animated: true)
         }
     }
     

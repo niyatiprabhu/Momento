@@ -357,7 +357,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAs-KC-PtN" userLabel="Add Mood">
-                                <rect key="frame" x="308" y="650" width="65.333333333333314" height="35"/>
+                                <rect key="frame" x="315" y="649" width="50" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="7Ca-Hu-udH"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="theatermasks.fill" catalog="system"/>
                                 <connections>
@@ -366,7 +369,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="844-95-vwc" userLabel="Undo Mood">
-                                <rect key="frame" x="272" y="649" width="50" height="35"/>
+                                <rect key="frame" x="260" y="649" width="50" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="OHm-Pk-Nc1"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrow.uturn.backward" catalog="system"/>
                                 <connections>
@@ -379,9 +385,8 @@
                         <constraints>
                             <constraint firstItem="hzA-2e-Bwq" firstAttribute="centerX" secondItem="duC-M9-8xV" secondAttribute="centerX" id="1iI-6O-L5h"/>
                             <constraint firstItem="e5w-25-rya" firstAttribute="top" secondItem="7Of-Eu-7Rn" secondAttribute="bottom" constant="27" id="3n9-nq-hln"/>
-                            <constraint firstItem="844-95-vwc" firstAttribute="leading" secondItem="e5w-25-rya" secondAttribute="trailing" constant="22" id="61u-C1-FU9"/>
+                            <constraint firstItem="844-95-vwc" firstAttribute="leading" secondItem="e5w-25-rya" secondAttribute="trailing" constant="10" id="61u-C1-FU9"/>
                             <constraint firstItem="wqw-BE-5Vm" firstAttribute="centerX" secondItem="duC-M9-8xV" secondAttribute="centerX" id="63M-WO-RpL"/>
-                            <constraint firstItem="KFQ-Ma-ST6" firstAttribute="trailing" secondItem="jAs-KC-PtN" secondAttribute="trailing" constant="19.666666666666686" id="7oc-Pl-q7k"/>
                             <constraint firstItem="I9z-fT-jEi" firstAttribute="top" secondItem="KFQ-Ma-ST6" secondAttribute="top" constant="24" id="8G6-9h-wXk"/>
                             <constraint firstItem="9pw-RA-bdv" firstAttribute="centerX" secondItem="duC-M9-8xV" secondAttribute="centerX" id="BDA-7n-lU5"/>
                             <constraint firstItem="A9P-cN-U0t" firstAttribute="leading" secondItem="KFQ-Ma-ST6" secondAttribute="leading" constant="44" id="CgL-RK-LiN"/>
@@ -394,12 +399,12 @@
                             <constraint firstItem="F9V-2r-kdZ" firstAttribute="top" secondItem="hzA-2e-Bwq" secondAttribute="bottom" constant="17" id="U3t-Uf-E1C"/>
                             <constraint firstItem="KFQ-Ma-ST6" firstAttribute="trailing" secondItem="lfX-7W-2G8" secondAttribute="trailing" constant="64" id="Ur4-Kq-NI0"/>
                             <constraint firstItem="A9P-cN-U0t" firstAttribute="top" secondItem="e5w-25-rya" secondAttribute="bottom" constant="8" symbolic="YES" id="X9p-xe-poT"/>
-                            <constraint firstItem="jAs-KC-PtN" firstAttribute="leading" secondItem="844-95-vwc" secondAttribute="trailing" constant="-14" id="XVh-F4-04h"/>
+                            <constraint firstItem="jAs-KC-PtN" firstAttribute="leading" secondItem="844-95-vwc" secondAttribute="trailing" constant="5" id="XVh-F4-04h"/>
                             <constraint firstItem="wOG-cs-9oL" firstAttribute="leading" secondItem="KFQ-Ma-ST6" secondAttribute="leading" constant="16" id="Ybr-a7-bdm"/>
                             <constraint firstItem="7Of-Eu-7Rn" firstAttribute="leading" secondItem="KFQ-Ma-ST6" secondAttribute="leading" constant="44" id="bDR-Xi-B31"/>
                             <constraint firstItem="wqw-BE-5Vm" firstAttribute="top" secondItem="F9V-2r-kdZ" secondAttribute="bottom" constant="8" symbolic="YES" id="bUP-jI-Tqa"/>
                             <constraint firstItem="A9P-cN-U0t" firstAttribute="top" secondItem="844-95-vwc" secondAttribute="bottom" constant="2" id="cy7-Il-Vhf"/>
-                            <constraint firstItem="jAs-KC-PtN" firstAttribute="top" secondItem="lfX-7W-2G8" secondAttribute="bottom" constant="17" id="ey8-64-apN"/>
+                            <constraint firstItem="jAs-KC-PtN" firstAttribute="top" secondItem="lfX-7W-2G8" secondAttribute="bottom" constant="16" id="ey8-64-apN"/>
                             <constraint firstItem="7Of-Eu-7Rn" firstAttribute="top" secondItem="wqw-BE-5Vm" secondAttribute="bottom" constant="24" id="fKB-J0-j2h"/>
                             <constraint firstItem="tMo-OX-Juh" firstAttribute="top" secondItem="I9z-fT-jEi" secondAttribute="bottom" constant="15" id="gZd-rX-Qu7"/>
                             <constraint firstItem="I9z-fT-jEi" firstAttribute="centerX" secondItem="duC-M9-8xV" secondAttribute="centerX" id="jsb-Oh-pSH"/>
@@ -421,7 +426,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FT5-wD-JyV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5720" y="21"/>
+            <point key="canvasLocation" x="5719.8473282442746" y="20.422535211267608"/>
         </scene>
         <!--Mood Picker View Controller-->
         <scene sceneID="hLa-ey-ayx">
@@ -824,8 +829,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iEO-Vs-fb3">
-                                        <rect key="frame" x="269" y="20" width="102" height="35"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iEO-Vs-fb3">
+                                        <rect key="frame" x="299" y="20" width="72" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Edit"/>

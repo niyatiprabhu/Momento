@@ -56,7 +56,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         })
         
         storage.child("pfps/\(userID).jpg").getData(maxSize: 1 * 1024 * 1024, completion: { (data, err) in
-            if let err = err {
+            if err != nil {
                 print("could not get pfp or none exists for this user")
                 return
             }
@@ -72,6 +72,20 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         
         getPosts()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // get username info bc this might have changed
+        let uid = Auth.auth().currentUser?.uid
+        let docRef = db.collection("users").document(uid!)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists, let username = document["username"] as? String {
+                self.usernameLabel.text = "@\(username)"
+            } else {
+                print("error getting username")
+                self.usernameLabel.text = "@username"
+            }
+        }
     }
     
     func createCalendar() {

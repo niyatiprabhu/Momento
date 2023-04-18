@@ -43,9 +43,10 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func setPfpImage(uid: String) {
-        userImageView.image = UIImage(named: "profilepic")
+        userImageView.image = UIImage(named: "pfpPlaceholder")
         storage.child("pfps/\(uid).jpg").getData(maxSize: 1 * 1024 * 1024, completion: { (data, err) in
-            if let err = err {
+            if err != nil {
+                self.userImageView.image = UIImage(named: "profilepic")
                 print("could not get pfp or none exists for this user")
             } else {
                 guard let data = data else {

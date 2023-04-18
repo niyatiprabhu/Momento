@@ -41,7 +41,6 @@ class FeedViewController: UIViewController {
                 for document in querySnapshot!.documents {
                     let id = document.documentID
                     let data = document.data()
-                    print("\(id) => \(data)")
                     let user = User(dictionary: data)
                     users[id] = user
                 }
@@ -56,7 +55,6 @@ class FeedViewController: UIViewController {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
                     self.posts.append(JournalEntry(dict: document.data()))
                 }
                 group.leave()
