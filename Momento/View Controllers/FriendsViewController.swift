@@ -18,8 +18,8 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var displayData:[User] = []
     var myFriends:[User] = []
     var friendIds:[String] = []
+    var addFriends:[User] = []
     let db = Firestore.firestore()
-
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -55,7 +55,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 // construct User objects from the friends' uids and add to the array
                 for friendId in self.friendIds {
                     group.enter()
-                    let friendRef = Firestore.firestore().collection("users").document(friendId)
+                    let friendRef = self.db.collection("users").document(friendId)
                     friendRef.getDocument { (snapshot, error) in
                         if let error = error {
                             print("Error getting user document: \(error.localizedDescription)")
@@ -70,12 +70,31 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                         group.leave()
                     }
                 }
+                
+                // get list of users who are not currently friends and are not me
+                group.enter()
+                self.db.collection("users").getDocuments { (querySnapshot, error) in
+                    if let error = error {
+                        print("Error getting documents: \(error)")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            let id = document.documentID
+                            if id != user.uid && !self.friendIds.contains(id) {
+                                if let user = User(dictionary: document.data()) {
+                                    self.addFriends.append(user)
+                                }
+                            }
+                        }
+                        group.leave()
+                    }
+                }
                 group.leave()
             }
         }
         
         group.notify(queue: DispatchQueue.main, execute: {
             print("number of friends in myFriends is \(self.myFriends.count)")
+            print("number of potential friends to add is \(self.addFriends.count)")
             self.displayData = self.myFriends
             self.tableView.reloadData()
         })
@@ -140,31 +159,12 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func segmentedControllerChanged(_ sender: Any) {
         if segmentedContoller.selectedSegmentIndex == 1 {
             searchBar.placeholder = "search to add friends"
-            displayData = getAllUsers()
+            displayData = addFriends
         } else {
             searchBar.placeholder = "search my friends"
             displayData = myFriends
         }
         tableView.reloadData()
-    }
-    
-    func getAllUsers() -> [User] {
-        var allUsers: [User] = []
-        // Query the 'users' collection to get a list of user IDs
-        db.collection("users").getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error)")
-            } else {
-                for document in querySnapshot!.documents {
-                    let userId = document.documentID
-                    print(document.data())
-                    if let user = User(dictionary: document.data()) {
-                        allUsers.append(user)
-                    }
-                }
-            }
-        }
-        return allUsers
     }
     
     func searchFromAllUsers(username: String) -> [User] {

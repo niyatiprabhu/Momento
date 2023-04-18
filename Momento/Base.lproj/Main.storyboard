@@ -674,7 +674,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profilepic" translatesAutoresizingMaskIntoConstraints="NO" id="75v-Y0-Ws0">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pfpPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="75v-Y0-Ws0">
                                 <rect key="frame" x="121.66666666666669" y="25" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="0vX-yn-dkk"/>
@@ -1120,8 +1120,8 @@
         <image name="leaf.fill" catalog="system" width="128" height="109"/>
         <image name="person.2.fill" catalog="system" width="128" height="81"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
+        <image name="pfpPlaceholder" width="1920" height="1080"/>
         <image name="placeholder" width="273" height="184"/>
-        <image name="profilepic" width="612" height="408"/>
         <image name="shoeprints.fill" catalog="system" width="116" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="square.and.pencil" catalog="system" width="128" height="113"/>

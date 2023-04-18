@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var entryToSend:JournalEntry?
     var myPosts = Dictionary<String, JournalEntry>()
     var calendar: UICalendarView?
-    var pfp:UIImage = UIImage(named: "profilepic")!
+    var pfp:UIImage = UIImage(named: "pfpPlaceholder")!
     let imagePicker = UIImagePickerController()
     let db = Firestore.firestore()
     private let storage = Storage.storage().reference()
@@ -30,6 +30,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        usernameLabel.text = ""
+        nameLabel.text = ""
         pfpView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pfpViewTapped))
         pfpView.addGestureRecognizer(tapGesture)
@@ -58,6 +60,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         storage.child("pfps/\(userID).jpg").getData(maxSize: 1 * 1024 * 1024, completion: { (data, err) in
             if err != nil {
                 print("could not get pfp or none exists for this user")
+                self.pfpView.image = UIImage(named: "profilepic")
                 return
             }
             guard let data = data else {

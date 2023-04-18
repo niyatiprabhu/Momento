@@ -44,7 +44,6 @@ class FeedViewController: UIViewController {
                     let user = User(dictionary: data)
                     users[id] = user
                 }
-                print(users.description)
                 group.leave()
             }
         }
