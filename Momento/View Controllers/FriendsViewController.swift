@@ -28,8 +28,8 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let group = DispatchGroup()
         
-        // get the current user's data for friends' uids
         group.enter()
+        // get the current user's data for friends' uids
         if let user = Auth.auth().currentUser {
             // User is signed in.
             print("current user id is \(user.uid)")
@@ -45,92 +45,32 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
                 print("size of friendsIds is \(friends.count)")
                 self.friendIds = friends
+                
+                // construct User objects from the friends' uids and add to the array
+                for friendId in self.friendIds {
+                    group.enter()
+                    let friendRef = Firestore.firestore().collection("users").document(friendId)
+                    friendRef.getDocument { (snapshot, error) in
+                        if let error = error {
+                            print("Error getting user document: \(error.localizedDescription)")
+                            return
+                        }
+                        guard let data = snapshot?.data() else {
+                            print("User document has no friends array")
+                            return
+                        }
+                        let friendUser = User(dictionary: data)
+                        self.myFriends.append(friendUser!)
+                        group.leave()
+                    }
+                }
                 group.leave()
             }
         }
-        
-        // construct User objects from the friends' uids and add to the array
-        
-        for friendId in friendIds {
-            let friendRef = Firestore.firestore().collection("users").document(friendId)
-            group.enter()
-            friendRef.getDocument { (snapshot, error) in
-                if let error = error {
-                    print("Error getting user document: \(error.localizedDescription)")
-                    print("in here 1")
-                    return
-                }
-                guard let data = snapshot?.data() else {
-                    print("User document has no friends array")
-                    print ("in here")
-                    return
-                }
-                print ("about to add friend to myFriends")
-                let friendUser = User(dictionary: data)
-                self.myFriends.append(friendUser!)
-                group.leave()
-            }
-            
-        }
-        print("number of friends in myFriends is \(myFriends.count)")
-       
         
         group.notify(queue: DispatchQueue.main, execute: {
-            print("pulled friends")
+            print("number of friends in myFriends is \(self.myFriends.count)")
             self.tableView.reloadData()
-        })
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        myFriends.removeAll()
-        friendIds.removeAll()
-        
-        let group = DispatchGroup()
-        
-        // get the current user's data for friends' uids
-        group.enter()
-        if let user = Auth.auth().currentUser {
-            // User is signed in.
-            let userRef = Firestore.firestore().collection("users").document(user.uid)
-            userRef.getDocument { (snapshot, error) in
-                if let error = error {
-                    print("Error getting user document: \(error.localizedDescription)")
-                    return
-                }
-                guard let friends = snapshot?.data()?["friends"] as? [String] else {
-                    print("User document has no friends array")
-                    return
-                }
-                self.friendIds = friends
-                group.leave()
-            }
-        }
-        
-        // construct User objects from the friends' uids and add to the array
-        group.enter()
-        for friendId in friendIds {
-            let friendRef = Firestore.firestore().collection("users").document(friendId)
-            friendRef.getDocument { (snapshot, error) in
-                if let error = error {
-                    print("Error getting user document: \(error.localizedDescription)")
-                    return
-                }
-                guard let data = snapshot?.data() else {
-                    print("User document has no friends array")
-                    return
-                }
-                let friendUser = User(dictionary: data)
-                self.myFriends.append(friendUser!)
-            }
-        }
-        group.leave()
-        
-        group.notify(queue: DispatchQueue.main, execute: {
-            print("pulled friends")
-            self.tableView.reloadData()
-            for friend in self.myFriends {
-                print(friend.uid)
-            }
         })
     }
     

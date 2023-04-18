@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseStorage
 
 class FriendsTableViewCell: UITableViewCell {
     
@@ -15,6 +16,7 @@ class FriendsTableViewCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     
     static let identifier = "FriendsTableViewCell"
+    private let storage = Storage.storage().reference()
     
     // to register cell with table view more easily
     static func nib() -> UINib {
@@ -32,9 +34,27 @@ class FriendsTableViewCell: UITableViewCell {
     
     func configure(with user: User) {
         // TODO: change later to get author image
-        profilePic.image = UIImage(named: "pfp1")
+        setPfpImage(uid: user.uid)
         nameLabel.text = (user.name)
         usernameLabel.text = "@\(user.username)"
-        
+    }
+    
+    func setPfpImage(uid: String) {
+        profilePic.image = UIImage(named: "pfpPlaceholder")
+        storage.child("pfps/\(uid).jpg").getData(maxSize: 1 * 1024 * 1024, completion: { (data, err) in
+            if err != nil {
+                self.profilePic.image = UIImage(named: "profilepic")
+                print("could not get pfp or none exists for this user")
+            } else {
+                guard let data = data else {
+                    print("error getting pfp data")
+                    return
+                }
+                DispatchQueue.main.async {
+                    let image = UIImage(data: data)
+                    self.profilePic.image = image
+                }
+            }
+        })
     }
 }

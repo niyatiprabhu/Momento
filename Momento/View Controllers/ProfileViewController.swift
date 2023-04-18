@@ -70,7 +70,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
         })
         
-        
         getPosts()
     }
     

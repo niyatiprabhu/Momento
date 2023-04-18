@@ -48,6 +48,7 @@ class User {
               let uid = dictionary["uid"] as? String,
               let friends = dictionary["friends"] as? [String]
         else {
+            print("FAILED TO CREATE USER FROM DICTIONARY")
             return nil
         }
         self.name = name
