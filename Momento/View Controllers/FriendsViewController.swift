@@ -93,6 +93,12 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // remove from data and update the table
+            let friendIdToDelete = myFriends[indexPath.row].uid
+            let userId = Auth.auth().currentUser?.uid
+            let userRef = Firestore.firestore().collection("users").document(userId!)
+            userRef.updateData([
+                "friends": FieldValue.arrayRemove([friendIdToDelete])
+            ])
             myFriends.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
