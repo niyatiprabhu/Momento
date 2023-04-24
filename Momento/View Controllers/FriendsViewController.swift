@@ -187,17 +187,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.reloadData()
     }
     
-//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        if segmentedContoller.selectedSegmentIndex == 0 {
-//            // search within my friends
-//
-//        } else {
-//            // search within global users
-//            displayData = searchFromAllUsers(username: searchBar.text!)
-//        }
-//        tableView.reloadData()
-//    }
-    
     @IBAction func segmentedControllerChanged(_ sender: Any) {
         if segmentedContoller.selectedSegmentIndex == 1 {
             searchBar.placeholder = "search to add friends"

@@ -61,7 +61,7 @@ class MoodPickerViewController: UIViewController, UICollectionViewDelegate, UICo
 
         }
 
-    
+    // Make view controller's background transparent
     private func setBackground() {
         self.view.backgroundColor = UIColor.clear
         self.stickersCollection.backgroundColor = UIColor.clear

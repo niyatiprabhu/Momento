@@ -58,9 +58,6 @@ class HomeAfterPostedViewController: UIViewController, PostFiller {
         responseLabel.text = entry.response
         moodLabel.text = entry.mood
         stepsLabel.text = entry.getFormattedSteps()
-//        let color = entry.darkenColor(percentage: 0.5)
-//        stepsLabel.textColor = color
-//        shoes.tintColor = color
     }
 
     @IBAction func deleteButtonPressed(_ sender: Any) {
