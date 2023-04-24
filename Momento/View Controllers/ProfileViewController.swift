@@ -44,6 +44,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         userID = user.uid
         
+        //set up user's name and username
         db.collection("users").document(userID).getDocument(completion: { (document, err) in
             if let document = document, document.exists, let data = document.data() {
                 guard let user = User(dictionary: data) else {
@@ -57,6 +58,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
         })
         
+        //set up pfp
         storage.child("pfps/\(userID).jpg").getData(maxSize: 1 * 1024 * 1024, completion: { (data, err) in
             if err != nil {
                 print("could not get pfp or none exists for this user")

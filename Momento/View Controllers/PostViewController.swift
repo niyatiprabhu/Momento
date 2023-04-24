@@ -35,6 +35,7 @@ class PostViewController: UIViewController {
         shoes.tintColor = color
     }
     
+    // set post image
     func setImage(from url: URL) {
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let error = error {

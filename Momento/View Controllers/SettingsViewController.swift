@@ -68,6 +68,7 @@ class SettingsViewController: UIViewController {
                 return
             }
 
+            //Comfirm + update password
             if (self.newPasswordField.text != "") {
                 let newPassword = self.newPasswordField.text!
                 Auth.auth().currentUser?.updatePassword(to: newPassword) { error in
@@ -80,6 +81,7 @@ class SettingsViewController: UIViewController {
                 }
             }
             
+            //Update email
             if (self.emailField.text != "") {
                 let newEmail = self.emailField.text!
                 Auth.auth().currentUser?.updateEmail(to: newEmail) { error in
@@ -91,6 +93,8 @@ class SettingsViewController: UIViewController {
                     }
                 }
             }
+            
+            //Update username
             if (self.usernameField.text != "") {
                 let uid = Auth.auth().currentUser?.uid
                 let db = Firestore.firestore()
@@ -108,6 +112,7 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    //Display user info
     func getUserInfo() {
         let uid = Auth.auth().currentUser?.uid
         let docRef = db.collection("users").document(uid!)

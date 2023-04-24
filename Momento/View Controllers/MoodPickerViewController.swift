@@ -47,14 +47,6 @@ class MoodPickerViewController: UIViewController, UICollectionViewDelegate, UICo
         return cell
         
     }
- 
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let emoji = self.emoji[indexPath.item]
-//        let otherVC = delegate as! StickerPickerDelegate
-//        otherVC.didPick(sticker: emoji)
-//
-//
-//    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             let emoji = self.emoji[indexPath.item]
@@ -68,20 +60,8 @@ class MoodPickerViewController: UIViewController, UICollectionViewDelegate, UICo
         
 
         }
-    
 
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     private func setBackground() {
         self.view.backgroundColor = UIColor.clear
         self.stickersCollection.backgroundColor = UIColor.clear

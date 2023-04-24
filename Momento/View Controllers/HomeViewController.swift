@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
     
     private func setup() {
         
+        //set up before and after posting homescreens
         addChild(beforePostVC)
         addChild(afterPostVC)
         
@@ -52,6 +53,7 @@ class HomeViewController: UIViewController {
             return
         }
         
+        //Display post of day
         let postsRef = db.collection("posts")
         let query = postsRef.whereField("dateString", isEqualTo: todayString).whereField("authorID", isEqualTo: user.uid)
         

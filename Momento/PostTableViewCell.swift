@@ -113,6 +113,7 @@ class PostTableViewCell: UITableViewCell {
         task.resume()
     }
 
+    // double tap to like
     @objc func handleDoubleTap(_ sender: UITapGestureRecognizer) {
         if !isLiked {
             // animate like
