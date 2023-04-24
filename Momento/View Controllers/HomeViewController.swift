@@ -13,8 +13,8 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var subview: UIView!
     
-    let beforePostVC = HomeBeforePostingViewController()
-    let afterPostVC = HomeAfterPostedViewController()
+    public let beforePostVC = HomeBeforePostingViewController()
+    public let afterPostVC = HomeAfterPostedViewController()
     let db = Firestore.firestore()
 
     override func viewDidLoad() {
@@ -80,6 +80,12 @@ class HomeViewController: UIViewController {
         beforePostVC.view.isHidden = true
         afterPostVC.fillPost(entry: post)
         afterPostVC.view.isHidden = false
+    }
+    
+    @IBAction func segueToChildViewController(_ sender: Any) {
+        // instantiate the child view controller you want to segue to
+        // push the child view controller onto the navigation stack
+        parent?.navigationController?.pushViewController(beforePostVC, animated: true)
     }
     
 

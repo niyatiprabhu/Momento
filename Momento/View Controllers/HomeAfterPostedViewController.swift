@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseCore
+import Firebase
+import FirebaseFirestore
 
 class HomeAfterPostedViewController: UIViewController, PostFiller {
     
@@ -53,22 +57,60 @@ class HomeAfterPostedViewController: UIViewController, PostFiller {
         shoes.tintColor = color
     }
 
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        
+        let controller = UIAlertController(
+            title: "Are you sure?",
+            message: "Deleting this post cannot be undone",
+            preferredStyle: .alert)
+        
+        controller.addAction(UIAlertAction(
+            title: "Yes",
+            style: .default,
+            handler: {_ in self.deleteFirebasePost()}))
+        
+        controller.addAction(UIAlertAction(
+            title: "Cancel",
+            style: .cancel))
+        
+        present(controller, animated: true)
+        
+        
+    }
+    
+    func deleteFirebasePost() {
+        let group = DispatchGroup()
+        group.enter()
+        
+        guard let userId = Auth.auth().currentUser?.uid else {
+                return
+        }
+        let db = Firestore.firestore()
+        // Create a query that filters the 'posts' collection by the current user's ID, orders the documents by their creation time, and limits the result to one document
+        let query = db.collection("posts").whereField("authorID", isEqualTo: userId).order(by: "timestamp", descending: true).limit(to: 1)
+        
+        query.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    // Delete the most recent document
+                    db.collection("posts").document(document.documentID).delete { (error) in
+                        if let error = error {
+                            print("Error deleting document: \(error)")
+                        } else {
+                            print("Document successfully deleted")
+                        }
+                    }
+                }
+            }
+        }
+        group.leave()
+        
+        // show the before posting vc instead now
+        let parent = self.parent as! HomeViewController
+        parent.afterPostVC.view.isHidden = true
+        parent.beforePostVC.view.isHidden = false
+    }
 }
 
-//extension HomeAfterPostedViewController: UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        GlobalVariables.myPosts.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! PostCollectionViewCell
-//
-//        cell.post = GlobalVariables.myPosts[indexPath.item]
-//        dateLabel.text = "\(GlobalVariables.myPosts[indexPath.item].date)"
-//        return cell
-//    }
-//
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
-//}

@@ -107,7 +107,9 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if segmentedContoller.selectedSegmentIndex == 1 {
-            print("row is \(indexPath.row), num of friends is \(addFriends.count)")
+            
+            let group = DispatchGroup()
+            group.enter()
             let friend = addFriends[indexPath.row]
             myFriends.append(friend)
             friendIds.append(friend.uid)
@@ -116,22 +118,30 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             let userRef = Firestore.firestore().collection("users").document(currentUserId!)
             userRef.updateData([
                 "friends": FieldValue.arrayUnion([friend.uid])
-            ])
-            addFriends.remove(at: indexPath.row)
-            // alert the user that the friend was successfully added
-            let controller = UIAlertController(
-                title: "Yay!",
-                message: "\(friend.username) was successfully added as a friend! 😁",
-                preferredStyle: .alert)
-            
-            controller.addAction(UIAlertAction(
-                title: "OK",
-                style: .default))
-            
-            present(controller, animated: true)
-            
+            ]) { error in
+                if let error = error {
+                    print("Error adding friend: \(error.localizedDescription)")
+                } else {
+                    DispatchQueue.main.async {
+                        self.addFriends.remove(at: indexPath.row)
+                        tableView.reloadData()
+                    }
+                    group.leave()
+                    // alert the user that the friend was successfully added
+                    let controller = UIAlertController(
+                        title: "Yay!",
+                        message: "\(friend.username) was successfully added as a friend! 😁",
+                        preferredStyle: .alert)
+                    
+                    controller.addAction(UIAlertAction(
+                        title: "OK",
+                        style: .default))
+                    
+                    self.present(controller, animated: true)
+                }
+                
+            }
         }
-        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -154,7 +164,10 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             userRef.updateData([
                 "friends": FieldValue.arrayRemove([friendIdToDelete])
             ])
+            let friendToDelete = myFriends[indexPath.row]
             myFriends.remove(at: indexPath.row)
+            addFriends.append(friendToDelete)
+            displayData = myFriends
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

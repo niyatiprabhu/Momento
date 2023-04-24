@@ -52,6 +52,7 @@
                 </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <accessibility key="accessibilityConfiguration" identifier="HomeBeforePostingVC"/>
             <constraints>
                 <constraint firstItem="6Ov-O4-nxF" firstAttribute="top" secondItem="8T7-rN-Zdl" secondAttribute="bottom" id="2HH-bS-pym"/>
                 <constraint firstItem="8T7-rN-Zdl" firstAttribute="top" secondItem="Sh7-sq-hdP" secondAttribute="bottom" constant="50" id="2JK-6Z-KRf"/>
