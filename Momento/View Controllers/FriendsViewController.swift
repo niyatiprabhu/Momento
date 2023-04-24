@@ -105,6 +105,35 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.dismiss(animated: false)
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if segmentedContoller.selectedSegmentIndex == 1 {
+            print("row is \(indexPath.row), num of friends is \(addFriends.count)")
+            let friend = addFriends[indexPath.row]
+            myFriends.append(friend)
+            friendIds.append(friend.uid)
+            
+            let currentUserId = Auth.auth().currentUser?.uid
+            let userRef = Firestore.firestore().collection("users").document(currentUserId!)
+            userRef.updateData([
+                "friends": FieldValue.arrayUnion([friend.uid])
+            ])
+            addFriends.remove(at: indexPath.row)
+            // alert the user that the friend was successfully added
+            let controller = UIAlertController(
+                title: "Yay!",
+                message: "\(friend.username) was successfully added as a friend! 😁",
+                preferredStyle: .alert)
+            
+            controller.addAction(UIAlertAction(
+                title: "OK",
+                style: .default))
+            
+            present(controller, animated: true)
+            
+        }
+        tableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayData.count
     }
