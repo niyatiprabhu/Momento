@@ -221,6 +221,8 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
     @objc func colorWellChanged(_ sender: Any) {
         self.view.backgroundColor = colorWell.selectedColor
         selectedColor = colorWell.selectedColor!
+        let textColor: UIColor = selectedColor.isLight ? .black : .white
+        self.view.recursivelySetTextColor(textColor)
     }
     
     // MARK: - text field placeholder
@@ -273,6 +275,34 @@ extension UIImage {
         return self.pngData() == image.pngData()
     }
 
+}
+
+//Calculate the brightness of the background/color selected
+extension UIColor {
+    var isLight: Bool {
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+        self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        let brightness = ((red * 299) + (green * 587) + (blue * 114)) / 1000
+        return brightness >= 0.5
+    }
+}
+
+
+extension UIView {
+    //recursively set the text color of labels, textFields, and views
+    func recursivelySetTextColor(_ color: UIColor) {
+        if let label = self as? UILabel {
+            label.textColor = color
+        } else if let textField = self as? UITextField {
+            textField.textColor = color
+        } else if let textView = self as? UITextView {
+            textView.textColor = color
+        }
+
+        for subview in subviews {
+            subview.recursivelySetTextColor(color)
+        }
+    }
 }
 
 
