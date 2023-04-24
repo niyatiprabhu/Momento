@@ -47,14 +47,20 @@ class HomeAfterPostedViewController: UIViewController, PostFiller {
     
     func fillPost(entry: JournalEntry) {
         postBackground.backgroundColor = entry.color
+        let textColor: UIColor = entry.color.isLight ? .black : .white
+        let tintColor = textColor.withAlphaComponent(0.6)
+        promptLabel.textColor = textColor
+        responseLabel.textColor = textColor
+        stepsLabel.textColor = tintColor
+        shoes.tintColor = tintColor
         setImage(from: URL(string: entry.photoURL)!)
         promptLabel.text = entry.prompt
         responseLabel.text = entry.response
         moodLabel.text = entry.mood
         stepsLabel.text = entry.getFormattedSteps()
-        let color = entry.darkenColor(percentage: 0.5)
-        stepsLabel.textColor = color
-        shoes.tintColor = color
+//        let color = entry.darkenColor(percentage: 0.5)
+//        stepsLabel.textColor = color
+//        shoes.tintColor = color
     }
 
     @IBAction func deleteButtonPressed(_ sender: Any) {

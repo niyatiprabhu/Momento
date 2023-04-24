@@ -79,9 +79,16 @@ class PostTableViewCell: UITableViewCell {
         dateLabel.text = JournalEntry.getDateString(date: post.date)
         stepsLabel.text = post.getFormattedSteps()
         dateLabel.textColor = post.darkenColor(percentage: 0.3)
-        let color = post.darkenColor(percentage: 0.5)
-        stepsLabel.textColor = color
-        shoes.tintColor = color
+//        let color = post.darkenColor(percentage: 0.5)
+//        stepsLabel.textColor = color
+//        shoes.tintColor = color
+        let textColor: UIColor = post.color.isLight ? .black : .white
+        let tintColor = textColor.withAlphaComponent(0.6)
+        print ("text color \(textColor)")
+        promptLabel.textColor = textColor
+        responseLabel.textColor = textColor
+        stepsLabel.textColor = tintColor
+        shoes.tintColor = tintColor
         
         // get image from URL
         guard let url = URL(string: post.photoURL) else {

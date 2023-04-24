@@ -25,14 +25,18 @@ class PostViewController: UIViewController {
         super.viewDidLoad()
         dateLabel.text = JournalEntry.getDateString(date: entry.date)
         postBackground.backgroundColor = entry.color
+        let textColor: UIColor = entry.color.isLight ? .black : .white
+        let tintColor = textColor.withAlphaComponent(0.6)
+        print ("text color \(textColor)")
+        promptLabel.textColor = textColor
+        responseLabel.textColor = textColor
+        stepsLabel.textColor = tintColor
+        shoes.tintColor = tintColor
         setImage(from: URL(string: entry.photoURL)!)
         promptLabel.text = entry.prompt
         responseLabel.text = entry.response
         moodLabel.text = entry.mood
         stepsLabel.text = entry.getFormattedSteps()
-        let color = entry.darkenColor(percentage: 0.5)
-        stepsLabel.textColor = color
-        shoes.tintColor = color
     }
     
     // set post image
@@ -51,3 +55,33 @@ class PostViewController: UIViewController {
     }
 
 }
+
+////Calculate the brightness of the background/color selected
+//extension UIColor {
+//    var isLight: Bool {
+//        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+//        self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+//        let brightness = ((red * 299) + (green * 587) + (blue * 114)) / 1000
+//        return brightness >= 0.5
+//    }
+//}
+//
+//
+//extension UIView {
+//    //recursively set the text color of labels, textFields, and views
+//    func recursivelySetTextColor(_ color: UIColor) {
+//        if let label = self as? UILabel {
+//            label.textColor = color
+//        }
+////        else if let textView = self as? UITextView {
+////            textView.textColor = color
+////        }
+//        else if let textField = self as? UITextField {
+//            textField.textColor = color
+//        }
+//
+//        for subview in subviews {
+//            subview.recursivelySetTextColor(color)
+//        }
+//    }
+//}

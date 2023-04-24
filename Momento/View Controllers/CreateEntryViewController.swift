@@ -12,10 +12,12 @@ import FirebaseStorage
 class CreateEntryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITextFieldDelegate, StickerPickerDelegate {
     
     var selectedColor = UIColor.white
+    var postTextColor = UIColor.black
     var postImage:UIImage = UIImage(named: "placeholder")!
     var placeholderText:String = "share your thoughts..."
     var moodStickers:String = ""
     let imagePicker = UIImagePickerController()
+    
     
     private let storage = Storage.storage().reference()
     let database = Firestore.firestore()
@@ -74,6 +76,8 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
      
     @IBAction func onPostPressed(_ sender: Any) {
         // Fields are missing, present alert to user
+        promptLabel.textColor = postTextColor
+        textResponseView.textColor = postTextColor
         if imageView.image!.isEqualToImage(UIImage(named: "placeholder")!) || textResponseView.text == placeholderText {
             // Create new Alert
             let dialogMessage = UIAlertController(title: "Missing Fields", message: "Fields are required.", preferredStyle: .alert)
@@ -136,6 +140,9 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         
         let group = DispatchGroup()
         var stepCount:Int = 0
+        
+        
+//        stepCount.textColor = postTextColor
         
         group.enter()
         HealthKitManager.shared.getStepsCount { (steps, error) in
@@ -222,6 +229,7 @@ class CreateEntryViewController: UIViewController, UIImagePickerControllerDelega
         self.view.backgroundColor = colorWell.selectedColor
         selectedColor = colorWell.selectedColor!
         let textColor: UIColor = selectedColor.isLight ? .black : .white
+        postTextColor = textColor
         self.view.recursivelySetTextColor(textColor)
     }
     
@@ -293,10 +301,12 @@ extension UIView {
     func recursivelySetTextColor(_ color: UIColor) {
         if let label = self as? UILabel {
             label.textColor = color
-        } else if let textField = self as? UITextField {
+        }
+//        else if let textView = self as? UITextView {
+//            textView.textColor = color
+//        }
+        else if let textField = self as? UITextField {
             textField.textColor = color
-        } else if let textView = self as? UITextView {
-            textView.textColor = color
         }
 
         for subview in subviews {

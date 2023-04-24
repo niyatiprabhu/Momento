@@ -15,6 +15,7 @@ class FeedViewController: UIViewController {
 
     var posts = [JournalEntry]()
     let db = Firestore.firestore()
+    var refreshControl: UIRefreshControl!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -25,6 +26,11 @@ class FeedViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
+        
+        // Initialize refresh control
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +71,14 @@ class FeedViewController: UIViewController {
             self.tableView.reloadData()
         })
     }
+    
+    // Add pull-to-refresh function
+    @objc private func pullToRefresh() {
+        // Call your viewWillAppear method again to reload data
+        viewWillAppear(true)
+        // End refreshing
+        self.refreshControl.endRefreshing()
+    }
 }
 
 
@@ -75,6 +89,12 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+        
+        // Check that the index is within the bounds of the `posts` array
+          guard indexPath.row < posts.count else {
+              return cell
+          }
+        
         cell.configure(with: posts[indexPath.row])
         return cell
     }
