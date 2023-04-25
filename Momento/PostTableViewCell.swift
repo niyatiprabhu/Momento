@@ -81,7 +81,6 @@ class PostTableViewCell: UITableViewCell {
         dateLabel.textColor = post.darkenColor(percentage: 0.3)
         let textColor: UIColor = post.color.isLight ? .black : .white
         let tintColor = textColor.withAlphaComponent(0.6)
-        print ("text color \(textColor)")
         promptLabel.textColor = textColor
         responseLabel.textColor = textColor
         stepsLabel.textColor = tintColor

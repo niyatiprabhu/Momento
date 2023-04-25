@@ -27,7 +27,6 @@ class PostViewController: UIViewController {
         postBackground.backgroundColor = entry.color
         let textColor: UIColor = entry.color.isLight ? .black : .white
         let tintColor = textColor.withAlphaComponent(0.6)
-        print ("text color \(textColor)")
         promptLabel.textColor = textColor
         responseLabel.textColor = textColor
         stepsLabel.textColor = tintColor
